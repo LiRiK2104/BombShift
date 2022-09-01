@@ -26,14 +26,14 @@ public class VirtualCameraHandler : Singleton<VirtualCameraHandler>
 
     private void OnEnable()
     {
-        SpeedSetter.Instance.SpeedChanged += UpdateSpeedEffect;
+        Player.Instance.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
         Player.Instance.Died += StopFollowing;
         Player.Instance.Died += StopLookingAt;
     }
 
     private void OnDisable()
     {
-        SpeedSetter.Instance.SpeedChanged -= UpdateSpeedEffect;
+        Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
         Player.Instance.Died -= StopFollowing;
         Player.Instance.Died -= StopLookingAt;
     }
@@ -60,7 +60,7 @@ public class VirtualCameraHandler : Singleton<VirtualCameraHandler>
 
     private void UpdateSpeedEffect()
     {
-        _cinemachineTransposer.m_ZDamping = SpeedSetter.Instance.Setting.CameraDistance;
+        _cinemachineTransposer.m_ZDamping = Player.Instance.SpeedSwitcher.Setting.CameraDistance;
     }
 
     private IEnumerator SlowDownCore()

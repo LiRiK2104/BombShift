@@ -7,22 +7,28 @@ public class FXSwitcher : MonoBehaviour
     [SerializeField] private List<FX> _effectsTemplates = new List<FX>();
     
     private List<FX> _createdEffects = new List<FX>();
+    
 
     private void OnEnable()
     {
-        SpeedSetter.Instance.SpeedChanged += UpdateEffects;
+        Player.Instance.LifeSwitcher.LifeChanged += UpdateEffects;
     }
 
     private void OnDisable()
     {
-        SpeedSetter.Instance.SpeedChanged -= UpdateEffects;
+        Player.Instance.LifeSwitcher.LifeChanged -= UpdateEffects;
     }
     
     private void UpdateEffects()
     {
+        if (Player.Instance.SpeedSwitcher.Setting == null || 
+            Player.Instance.LifeSwitcher.Setting == null)
+            return;
+        
         foreach (var template in _effectsTemplates)
         {
-            if (SpeedSetter.Instance.Setting.HasEffect(template))
+            if (Player.Instance.SpeedSwitcher.Setting.HasEffect(template) || 
+                Player.Instance.LifeSwitcher.Setting.HasEffect(template))
                 GetEffect(template).Play();
             else
                 GetEffect(template).Stop();

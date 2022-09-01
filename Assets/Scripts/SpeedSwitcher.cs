@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedSetter : Singleton<SpeedSetter>
+public class SpeedSwitcher : MonoBehaviour
 {
     [SerializeField] private List<SpeedSetting> _speedSettings = new List<SpeedSetting>();
     [SerializeField] private int _startSettingIndex;
@@ -15,9 +15,8 @@ public class SpeedSetter : Singleton<SpeedSetter>
     
     public event Action SpeedChanged;
     
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         _index = _startSettingIndex;
     }
     
@@ -47,19 +46,12 @@ public class SpeedSetter : Singleton<SpeedSetter>
 
     public void Raise()
     {
-        if (_index == _speedSettings.Count - 1)
-        {
-            LifesCounterTest.Instance.Raise();
-        }
-        
         _index++;
         UpdateSpeedSetting();
     }
     
     public void Lower()
     {
-        LifesCounterTest.Instance.Lower();
-        
         _index -= 3;
         UpdateSpeedSetting();
     }

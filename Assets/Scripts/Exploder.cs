@@ -1,9 +1,25 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Exploder : MonoBehaviour
 {
+    private const int MinExplosionForce = 0;
+    private const int MaxExplosionForce = 1000;
+    private const int MinExplosionRadius = 0;
+    private const int MaxExplosionRadius = 15;
+    
+    private const float MinCameraShakeTime = 0;
+    private const float MaxCameraShakeTime = 3;
+    private const float MinCameraShakeIntensity = 0;
+    private const float MaxCameraShakeIntensity = 10;
+
+    [SerializeField] [Range(MinExplosionForce, MaxExplosionForce)] private float _force;
+    [SerializeField] [Range(MinExplosionRadius, MaxExplosionRadius)] private float _radius;
+    
+    [SerializeField] [Range(MinCameraShakeTime, MaxCameraShakeTime)] private float _cameraShakeTime;
+    [SerializeField] [Range(MinCameraShakeIntensity, MaxCameraShakeIntensity)] private float _cameraShakeIntensity;
+    
+    [SerializeField] private FX _explosionEffect;
     [SerializeField] private Transform _originPoint;
 
     private bool _isCollided;
@@ -15,49 +31,39 @@ public class Exploder : MonoBehaviour
             gameObject.TryGetComponentInParent(out Player player))
         {
             _isCollided = true;
-            
-            PlayEffect();
-            Invoke(nameof(Explode), SpeedSetter.Instance.Setting.ExplosionDelay);
-            Invoke(nameof(ShakeCamera), SpeedSetter.Instance.Setting.ExplosionDelay);
+            Explode();
         }
     }
 
-    private void Explode()
+    public void Explode()
     {
-        if (SpeedSetter.Instance.Setting.NeedExplosion == false)
-            return;
+        AddForce();
+        PlayEffect();
+        ShakeCamera();
         
-        float force = SpeedSetter.Instance.Setting.ExplosionForce;
-        float radius = SpeedSetter.Instance.Setting.ExplosionRadius;
+        Player.Instance.Die();
+    }
 
-        Collider[] nearestColliders = Physics.OverlapSphere(_originPoint.position, radius);
+    private void AddForce()
+    {
+        Collider[] nearestColliders = Physics.OverlapSphere(_originPoint.position, _radius);
 
         foreach (var collider in nearestColliders)
         {
             if (collider.TryGetComponent(out BuildingBlock buildingBlock) && 
                 collider.TryGetComponent(out Rigidbody rigidbody))
-                rigidbody.AddExplosionForce(force, _originPoint.position, radius);
+                rigidbody.AddExplosionForce(_force, _originPoint.position, _radius);
         }
-        
-        gameObject.SetActive(false);
     }
 
     private void PlayEffect()
     {
-        if (SpeedSetter.Instance.Setting.TryGetExplosionEffect(out FX effectReference))
-        {
-            var effect = Instantiate(effectReference, transform.position, quaternion.identity);
-            effect.Play();
-        }
+        var effect = Instantiate(_explosionEffect, transform.position, quaternion.identity);
+        effect.Play();
     }
     
     private void ShakeCamera()
     {
-        if (SpeedSetter.Instance.Setting.NeedShakeCamera == false)
-            return;
-        
-        float time = SpeedSetter.Instance.Setting.CameraShakeTime;
-        float intensity = SpeedSetter.Instance.Setting.CameraShakeIntensity;
-        VirtualCameraHandler.Instance.StartShake(time, intensity);
+        VirtualCameraHandler.Instance.StartShake(_cameraShakeTime, _cameraShakeIntensity);
     }
 }

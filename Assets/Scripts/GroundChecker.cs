@@ -9,7 +9,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (_active && HasGround() == false)
         {
-            Player.Instance.Die();
+            Player.Instance.Die(false);
             SetConstraints();
         }
     }

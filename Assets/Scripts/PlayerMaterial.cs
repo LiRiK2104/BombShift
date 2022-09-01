@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,12 +14,12 @@ public class PlayerMaterial : MonoBehaviour
 
     private void OnEnable()
     {
-        SpeedSetter.Instance.SpeedChanged += UpdateEmissionEntry;
+        Player.Instance.LifeSwitcher.LifeChanged += UpdateEmissionEntry;
     }
 
     private void OnDisable()
     {
-        SpeedSetter.Instance.SpeedChanged -= UpdateEmissionEntry;
+        Player.Instance.LifeSwitcher.LifeChanged -= UpdateEmissionEntry;
     }
 
     private void UpdateEmissionEntry()
@@ -32,7 +31,7 @@ public class PlayerMaterial : MonoBehaviour
     private IEnumerator UpdateEmission()
     {
         Color startColor = _renderer.material.GetColor(EmissionColorID);
-        Color targetColor = SpeedSetter.Instance.Setting.EmissionColor;
+        Color targetColor = Player.Instance.LifeSwitcher.Setting.EmissionColor;
 
         if (startColor == targetColor)
             yield break;

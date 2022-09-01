@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +8,8 @@ public class Bar : MonoBehaviour
     private Slider _slider;
     private float _targetValue;
 
+    private SpeedSwitcher SpeedSwitcher => Player.Instance.SpeedSwitcher;
+
     private void Awake()
     {
         _slider = GetComponent<Slider>();
@@ -16,12 +17,12 @@ public class Bar : MonoBehaviour
 
     private void OnEnable()
     {
-        SpeedSetter.Instance.SpeedChanged += OnValueChanged;
+        SpeedSwitcher.SpeedChanged += OnValueChanged;
     }
 
     private void OnDisable()
     {
-        SpeedSetter.Instance.SpeedChanged -= OnValueChanged;
+        SpeedSwitcher.SpeedChanged -= OnValueChanged;
     }
 
     private void Start()
@@ -36,7 +37,7 @@ public class Bar : MonoBehaviour
     
     private void OnValueChanged()
     {
-        _targetValue = (float)SpeedSetter.Instance.SpeedLevel / SpeedSetter.Instance.SpeedsLevelsCount;
+        _targetValue = (float)SpeedSwitcher.SpeedLevel / SpeedSwitcher.SpeedsLevelsCount;
         StopCoroutine(UpdateBar());
         StartCoroutine(UpdateBar());
     }

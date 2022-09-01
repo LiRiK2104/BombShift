@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TrampolineZone : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
         {
@@ -16,8 +16,8 @@ public class TrampolineZone : MonoBehaviour
     {
         Vector3 vector = 
             CalculateTrajectoryVelocity( playerMover.Rigidbody.transform.position, 
-                SpeedSetter.Instance.Setting.TargetPosition, 
-                SpeedSetter.Instance.Setting.JumpHeight);
+                SpeedSwitcher.Instance.Setting.TargetPosition, 
+                SpeedSwitcher.Instance.Setting.JumpHeight);
         
         playerMover.Rigidbody.velocity = vector;
         playerMover.Rigidbody.AddTorque(3, 0, 0);
@@ -30,5 +30,5 @@ public class TrampolineZone : MonoBehaviour
         float y = ((target.y - origin.y) - 0.5f * Physics.gravity.y * t * t) / t;
         
         return new Vector3(x, y, z);
-    }
+    }*/
 }

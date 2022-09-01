@@ -23,7 +23,8 @@ public class Gate : MonoBehaviour
         if (_isUsed)
             return;
         
-        SpeedSetter.Instance.Lower();
+        Player.Instance.SpeedSwitcher.Lower();
+        Player.Instance.LifeSwitcher.Lower();
         MarkAsUsed();
     }
 
@@ -32,7 +33,7 @@ public class Gate : MonoBehaviour
         if (_isUsed)
             return;
         
-        SpeedSetter.Instance.Raise();
+        Player.Instance.SpeedSwitcher.Raise();
         MarkAsUsed();
     }
 

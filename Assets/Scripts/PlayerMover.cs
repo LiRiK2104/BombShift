@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -27,10 +26,10 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_needPush == false || SpeedSetter.Instance.Setting == null)
+        if (_needPush == false || Player.Instance.SpeedSwitcher.Setting == null)
             return;
         
-        Vector3 moveVector = transform.forward * SpeedSetter.Instance.Setting.Speed;
+        Vector3 moveVector = transform.forward * Player.Instance.SpeedSwitcher.Setting.Speed;
         _rigidbody.velocity = new Vector3(moveVector.x, _rigidbody.velocity.y, moveVector.z);
     }
     

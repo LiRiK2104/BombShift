@@ -6,6 +6,7 @@ public class TrampolineStartZone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
         {
+            VirtualCameraHandler.Instance.SlowDown();
             Player.Instance.GroundChecker.StopChecking();
             Player.Instance.Scaler.GoToIdleScale();
             SetConstraints(playerMover);
