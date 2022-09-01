@@ -1,0 +1,2 @@
+
+public class FinishChunk : Chunk { }
