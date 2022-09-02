@@ -21,6 +21,8 @@ public class BuildingBlock : MonoBehaviour
         
         var block = Instantiate(_fracturedBlock, transform.position, transform.rotation, transform.parent);
         block.transform.localScale = transform.localScale;
+
+        var meshRenderer = GetComponent<MeshRenderer>();
         
         var pieces = block.GetComponentsInChildren<Rigidbody>();
 
@@ -29,7 +31,9 @@ public class BuildingBlock : MonoBehaviour
         
         foreach (var piece in pieces)
         {
-            //piece.velocity = _rigidbody.velocity;
+            var pieceMeshRenderer = piece.GetComponent<MeshRenderer>();
+            pieceMeshRenderer.material = meshRenderer.material;
+            
             piece.AddExplosionForce(force, transform.position, radius);
         }
         
