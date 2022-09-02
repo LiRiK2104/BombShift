@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 443102}
   - component: {fileID: 9518710}
   - component: {fileID: 4468095303571513671}
+  - component: {fileID: 1097122677539700872}
+  - component: {fileID: 3370026993357904958}
   m_Layer: 0
   m_Name: Silver_Chest
   m_TagString: Untagged
@@ -67,6 +69,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightColor: {r: 1, g: 1, b: 1, a: 0}
+--- !u!65 &1097122677539700872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115298}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0685, z: 1}
+  m_Center: {x: 0, y: -0.03425002, z: 0}
+--- !u!54 &3370026993357904958
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115298}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &115314
 GameObject:
   m_ObjectHideFlags: 0

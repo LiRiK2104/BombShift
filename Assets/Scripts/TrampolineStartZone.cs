@@ -9,15 +9,6 @@ public class TrampolineStartZone : MonoBehaviour
             VirtualCameraHandler.Instance.SlowDown();
             Player.Instance.GroundChecker.StopChecking();
             Player.Instance.Scaler.GoToIdleScale();
-            SetConstraints(playerMover);
         }
-    }
-    
-    private void SetConstraints(PlayerMover playerMover)
-    {
-        playerMover.Rigidbody.constraints = 
-            RigidbodyConstraints.FreezePositionX | 
-            RigidbodyConstraints.FreezeRotationY |
-            RigidbodyConstraints.FreezeRotationZ;
     }
 }

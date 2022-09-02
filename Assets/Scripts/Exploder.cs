@@ -1,10 +1,12 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Exploder : MonoBehaviour
 {
     private const int MinExplosionForce = 0;
-    private const int MaxExplosionForce = 1000;
+    private const int MaxExplosionForce = 5000;
     private const int MinExplosionRadius = 0;
     private const int MaxExplosionRadius = 15;
     
@@ -34,6 +36,11 @@ public class Exploder : MonoBehaviour
             Explode();
         }
     }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _radius);
+    }
 
     public void Explode()
     {
@@ -50,9 +57,12 @@ public class Exploder : MonoBehaviour
 
         foreach (var collider in nearestColliders)
         {
-            if (collider.TryGetComponent(out BuildingBlock buildingBlock) && 
+            if (collider.TryGetComponent(out BuildingBlock buildingBlock) &&
                 collider.TryGetComponent(out Rigidbody rigidbody))
+            {
                 rigidbody.AddExplosionForce(_force, _originPoint.position, _radius);
+                buildingBlock.DestructSelf();
+            }
         }
     }
 
