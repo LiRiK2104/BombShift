@@ -66,7 +66,7 @@ public class VirtualCameraHandler : Singleton<VirtualCameraHandler>
     private IEnumerator SlowDownCore()
     {
         float maxDamping = 20;
-        float speed = 1.5f;
+        float speed = 1f;
         
         while (_cinemachineTransposer.m_ZDamping < maxDamping)
         {

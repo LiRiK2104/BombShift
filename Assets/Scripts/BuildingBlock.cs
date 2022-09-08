@@ -6,13 +6,6 @@ public class BuildingBlock : MonoBehaviour
 {
     [SerializeField] private FracturedBuildingBlock _fracturedBlock;
 
-    private Rigidbody _rigidbody;
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     public void DestructSelf()
     {
         if (_fracturedBlock == null)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -54,14 +55,18 @@ public class Exploder : MonoBehaviour
     private void AddForce()
     {
         Collider[] nearestColliders = Physics.OverlapSphere(_originPoint.position, _radius);
+        List<BuildingBlock> usedBuildings = new List<BuildingBlock>();
 
         foreach (var collider in nearestColliders)
         {
             if (collider.TryGetComponent(out BuildingBlock buildingBlock) &&
+                usedBuildings.Contains(buildingBlock) == false &&
                 collider.TryGetComponent(out Rigidbody rigidbody))
             {
                 rigidbody.AddExplosionForce(_force, _originPoint.position, _radius);
                 buildingBlock.DestructSelf();
+                
+                usedBuildings.Add(buildingBlock);
             }
         }
     }
