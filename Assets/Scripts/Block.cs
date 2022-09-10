@@ -38,7 +38,7 @@ public class Block : MonoBehaviour
     {
         float time = 0.5f;
         float intensity = 2;
-        VirtualCameraHandler.Instance.StartShake(time, intensity);
+        CinemachineSwitcher.Instance.Shake(time, intensity);
     }
 
     private Vector3 GetDirection()

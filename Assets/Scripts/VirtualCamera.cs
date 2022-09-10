@@ -1,18 +1,18 @@
-using System;
 using System.Collections;
-using UnityEngine;
+using System.Collections.Generic;
 using Cinemachine;
+using UnityEngine;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
-public class VirtualCameraHandler : Singleton<VirtualCameraHandler>
+public class VirtualCamera : MonoBehaviour
 {
     private const float DefaultShakeTime = 0.5f;
     private const float DefaultShakeIntensity = 1;
-
+    
     private CinemachineVirtualCamera _cinemachineVirtualCamera;
     private CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
     private CinemachineTransposer _cinemachineTransposer;
-
+    
     private void Awake()
     {
         _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
@@ -23,62 +23,27 @@ public class VirtualCameraHandler : Singleton<VirtualCameraHandler>
         _cinemachineTransposer = 
             _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
     }
-
-    private void OnEnable()
-    {
-        Player.Instance.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
-        Player.Instance.Died += StopFollowing;
-        Player.Instance.Died += StopLookingAt;
-    }
-
-    private void OnDisable()
-    {
-        Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
-        Player.Instance.Died -= StopFollowing;
-        Player.Instance.Died -= StopLookingAt;
-    }
-
+    
     public void StartShake(float time = DefaultShakeTime, float intensity = DefaultShakeIntensity)
     {
         StartCoroutine(ShakeCore(time, intensity));
     }
-    
-    public void SlowDown()
-    {
-        StartCoroutine(SlowDownCore());
-    }
 
-    private void StopFollowing()
+    public void StopFollowing()
     {
         _cinemachineVirtualCamera.Follow = null;
     }
 
-    private void StopLookingAt()
+    public void StopLookingAt()
     {
         _cinemachineVirtualCamera.LookAt = null;
     }
 
-    private void UpdateSpeedEffect()
+    public void UpdateSpeedEffect()
     {
         _cinemachineTransposer.m_ZDamping = Player.Instance.SpeedSwitcher.Setting.CameraDistance;
     }
 
-    private IEnumerator SlowDownCore()
-    {
-        float maxDamping = 20;
-        float speed = 1f;
-        
-        while (_cinemachineTransposer.m_ZDamping < maxDamping)
-        {
-            _cinemachineTransposer.m_ZDamping = Mathf.MoveTowards(_cinemachineTransposer.m_ZDamping, 
-                maxDamping, Time.deltaTime * speed);
-
-            yield return null;
-        }
-        
-        StopFollowing();
-    }
-    
     private IEnumerator ShakeCore(float time, float intensity)
     {
         time = Mathf.Max(time, 0); 

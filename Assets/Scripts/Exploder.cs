@@ -9,7 +9,7 @@ public class Exploder : MonoBehaviour
     private const int MinExplosionForce = 0;
     private const int MaxExplosionForce = 5000;
     private const int MinExplosionRadius = 0;
-    private const int MaxExplosionRadius = 15;
+    private const int MaxExplosionRadius = 20;
     
     private const float MinCameraShakeTime = 0;
     private const float MaxCameraShakeTime = 3;
@@ -79,6 +79,6 @@ public class Exploder : MonoBehaviour
     
     private void ShakeCamera()
     {
-        VirtualCameraHandler.Instance.StartShake(_cameraShakeTime, _cameraShakeIntensity);
+        CinemachineSwitcher.Instance.Shake(_cameraShakeTime, _cameraShakeIntensity);
     }
 }

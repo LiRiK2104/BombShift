@@ -6,7 +6,7 @@ public class TrampolineStartZone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
         {
-            VirtualCameraHandler.Instance.SlowDown();
+            CinemachineSwitcher.Instance.Spectate();
             Player.Instance.GroundChecker.StopChecking();
             Player.Instance.Scaler.GoToIdleScale();
         }
