@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: EnvironmentPreset_Egypt
   m_EditorClassIdentifier: 
   _skyboxMaterial: {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
-  _finishMaterialLevelA: {fileID: 2100000, guid: 39ea2bcde2e08fd48b16da5e1aa99b4f, type: 2}
-  _finishMaterialLevelB: {fileID: 2100000, guid: d076e2b5e866d3a44826b4ba68cb81de, type: 2}
-  _finishMaterialLevelC: {fileID: 2100000, guid: 1d052427820d19c44baf7813a5056d98, type: 2}
-  _buildingLevelA: {fileID: -22553192327518113, guid: 09d565c87fef8a3458163a399bf6ea51, type: 3}
-  _buildingLevelB: {fileID: 763617194906455773, guid: b2e840a2b39fe914b8f5301c848df212, type: 3}
-  _buildingLevelC: {fileID: 7344911569720735736, guid: 61a4e03f9a8da72448fe472f66695187, type: 3}
+  _finishPointPresets:
+  - _groundMaterial: {fileID: 2100000, guid: 39ea2bcde2e08fd48b16da5e1aa99b4f, type: 2}
+    _building: {fileID: -22553192327518113, guid: 09d565c87fef8a3458163a399bf6ea51, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: d076e2b5e866d3a44826b4ba68cb81de, type: 2}
+    _building: {fileID: 763617194906455773, guid: b2e840a2b39fe914b8f5301c848df212, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: 1d052427820d19c44baf7813a5056d98, type: 2}
+    _building: {fileID: 7344911569720735736, guid: 61a4e03f9a8da72448fe472f66695187, type: 3}
