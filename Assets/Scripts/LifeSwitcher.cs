@@ -10,6 +10,7 @@ public class LifeSwitcher : MonoBehaviour
     
     private int _index = 0;
 
+    public int LeftLives => _index + 1;
     public LifeSetting Setting { get; private set; }
     
     public event Action LifeChanged;
@@ -37,12 +38,6 @@ public class LifeSwitcher : MonoBehaviour
         UpdateLifeSetting();
     }
 
-    private void LowerFull()
-    {
-        _index = 0;
-        UpdateLifeSetting();
-    }
-    
     private void UpdateLifeSetting()
     {
         ClampIndex();
