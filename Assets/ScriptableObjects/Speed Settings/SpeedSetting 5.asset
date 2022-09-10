@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 17
   _cameraDistance: 3
-  _effects: []
+  _effects:
+  - {fileID: 3027360294472597919, guid: aadf1455fb54353489b7377f3849e65a, type: 3}

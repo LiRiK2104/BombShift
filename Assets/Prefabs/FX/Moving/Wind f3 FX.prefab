@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9125259593404015665}
   - component: {fileID: 523027490185931265}
   - component: {fileID: 8243555300586136334}
-  - component: {fileID: 1878069588787701974}
   - component: {fileID: 3027360294472597919}
   m_Layer: 0
   m_Name: Wind f3 FX
@@ -867,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4807,18 +4806,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &1878069588787701974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2252768251202746061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77568353ba21b134faf29a4f2ff831d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3027360294472597919
 MonoBehaviour:
   m_ObjectHideFlags: 0

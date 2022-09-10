@@ -11,11 +11,13 @@ public class FXSwitcher : MonoBehaviour
 
     private void OnEnable()
     {
+        Player.Instance.SpeedSwitcher.SpeedChanged += UpdateEffects;
         Player.Instance.LifeSwitcher.LifeChanged += UpdateEffects;
     }
 
     private void OnDisable()
     {
+        Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateEffects;
         Player.Instance.LifeSwitcher.LifeChanged -= UpdateEffects;
     }
     

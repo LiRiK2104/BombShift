@@ -9715,7 +9715,6 @@ GameObject:
   - component: {fileID: 1606781382519446598}
   - component: {fileID: 6394044798271420003}
   - component: {fileID: 5123784362022391622}
-  - component: {fileID: 6898817302845688590}
   m_Layer: 0
   m_Name: Electro Flash FX
   m_TagString: Untagged
@@ -14590,16 +14589,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eed3d1f866e7164da563a5c53379f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6898817302845688590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6475767622202647284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b1c29feb7b6c84e848d53b80d2710f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effect: {fileID: 6834950870800101976}

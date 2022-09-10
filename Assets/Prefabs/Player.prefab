@@ -229,7 +229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _originPoint: {fileID: 4783602898253513504}
   _effectsTemplates:
-  - {fileID: 5123784362022391622, guid: 3346839595de9f74b8fe5245b6a2d96b, type: 3}
   - {fileID: 4531977603955750487, guid: 422056418d0c63d4ab0c2c26801cd84a, type: 3}
   - {fileID: 8710359000017438971, guid: f06409fa88a2ad142bcbcd6c50e05e73, type: 3}
   - {fileID: 2296614218854161257, guid: 4a81f89364388cc4993e03dc23026142, type: 3}
