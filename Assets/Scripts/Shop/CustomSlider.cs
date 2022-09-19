@@ -34,7 +34,7 @@ public class CustomSlider : MonoBehaviour
 
     private string GetProgressString(int value)
     {
-        return $"{value}/{MaxProgress}";
+        return $"{value}/{_maxValue}";
     }
 
     private void UpdateFillZone()

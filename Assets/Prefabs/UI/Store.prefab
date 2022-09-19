@@ -304,10 +304,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f679378c76535344eaf4975820540240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _template: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
+  _pageTemplate: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
   _content: {fileID: 5525601259874556589}
   _shopScroll: {fileID: 4178666444309768687}
-  _pagePresets: []
+  _pages: []
 --- !u!1 &7073926076476999018
 GameObject:
   m_ObjectHideFlags: 0

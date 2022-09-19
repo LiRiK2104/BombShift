@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Shop.Pages
 {
-    [CreateAssetMenu(fileName = "ShopPageIdle", menuName = "ShopPage/Priced", order = 51)]
+    [CreateAssetMenu(fileName = "ShopPagePriced", menuName = "ShopPage/Priced", order = 51)]
     public class ShopPagePriced : ShopPage
     {
         [SerializeField] private ShopCellWithSlider _cellTemplate;

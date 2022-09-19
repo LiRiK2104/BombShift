@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Shop.Items;
+using UnityEngine;
 
 public class ItemStorage : Singleton<ItemStorage>
 {
     private List<CurrencyContainer> _currencyContainers = new List<CurrencyContainer>();
-    private List<Skin> _skins = new List<Skin>();
+    [SerializeField] private List<Skin> _skins = new List<Skin>();
 
     
     public void Add(Skin skin)
@@ -66,6 +67,6 @@ public class ItemStorage : Singleton<ItemStorage>
     private bool HasCurrency(Currency currency, out CurrencyContainer foundContainer)
     {
         foundContainer = _currencyContainers.FirstOrDefault(container => container.Currency == currency);
-        return foundContainer == null;
+        return foundContainer != null;
     }
 }
