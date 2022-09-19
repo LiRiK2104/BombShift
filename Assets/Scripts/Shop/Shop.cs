@@ -1,25 +1,29 @@
 using System.Collections.Generic;
+using Shop.Pages;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+namespace Shop
 {
-    [SerializeField] private ShopPageView _template;
-    [SerializeField] private Transform _content;
-    [SerializeField] private ShopScroll _shopScroll;
-    [SerializeField] private List<ShopPagePreset> _pagePresets;
-
-    private void Awake()
+    public class Shop : MonoBehaviour
     {
-        List<ShopPageView> spawnedPages = new List<ShopPageView>();
+        [SerializeField] private ShopPageView _pageTemplate;
+        [SerializeField] private Transform _content;
+        [SerializeField] private ShopScroll _shopScroll;
+        [SerializeField] private List<ShopPage> _pages;
 
-        foreach (var pagePreset in _pagePresets)
+        private void Awake()
         {
-            var spawnedPage = Instantiate(_template, _content);
+            List<ShopPageView> spawnedPages = new List<ShopPageView>();
 
-            spawnedPage.Initialize(pagePreset);
-            spawnedPages.Add(spawnedPage);
+            foreach (var pagePreset in _pages)
+            {
+                var spawnedPage = Instantiate(_pageTemplate, _content);
+
+                spawnedPage.Initialize(pagePreset);
+                spawnedPages.Add(spawnedPage);
+            }
+
+            _shopScroll.Initialize(spawnedPages);
         }
-
-        _shopScroll.Initialize(spawnedPages);
     }
 }

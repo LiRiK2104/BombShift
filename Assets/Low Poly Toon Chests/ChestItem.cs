@@ -1,3 +1,4 @@
+using Shop.Items;
 using UnityEngine;
 
 public class ChestItem : MonoBehaviour
