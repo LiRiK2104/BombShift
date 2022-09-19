@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1237e1fa0a9b34f8994c43bfeb0aa8, type: 3}
+  m_Name: Pirat Bomb
+  m_EditorClassIdentifier: 
+  _skin: {fileID: 4884736031376834716, guid: 7b508e5e61ad8b6478403c238b37f2d9, type: 3}
+  _currency: {fileID: 3408172926297264048, guid: b4a04070aa2955d499e15ae4a7545ed5, type: 3}
+  _currencyNeedCount: 3

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8895ec29120f5514489f9d23786c9cc1, type: 3}
+  m_Name: ShopPagePriced
+  m_EditorClassIdentifier: 
+  _name: "\u041B\u0415\u0413\u0415\u041D\u0414\u0410\u0420\u041D\u042B\u0415"
+  _nameTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _tapeColor: {r: 0.9677078, g: 0.46293163, b: 0.9716981, a: 1}
+  _cellTemplate: {fileID: 1059518674167494575, guid: 32c252a1a2eeb3e49be4a7e23f4fff2c, type: 3}
+  _shopUnits:
+  - {fileID: 11400000, guid: c06cdd05b5b671d45851a454ba5bbb0f, type: 2}
+  - {fileID: 11400000, guid: ce340e59d0e120d4abe269db39dda3f4, type: 2}
+  - {fileID: 11400000, guid: 9ee40de61ba0c1c4c9a3b6b5cd157ee6, type: 2}
+  - {fileID: 11400000, guid: 85b788945a2ce454db4bf5d8fc1fa463, type: 2}
+  - {fileID: 11400000, guid: 81e4fdbdec0e43348a423a6ed186d2d5, type: 2}
+  - {fileID: 11400000, guid: 93eb3eacc9ac98e4d8385e377ba4ccfb, type: 2}
