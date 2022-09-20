@@ -1,15 +1,19 @@
+using Shop.Items;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Shop.Cells.States
 {
     public class OpenState : ShopCellState
     {
-        [SerializeField] private Image _icon;
+        [SerializeField] private Transform _previewParent;
 
-        public void SetIcon(Sprite icon)
+        public void SetPreview(Skin skin)
         {
-            _icon.sprite = icon;
+            if (_previewParent == null)
+                return;
+            
+            var preview = Instantiate(skin, _previewParent);
+            SetUILayer(preview.gameObject);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Shop.Cells
             if (_initialized)
                 return;
 
-            _openState.SetIcon(shopUnit.Skin.Icon);
+            _openState.SetPreview(shopUnit.Skin);
             _toggleGroup.AddToggle(_openState.Toggle);
             _toggleGroup.AddToggle(LockedState.Toggle);
         

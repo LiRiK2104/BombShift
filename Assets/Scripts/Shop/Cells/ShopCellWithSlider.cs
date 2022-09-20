@@ -1,4 +1,5 @@
 using Shop.Cells.States;
+using Shop.Items;
 using Shop.Units;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Shop.Cells
         {
             ItemStorage.Instance.TryGetCurrencyCount(shopUnit.Currency, out int fragmentCollectedCount);
                 
-            _lockedFragmentState.SetFragmentIcon(shopUnit.Currency.Icon);
+            _lockedFragmentState.SetPreview(shopUnit.Currency as Fragment);
             _lockedFragmentState.Slider.Initialize(shopUnit.CurrencyNeedCount, fragmentCollectedCount);
         }
     }

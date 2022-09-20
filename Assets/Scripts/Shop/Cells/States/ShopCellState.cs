@@ -5,12 +5,11 @@ namespace Shop.Cells.States
 {
     public abstract class ShopCellState : MonoBehaviour
     {
-        private const float ActiveAlpha = 1;
-        private const float DisactiveAlpha = 0;
+        protected const string LayerUIName = "UI";
         
         [SerializeField] private Toggle _toggle;
-        [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private GameObject _selectionFrame;
+        [SerializeField] private GameObject _content;
+        [SerializeField] private CellSelectionFrame selectionSelectionFrame;
 
         public Toggle Toggle => _toggle;
         
@@ -28,22 +27,33 @@ namespace Shop.Cells.States
         
         public void Select()
         {
-            _selectionFrame.SetActive(true);
+            selectionSelectionFrame.gameObject.SetActive(true);
         }
     
         public void Deselect()
         {
-            _selectionFrame.SetActive(false);
+            selectionSelectionFrame.gameObject.SetActive(false);
+        }
+        
+        protected void SetUILayer(GameObject preview)
+        {
+            int targetLayer = LayerMask.NameToLayer(LayerUIName);
+            
+            preview.gameObject.layer = targetLayer;
+            MeshRenderer[] children = preview.GetComponentsInChildren<MeshRenderer>();
+            
+            foreach (var child in children)
+                child.gameObject.layer = targetLayer;
         }
 
         private void Show()
         {
-            _canvasGroup.alpha = ActiveAlpha;
+            _content.SetActive(true);
         }
 
         private void Hide()
         {
-            _canvasGroup.alpha = DisactiveAlpha;
+            _content.SetActive(false);
         }
     }   
 }
