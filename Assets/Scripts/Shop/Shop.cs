@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Shop.Pages;
+using Shop.Toggles;
 using UnityEngine;
 
 namespace Shop
@@ -9,6 +10,7 @@ namespace Shop
         [SerializeField] private ShopPageView _pageTemplate;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopScroll _shopScroll;
+        [SerializeField] private ToggleGroup _toggleGroup;
         [SerializeField] private List<ShopPage> _pages;
 
         private void Awake()
@@ -19,7 +21,7 @@ namespace Shop
             {
                 var spawnedPage = Instantiate(_pageTemplate, _content);
 
-                spawnedPage.Initialize(pagePreset);
+                spawnedPage.Initialize(pagePreset, _toggleGroup);
                 spawnedPages.Add(spawnedPage);
             }
 

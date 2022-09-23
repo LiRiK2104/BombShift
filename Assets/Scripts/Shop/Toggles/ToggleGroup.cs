@@ -5,19 +5,19 @@ namespace Shop.Toggles
 {
     public class ToggleGroup : MonoBehaviour
     {
-        private List<Toggle> _toggles = new List<Toggle>();
+        protected List<Toggle> Toggles = new List<Toggle>();
 
         public void AddToggle(Toggle toggle)
         {
-            if (_toggles.Contains(toggle) == false)
-                _toggles.Add(toggle);
+            if (Toggles.Contains(toggle) == false)
+                Toggles.Add(toggle);
         }
 
         public void SelectToggle(Toggle targetToggle)
         {
-            if (_toggles.Contains(targetToggle))
+            if (Toggles.Contains(targetToggle))
             {
-                _toggles.ForEach(toggle => toggle.Deselect());
+                Toggles.ForEach(toggle => toggle.Deselect());
                 targetToggle.Select();
             }
         }

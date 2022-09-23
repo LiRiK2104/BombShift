@@ -54,6 +54,7 @@ namespace Shop.Cells.States
         private void Hide()
         {
             _content.SetActive(false);
+            Deselect();
         }
     }   
 }

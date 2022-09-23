@@ -1,5 +1,6 @@
 using Shop.Cells.States;
 using Shop.Items;
+using Shop.Toggles;
 using Shop.Units;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ namespace Shop.Cells
 
         protected override LockedState LockedState => _lockedFragmentState;
 
-        public override void Initialize(ShopUnit shopUnit)
+        public override void Initialize(ShopUnit shopUnit, ToggleGroup shopPageToggleGroup)
         {
-            base.Initialize(shopUnit);
+            base.Initialize(shopUnit, shopPageToggleGroup);
             Initialize(shopUnit as ShopUnitPriced);
         }
 

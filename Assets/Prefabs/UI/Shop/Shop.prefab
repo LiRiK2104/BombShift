@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 4354647231976860737}
   - component: {fileID: 6481095352559515757}
   - component: {fileID: 4178666444309768687}
-  - component: {fileID: 1308690122041533024}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -292,22 +291,6 @@ MonoBehaviour:
   _dotContent: {fileID: 749574720436541599}
   _lerpSpeed: 10
   _dragMilliseconds: 200
---- !u!114 &1308690122041533024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6116435483540160204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f679378c76535344eaf4975820540240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pageTemplate: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
-  _content: {fileID: 5525601259874556589}
-  _shopScroll: {fileID: 4178666444309768687}
-  _pages: []
 --- !u!1 &7073926076476999018
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,8 +481,10 @@ GameObject:
   - component: {fileID: 7073926077042799743}
   - component: {fileID: 7073926077042799729}
   - component: {fileID: 7073926077042799728}
+  - component: {fileID: 3394308200382896071}
+  - component: {fileID: 7045665557527516013}
   m_Layer: 5
-  m_Name: Store
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,6 +531,37 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3394308200382896071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073926077042799742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f679378c76535344eaf4975820540240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pageTemplate: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
+  _content: {fileID: 5525601259874556589}
+  _shopScroll: {fileID: 4178666444309768687}
+  _toggleGroup: {fileID: 7045665557527516013}
+  _pages:
+  - {fileID: 11400000, guid: 41e757bed36b4c84eb62d6185099d77d, type: 2}
+  - {fileID: 11400000, guid: f5a9e6e73dd4c0e48ad4cd3eb670e7cb, type: 2}
+--- !u!114 &7045665557527516013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073926077042799742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8ad5e3dca54b640b08dd846720f5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7073926077392623293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4d47e08c0172a43a91c106b500f0de, type: 3}
+--- !u!224 &7073926077022178687 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8574372712467058971, guid: ac4d47e08c0172a43a91c106b500f0de, type: 3}
+  m_PrefabInstance: {fileID: 1501361980351536228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &749574720436541599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2212093118564189435, guid: ac4d47e08c0172a43a91c106b500f0de, type: 3}
@@ -1037,8 +1058,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76203a9edc102a144b96e573bf220181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7073926077022178687 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8574372712467058971, guid: ac4d47e08c0172a43a91c106b500f0de, type: 3}
-  m_PrefabInstance: {fileID: 1501361980351536228}
-  m_PrefabAsset: {fileID: 0}
