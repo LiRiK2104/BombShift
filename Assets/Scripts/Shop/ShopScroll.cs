@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Shop.Items;
+using Shop.Pages;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -23,6 +25,14 @@ namespace Shop
         private RectTransform _content;
         private List<RectTransform> _items = new List<RectTransform>();
 
+        public int Index
+        {
+            set
+            {
+                _index = Mathf.Clamp(value, 0, _items.Count);
+            }
+        }
+
         private void OnValidate()
         {
             _lerpSpeed = Mathf.Max(_lerpSpeed, 0);
@@ -42,6 +52,17 @@ namespace Shop
                 _dotContent.UpdateDots(_index);
             }
         }
+        
+        public void Initialize(List<ShopPageView> items)
+        {
+            if (_isInitialized)
+                throw new InvalidOperationException("Already initialized");
+
+            items.ForEach(item => _items.Add((RectTransform)item.transform));
+            _dotContent.GenerateDots(items.Count);
+        
+            _isInitialized = true;
+        }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -55,16 +76,10 @@ namespace Shop
             _isDragging = false;
             _index = GetNextIndex(eventData);
         }
-    
-        public void Initialize(List<ShopPageView> items)
-        {
-            if (_isInitialized)
-                throw new InvalidOperationException("Already initialized");
-
-            items.ForEach(item => _items.Add((RectTransform)item.transform));
-            _dotContent.GenerateDots(items.Count);
         
-            _isInitialized = true;
+        public void ScrollToIndexInstantly()
+        {
+            _content.anchoredPosition = GetNextContentPosition();
         }
 
         private int GetNextIndex(PointerEventData eventData)
@@ -101,11 +116,14 @@ namespace Shop
 
         private void ScrollToIndex()
         {
+            _content.anchoredPosition = Vector2.Lerp(_content.anchoredPosition, GetNextContentPosition(), _lerpSpeed * Time.deltaTime);
+        }
+
+        private Vector2 GetNextContentPosition()
+        {
             RectTransform item = _items[_index];
             float contentTargetPositionX = -1 * Mathf.Clamp(item.anchoredPosition.x - item.sizeDelta.x / 2, 0, _content.sizeDelta.x);
-            Vector2 nextContentPosition = new Vector2(contentTargetPositionX, _content.anchoredPosition.y);
-
-            _content.anchoredPosition = Vector2.Lerp(_content.anchoredPosition, nextContentPosition, _lerpSpeed * Time.deltaTime);
+            return new Vector2(contentTargetPositionX, _content.anchoredPosition.y);
         }
     }
 }

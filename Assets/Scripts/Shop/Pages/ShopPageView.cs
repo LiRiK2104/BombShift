@@ -1,26 +1,40 @@
-using Shop;
-using Shop.Pages;
-using Shop.Toggles;
+using Shop.Items;
 using UnityEngine;
 using UnityEngine.UI;
 using ToggleGroup = Shop.Toggles.ToggleGroup;
 
-public class ShopPageView : MonoBehaviour
+namespace Shop.Pages
 {
-    [SerializeField] private GridLayoutGroup _grid;
-    [SerializeField] private PageTape _pageTape;
-
-    public void Initialize(ShopPage shopPage, ToggleGroup shopToggleGroup)
+    public class ShopPageView : MonoBehaviour
     {
-        _pageTape.Initialize(shopPage.Name, shopPage.NameTextColor, shopPage.TapeColor);
-        
-        foreach (var unit in shopPage.Units)
+        [SerializeField] private GridLayoutGroup _grid;
+        [SerializeField] private PageTape _pageTape;
+
+        private ShopPage _shopPage;
+
+        public void Initialize(ShopPage shopPage, ToggleGroup shopToggleGroup)
         {
-            var cell = Instantiate(shopPage.CellTemplate, _grid.transform);
-            cell.Initialize(unit, shopToggleGroup);
-            shopToggleGroup.AddToggle(cell.Toggle);
-        }
+            _shopPage = shopPage;
         
-        //TODO: Select toggle with active skin
+            _pageTape.Initialize(shopPage.Name, shopPage.NameTextColor, shopPage.TapeColor);
+        
+            foreach (var unit in shopPage.Units)
+            {
+                var cell = Instantiate(shopPage.CellTemplate, _grid.transform);
+                cell.Initialize(unit, shopToggleGroup);
+                shopToggleGroup.AddToggle(cell.Toggle);
+            }
+        }
+
+        public bool HasSkin(Skin targetSkin)
+        {
+            foreach (var unit in _shopPage.Units)
+            {
+                if (unit.Skin == targetSkin)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }
