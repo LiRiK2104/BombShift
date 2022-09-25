@@ -17,12 +17,13 @@ namespace Shop.Cells
         [SerializeField] private Button _button;
         [SerializeField] private OpenState _openState;
 
+        
         private bool _initialized;
         private ShopCellState _activeState;
         private ToggleGroup _shopToggleGroup;
-        private ShopUnit _shopUnit;
-        
+
         public Toggle Toggle => _toggle;
+        public ShopUnit ShopUnit { get; private set; }
         protected abstract LockedState LockedState { get; }
 
         private ShopCellState ActiveState
@@ -41,15 +42,19 @@ namespace Shop.Cells
             }
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
+            Inventory.Instance.SkinAdded += UpdateState;
+            
             _toggle.Activating += ActiveState.Select;
             _toggle.Deactivating += ActiveState.Deselect;
             _button.onClick.AddListener(Select);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
+            Inventory.Instance.SkinAdded -= UpdateState;
+            
             _toggle.Activating -= ActiveState.Select;
             _toggle.Deactivating -= ActiveState.Deselect;
             _button.onClick.RemoveListener(Select);
@@ -61,19 +66,22 @@ namespace Shop.Cells
                 return;
 
             _shopToggleGroup = shopPageToggleGroup;
-            _shopUnit = shopUnit;
+            ShopUnit = shopUnit;
 
             _openState.SetPreview(shopUnit.Skin);
             _statesToggleGroup.AddToggle(_openState.Toggle);
             _statesToggleGroup.AddToggle(LockedState.Toggle);
-        
-            if (Inventory.Instance.HasSkin(shopUnit.Skin))
+            UpdateState();
+
+            _initialized = true;
+        }
+
+        private void UpdateState()
+        {
+            if (Inventory.Instance.HasSkin(ShopUnit.Skin))
                 Open();
             else
                 Close();
-            
-
-            _initialized = true;
         }
 
         private void Open()
@@ -92,11 +100,12 @@ namespace Shop.Cells
         {
             if (_initialized == false)
                 return;
-            
-            if (Inventory.Instance.HasSkin(_shopUnit.Skin))
+
+            if (Inventory.Instance.HasSkin(ShopUnit.Skin))
+            {
+                SkinSetter.Instance.SetSkin(ShopUnit.Skin);
                 _shopToggleGroup.SelectToggle(_toggle);
-            /*else
-                _shopPageToggleGroup.SelectToggleAndSaveLast(_toggle);*/
+            }
         }
     }
 }

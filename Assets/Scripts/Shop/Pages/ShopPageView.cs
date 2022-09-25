@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Shop.Cells;
 using Shop.Items;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +11,12 @@ namespace Shop.Pages
     {
         [SerializeField] private GridLayoutGroup _grid;
         [SerializeField] private PageTape _pageTape;
-
-        private ShopPage _shopPage;
+        
+        private List<ShopCell> _cells = new List<ShopCell>();
 
         public void Initialize(ShopPage shopPage, ToggleGroup shopToggleGroup)
         {
-            _shopPage = shopPage;
+            _cells.Clear();
         
             _pageTape.Initialize(shopPage.Name, shopPage.NameTextColor, shopPage.TapeColor);
         
@@ -22,16 +24,26 @@ namespace Shop.Pages
             {
                 var cell = Instantiate(shopPage.CellTemplate, _grid.transform);
                 cell.Initialize(unit, shopToggleGroup);
+                _cells.Add(cell);
+                
                 shopToggleGroup.AddToggle(cell.Toggle);
             }
         }
 
-        public bool HasSkin(Skin targetSkin)
+        public bool TryGetCell(Skin skin, out ShopCell foundCell)
         {
-            foreach (var unit in _shopPage.Units)
+            foundCell = null;
+            
+            if (_cells == null || _cells.Count == 0)
+                return false;
+            
+            foreach (var cell in _cells)
             {
-                if (unit.Skin == targetSkin)
+                if (cell.ShopUnit.Skin == skin)
+                {
+                    foundCell = cell;
                     return true;
+                }
             }
 
             return false;

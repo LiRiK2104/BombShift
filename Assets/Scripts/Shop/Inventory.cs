@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -12,8 +13,16 @@ namespace Shop
         private const string SkinsKey = "SKINS";
         private const string CurrencyKey = "CURRENCY";
 
+        [SerializeField] private List<Skin> _skinsForStart = new List<Skin>();
+        
         private List<CurrencyContainer> _currencyContainers = new List<CurrencyContainer>();
         private List<Skin> _skins = new List<Skin>();
+
+        public event Action Loaded;
+        public event Action CurrencyAdded;
+        public event Action SkinAdded;
+        
+        public bool IsLoaded { get; private set; }
 
 
         protected override void Awake()
@@ -21,13 +30,22 @@ namespace Shop
             base.Awake();
 
             Load();
-            //TODO: Загрузить надетый скин
+            IsLoaded = true;
+            Loaded?.Invoke();
+
+            foreach (var skin in _skinsForStart)
+            {
+                Add(skin);
+            }
         }
 
         public void Add(Skin skin)
         {
             if (HasSkin(skin) == false)
+            {
                 _skins.Add(skin);
+                SkinAdded?.Invoke();
+            }
         }
     
         public void Add(Currency currency, int count)
@@ -41,13 +59,10 @@ namespace Shop
                 container = new CurrencyContainer(currency, count);
                 _currencyContainers.Add(container);
             }
+            
+            CurrencyAdded?.Invoke();
         }
-    
-        public void Remove(Skin skin)
-        {
-            _skins.Remove(skin);
-        }
-    
+
         public void Remove(Currency currency, int count)
         {
             if (HasCurrency(currency, out CurrencyContainer container))
@@ -126,7 +141,7 @@ namespace Shop
         private void LoadCurrency()
         {
             string json = PlayerPrefs.GetString(CurrencyKey, "");
-            _currencyContainers = JsonConvert.DeserializeObject<List<CurrencyContainer>>(json);
+            _currencyContainers = JsonConvert.DeserializeObject<List<CurrencyContainer>>(json) ?? _currencyContainers;
         }
     }
 }

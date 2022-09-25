@@ -22,7 +22,6 @@ namespace Shop
         private float _beginDragX;
         private int _index;
     
-        private RectTransform _content;
         private List<RectTransform> _items = new List<RectTransform>();
 
         public int Index
@@ -32,16 +31,14 @@ namespace Shop
                 _index = Mathf.Clamp(value, 0, _items.Count);
             }
         }
+        
+        private RectTransform Content => _scrollRect.content;
 
+        
         private void OnValidate()
         {
             _lerpSpeed = Mathf.Max(_lerpSpeed, 0);
             _dragMilliseconds = Mathf.Max(_dragMilliseconds, 0);
-        }
-
-        private void Awake()
-        {
-            _content = _scrollRect.content;
         }
 
         private void Update()
@@ -79,7 +76,7 @@ namespace Shop
         
         public void ScrollToIndexInstantly()
         {
-            _content.anchoredPosition = GetNextContentPosition();
+            Content.anchoredPosition = GetNextContentPosition();
         }
 
         private int GetNextIndex(PointerEventData eventData)
@@ -116,14 +113,14 @@ namespace Shop
 
         private void ScrollToIndex()
         {
-            _content.anchoredPosition = Vector2.Lerp(_content.anchoredPosition, GetNextContentPosition(), _lerpSpeed * Time.deltaTime);
+            Content.anchoredPosition = Vector2.Lerp(Content.anchoredPosition, GetNextContentPosition(), _lerpSpeed * Time.deltaTime);
         }
 
         private Vector2 GetNextContentPosition()
         {
             RectTransform item = _items[_index];
-            float contentTargetPositionX = -1 * Mathf.Clamp(item.anchoredPosition.x - item.sizeDelta.x / 2, 0, _content.sizeDelta.x);
-            return new Vector2(contentTargetPositionX, _content.anchoredPosition.y);
+            float contentTargetPositionX = -1 * Mathf.Clamp(item.anchoredPosition.x - item.sizeDelta.x / 2, 0, Mathf.Abs(Content.sizeDelta.x));
+            return new Vector2(contentTargetPositionX, Content.anchoredPosition.y);
         }
     }
 }

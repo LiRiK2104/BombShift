@@ -12,6 +12,18 @@ namespace Shop.Cells
 
         protected override LockedState LockedState => _lockedFragmentState;
 
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            Inventory.Instance.CurrencyAdded += UpdateSlider;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            Inventory.Instance.CurrencyAdded -= UpdateSlider;
+        }
+
         public override void Initialize(ShopUnit shopUnit, ToggleGroup shopPageToggleGroup)
         {
             base.Initialize(shopUnit, shopPageToggleGroup);
@@ -24,6 +36,15 @@ namespace Shop.Cells
                 
             _lockedFragmentState.SetPreview(shopUnit.Currency as Fragment);
             _lockedFragmentState.Slider.Initialize(shopUnit.CurrencyNeedCount, fragmentCollectedCount);
+        }
+
+        private void UpdateSlider()
+        {
+            if (ShopUnit is ShopUnitPriced shopUnitPriced && 
+                Inventory.Instance.TryGetCurrencyCount(shopUnitPriced.Currency, out int hasCount))
+            {
+                _lockedFragmentState.Slider.SetValue(hasCount);   
+            }
         }
     }
 }

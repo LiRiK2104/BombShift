@@ -1,5 +1,6 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
+using Shop.Cells;
 using Shop.Items;
 using Shop.Pages;
 using Shop.Toggles;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace Shop
 {
     [RequireComponent(typeof(Animator))]
-    public class Shop : MonoBehaviour
+    public class ShopView : MonoBehaviour
     {
         private static readonly int OpenedState = Animator.StringToHash(ShopAnimator.OpenedStatus);
         
@@ -36,12 +37,23 @@ namespace Shop
         {
             List<ShopPageView> spawnedPages = new List<ShopPageView>();
 
-            foreach (var pagePreset in _pages)
+            foreach (var page in _pages)
             {
                 var spawnedPage = Instantiate(_pageTemplate, _content);
 
-                spawnedPage.Initialize(pagePreset, _toggleGroup);
+                spawnedPage.Initialize(page, _toggleGroup);
                 spawnedPages.Add(spawnedPage);
+            }
+
+            var currentSkin = SkinSetter.Instance.Skin;
+            
+            foreach (var page in spawnedPages)
+            {
+                if (page.TryGetCell(currentSkin, out ShopCell cell) && 
+                    Inventory.Instance.HasSkin(currentSkin))
+                {
+                    _toggleGroup.SelectToggle(cell.Toggle);
+                }
             }
 
             _shopScroll.Initialize(spawnedPages);
@@ -49,7 +61,7 @@ namespace Shop
 
         private void OnEnable()
         {
-            
+            OpenLastSkinPage();
         }
 
         public void Open()
@@ -68,15 +80,19 @@ namespace Shop
                 return;
             
             _isOpened = false;
-            gameObject.SetActive(false);
+            StartCoroutine(DisableWithDelay());
             SetAnimatorState();
+        }
+
+        private IEnumerator DisableWithDelay()
+        {
+            yield return new WaitForSeconds(ShopAnimator.CloseAnimationDuration);
+            gameObject.SetActive(false);
         }
 
         private void OpenLastSkinPage()
         {
-            //TODO: получить из класса SkinSetter надетый скин. Вызывать в OnEnable().
-            Skin skin = new Skin();
-            _shopScroll.Index = GetPageIndex(skin);
+            _shopScroll.Index = GetPageIndex(SkinSetter.Instance.Skin);
             _shopScroll.ScrollToIndexInstantly();
         }
         
@@ -102,8 +118,9 @@ namespace Shop
         }
     }
 
-    class ShopAnimator
+    static class ShopAnimator
     {
+        public const float CloseAnimationDuration = 0.4f;
         public const string OpenedStatus = "Opened";
     }
 }
