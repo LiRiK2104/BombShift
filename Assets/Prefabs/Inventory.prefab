@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479489954629189574}
-  - component: {fileID: 3497056430415718633}
+  - component: {fileID: 2772476509196307099}
   m_Layer: 0
-  m_Name: ItemStorage
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3497056430415718633
+--- !u!114 &2772476509196307099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7988b450206f0c54186fab66e385ec58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skins: []

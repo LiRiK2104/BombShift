@@ -20,7 +20,7 @@ namespace Shop.Cells
 
         private void Initialize(ShopUnitPriced shopUnit)
         {
-            ItemStorage.Instance.TryGetCurrencyCount(shopUnit.Currency, out int fragmentCollectedCount);
+            Inventory.Instance.TryGetCurrencyCount(shopUnit.Currency, out int fragmentCollectedCount);
                 
             _lockedFragmentState.SetPreview(shopUnit.Currency as Fragment);
             _lockedFragmentState.Slider.Initialize(shopUnit.CurrencyNeedCount, fragmentCollectedCount);

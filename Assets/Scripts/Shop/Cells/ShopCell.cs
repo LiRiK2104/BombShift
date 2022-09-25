@@ -67,7 +67,7 @@ namespace Shop.Cells
             _statesToggleGroup.AddToggle(_openState.Toggle);
             _statesToggleGroup.AddToggle(LockedState.Toggle);
         
-            if (ItemStorage.Instance.HasSkin(shopUnit.Skin))
+            if (Inventory.Instance.HasSkin(shopUnit.Skin))
                 Open();
             else
                 Close();
@@ -93,7 +93,7 @@ namespace Shop.Cells
             if (_initialized == false)
                 return;
             
-            if (ItemStorage.Instance.HasSkin(_shopUnit.Skin))
+            if (Inventory.Instance.HasSkin(_shopUnit.Skin))
                 _shopToggleGroup.SelectToggle(_toggle);
             /*else
                 _shopPageToggleGroup.SelectToggleAndSaveLast(_toggle);*/
