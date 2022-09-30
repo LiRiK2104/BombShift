@@ -9,7 +9,7 @@ public class Exploder : MonoBehaviour
     private const int MinExplosionForce = 0;
     private const int MaxExplosionForce = 5000;
     private const int MinExplosionRadius = 0;
-    private const int MaxExplosionRadius = 20;
+    private const int MaxExplosionRadius = 30;
     
     private const float MinCameraShakeTime = 0;
     private const float MaxCameraShakeTime = 3;
@@ -55,11 +55,11 @@ public class Exploder : MonoBehaviour
     private void AddForce()
     {
         Collider[] nearestColliders = Physics.OverlapSphere(_originPoint.position, _radius);
-        List<FracturableBuildingBlock> usedBuildings = new List<FracturableBuildingBlock>();
+        List<BuildingBlock> usedBuildings = new List<BuildingBlock>();
 
         foreach (var collider in nearestColliders)
         {
-            if (collider.TryGetComponent(out FracturableBuildingBlock buildingBlock) &&
+            if (collider.TryGetComponent(out BuildingBlock buildingBlock) &&
                 usedBuildings.Contains(buildingBlock) == false &&
                 collider.TryGetComponent(out Rigidbody rigidbody))
             {

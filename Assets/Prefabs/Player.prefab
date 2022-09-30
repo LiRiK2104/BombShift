@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _force: 2552
-  _radius: 20
+  _radius: 30
   _cameraShakeTime: 0.54
   _cameraShakeIntensity: 7.95
   _explosionEffect: {fileID: 8279128619963338999, guid: e8c6764dd111bea4d84fbd0d62d63319, type: 3}
