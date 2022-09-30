@@ -30,7 +30,7 @@ public class Exploder : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (_isCollided == false && 
-            collision.collider.TryGetComponent(out BuildingBlock block) &&
+            collision.collider.TryGetComponent(out FracturableBuildingBlock block) &&
             gameObject.TryGetComponentInParent(out Player player))
         {
             _isCollided = true;
@@ -55,11 +55,11 @@ public class Exploder : MonoBehaviour
     private void AddForce()
     {
         Collider[] nearestColliders = Physics.OverlapSphere(_originPoint.position, _radius);
-        List<BuildingBlock> usedBuildings = new List<BuildingBlock>();
+        List<FracturableBuildingBlock> usedBuildings = new List<FracturableBuildingBlock>();
 
         foreach (var collider in nearestColliders)
         {
-            if (collider.TryGetComponent(out BuildingBlock buildingBlock) &&
+            if (collider.TryGetComponent(out FracturableBuildingBlock buildingBlock) &&
                 usedBuildings.Contains(buildingBlock) == false &&
                 collider.TryGetComponent(out Rigidbody rigidbody))
             {
