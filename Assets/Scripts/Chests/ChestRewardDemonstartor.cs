@@ -1,21 +1,23 @@
+using System;
 using Shop.Items;
 using UnityEngine;
 
 namespace Chests
 {
     [RequireComponent(typeof(Animator))]
-    public class ChestReward : MonoBehaviour
+    public class ChestRewardDemonstartor : MonoBehaviour
     {
+        private const string UILayer = "UI";
         private static readonly int PullOut = Animator.StringToHash(RewardPointAnimator.Triggers.PullOut);
     
-        [SerializeField] private ChestItem _itemTemplate;
+        [SerializeField] private Item _itemTemplate;
         [SerializeField] private Transform _itemPoint;
         [SerializeField] private Light _lightPoint;
         [SerializeField] private ChestCreator _chestCreator;
     
         private Animator _animator;
-        private ChestItem _chestItem;
         private Item _item;
+        private bool _isOpened;
 
         private void Awake()
         {
@@ -23,24 +25,21 @@ namespace Chests
             SetColorToLightPont();
         }
 
-        private void Update()
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Open();
-            }
+            _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(UILayer));
         }
 
-        public void Initialize(Item item)
+        public void Open()
         {
-            _item = item;
-        }
-
-        private void Open()
-        {
+            if (_isOpened)
+                return;
+            
             CreateItem();
             _chestCreator.Chest.Open();
             PullOutItem();
+
+            _isOpened = true;
         }
 
         private void SetColorToLightPont()
@@ -50,8 +49,8 @@ namespace Chests
 
         private void CreateItem()
         {
-            _chestItem = Instantiate(_itemTemplate, _itemPoint.position, _itemPoint.rotation, _itemPoint);
-            _chestItem.Initialize(_item);
+            _item = Instantiate(_itemTemplate, _itemPoint.position, _itemPoint.rotation, _itemPoint);
+            _item.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(UILayer));
         }
 
         private void PullOutItem()
