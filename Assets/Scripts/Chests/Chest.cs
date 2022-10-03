@@ -24,9 +24,9 @@ namespace Chests
         }
     }
 
-    public class ChestAnimator
+    public static class ChestAnimator
     {
-        public class Flags
+        public static class Flags
         {
             public const string IsOpen = "Open";
         }

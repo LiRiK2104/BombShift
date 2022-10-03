@@ -1365,6 +1365,10 @@ PrefabInstance:
       propertyPath: _chestIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5261895047046735293, guid: bf85ad060fbd3b24aaa9afe4bdfdd4d1, type: 3}
+      propertyPath: _rewardLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6079075101158869155, guid: bf85ad060fbd3b24aaa9afe4bdfdd4d1, type: 3}
       propertyPath: m_Name
       value: Chest Block
