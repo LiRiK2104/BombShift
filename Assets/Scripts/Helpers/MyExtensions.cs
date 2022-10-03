@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -25,5 +27,38 @@ namespace Helpers
         
             gameObject.layer = layer;
         }
+    }
+    
+    [Serializable]
+    public class UnityDictionary<Kt, Vt>
+    {
+        [SerializeField]
+        private List<UnityDictionaryItem<Kt, Vt>> _dictionary = new List<UnityDictionaryItem<Kt, Vt>>();
+
+        public bool TryGetValue(Kt key, out Vt value)
+        {
+            value = default;
+            
+            foreach (var item in _dictionary)
+            {
+                if (item.Key.Equals(key))
+                {
+                    value = item.Value;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+    
+    [Serializable]
+    public class UnityDictionaryItem<Kt, Vt>
+    {
+        [SerializeField] private Kt _key;
+        [SerializeField] private Vt _value;
+
+        public Kt Key => _key;
+        public Vt Value => _value;
     }
 }
