@@ -1,7 +1,7 @@
 using Helpers;
-using Shop;
-using Shop.Items;
-using Shop.Items.Controlling;
+using ShopSystem;
+using ShopSystem.Items;
+using ShopSystem.Items.Controlling;
 using UnityEngine;
 
 namespace Player

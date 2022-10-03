@@ -1,4 +1,4 @@
-using Shop.Items;
+using ShopSystem.Items;
 using UnityEngine;
 
 namespace Chests
