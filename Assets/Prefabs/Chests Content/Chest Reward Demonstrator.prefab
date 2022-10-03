@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8157929860920414386}
   - component: {fileID: 4272338126991125790}
   - component: {fileID: 4942627742328194718}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,8 +119,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408439266028385622}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.11, y: -0.32, z: 2.09}
-  m_LocalScale: {x: -6.9703, y: -6.9703007, z: -6.9703007}
+  m_LocalPosition: {x: 0.11, y: -0.2, z: 1.18}
+  m_LocalScale: {x: -6.7783694, y: -6.7783694, z: -6.7783694}
   m_Children:
   - {fileID: 5475637802246697478}
   - {fileID: 6336642316393517513}
@@ -206,7 +206,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -4944,7 +4944,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -5012,7 +5012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7371803358061107456}
   m_Layer: 0
-  m_Name: Chest Point
+  m_Name: Chest Pivot Point
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5025,12 +5025,43 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050805239524635936}
-  m_LocalRotation: {x: -0, y: 0.9788411, z: -0, w: -0.20462193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3711134499418131408}
+  m_Father: {fileID: 2347913014256100075}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4526362868931881940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3711134499418131408}
+  m_Layer: 0
+  m_Name: Chest Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3711134499418131408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526362868931881940}
+  m_LocalRotation: {x: 0, y: 0.9788407, z: -0, w: -0.20462404}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2347913014256100075}
-  m_RootOrder: 1
+  m_Father: {fileID: 7371803358061107456}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 203.615, z: 0}
 --- !u!1 &4640288857859221393
 GameObject:
@@ -5043,7 +5074,7 @@ GameObject:
   - component: {fileID: 2196117426148800044}
   - component: {fileID: 3665067321614032106}
   - component: {fileID: 5291230867879014631}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5059,7 +5090,7 @@ Transform:
   m_GameObject: {fileID: 4640288857859221393}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 2
@@ -5139,7 +5170,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -10000,7 +10031,7 @@ GameObject:
   - component: {fileID: 5275346340364505026}
   - component: {fileID: 375194671869078587}
   - component: {fileID: 1580420899717480015}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10016,7 +10047,7 @@ Transform:
   m_GameObject: {fileID: 7345818697244656247}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 3
@@ -10096,7 +10127,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -14862,7 +14893,7 @@ GameObject:
   - component: {fileID: 3486894814048685801}
   - component: {fileID: 5964992275788775818}
   - component: {fileID: 6419905679283301055}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14878,7 +14909,7 @@ Transform:
   m_GameObject: {fileID: 7726549853178021402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 5
@@ -14958,7 +14989,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -19724,7 +19755,7 @@ GameObject:
   - component: {fileID: 6336642316393517513}
   - component: {fileID: 2574599488274975005}
   - component: {fileID: 6059913392694404620}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19740,7 +19771,7 @@ Transform:
   m_GameObject: {fileID: 8110523192805647855}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 1
@@ -19820,7 +19851,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -24586,7 +24617,7 @@ GameObject:
   - component: {fileID: 7009131180297344205}
   - component: {fileID: 1456615074288735607}
   - component: {fileID: 506562026946039275}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24602,7 +24633,7 @@ Transform:
   m_GameObject: {fileID: 8176735657013244450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 4
@@ -24682,7 +24713,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -29519,7 +29550,7 @@ GameObject:
   - component: {fileID: 5475637802246697478}
   - component: {fileID: 748247318572844703}
   - component: {fileID: 7677662840488188857}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29535,7 +29566,7 @@ Transform:
   m_GameObject: {fileID: 9147864107456556589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -6.273753, y: -6.2737546, z: -6.2737546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8157929860920414386}
   m_RootOrder: 0
@@ -29615,7 +29646,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -34432,7 +34463,7 @@ PrefabInstance:
     - target: {fileID: 8340974158624248518, guid: 57a6162c43bb35d4091e1dfc02d047bd, type: 3}
       propertyPath: _chestPoint
       value: 
-      objectReference: {fileID: 7371803358061107456}
+      objectReference: {fileID: 3711134499418131408}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a6162c43bb35d4091e1dfc02d047bd, type: 3}
 --- !u!114 &3704574138102186404 stripped

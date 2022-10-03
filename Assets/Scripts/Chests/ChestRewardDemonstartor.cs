@@ -7,7 +7,7 @@ namespace Chests
     [RequireComponent(typeof(Animator))]
     public class ChestRewardDemonstartor : MonoBehaviour
     {
-        private const string UILayer = "UI";
+        private const string TVLayer = "TV";
         private static readonly int PullOut = Animator.StringToHash(RewardPointAnimator.Triggers.PullOut);
     
         [SerializeField] private Item _itemTemplate;
@@ -27,7 +27,7 @@ namespace Chests
 
         private void Start()
         {
-            _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(UILayer));
+            _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(TVLayer));
         }
 
         public void Open()
@@ -50,7 +50,7 @@ namespace Chests
         private void CreateItem()
         {
             _item = Instantiate(_itemTemplate, _itemPoint.position, _itemPoint.rotation, _itemPoint);
-            _item.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(UILayer));
+            _item.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(TVLayer));
         }
 
         private void PullOutItem()

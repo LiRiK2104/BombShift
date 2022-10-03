@@ -25,9 +25,6 @@ public class AdsOffer : MonoBehaviour
 
     private void Start()
     {
-        //temp
-        Initialize(delegate {  });
-        
         if (_initialized)
             StartOffer();
         else
