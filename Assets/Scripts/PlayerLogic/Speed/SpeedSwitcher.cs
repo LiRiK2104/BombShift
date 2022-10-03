@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Speed
+namespace PlayerLogic.Speed
 {
     public class SpeedSwitcher : MonoBehaviour
     {
@@ -24,12 +24,12 @@ namespace Player.Speed
     
         private void OnEnable()
         {
-            Player.Instance.Died += LowerFull;
+            PlayerLogic.Player.Instance.Died += LowerFull;
         }
 
         private void OnDisable()
         {
-            Player.Instance.Died -= LowerFull;
+            PlayerLogic.Player.Instance.Died -= LowerFull;
         }
 
         private void Start()

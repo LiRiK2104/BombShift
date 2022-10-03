@@ -41,7 +41,7 @@ namespace Cinemachine
 
         public void UpdateSpeedEffect()
         {
-            _cinemachineTransposer.m_ZDamping = Player.Player.Instance.SpeedSwitcher.Setting.CameraDistance;
+            _cinemachineTransposer.m_ZDamping = PlayerLogic.Player.Instance.SpeedSwitcher.Setting.CameraDistance;
         }
 
         private IEnumerator ShakeCore(float time, float intensity)

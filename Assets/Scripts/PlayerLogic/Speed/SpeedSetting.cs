@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Speed
+namespace PlayerLogic.Speed
 {
     [CreateAssetMenu(menuName = "Create SpeedSetting", fileName = "SpeedSetting", order = 51)]
     public class SpeedSetting : ScriptableObject

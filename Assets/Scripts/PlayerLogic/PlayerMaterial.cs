@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     [RequireComponent(typeof(Renderer))]
     public class PlayerMaterial : MonoBehaviour
@@ -16,12 +16,12 @@ namespace Player
 
         private void OnEnable()
         {
-            global::Player.Player.Instance.LifeSwitcher.LifeChanged += UpdateEmissionEntry;
+            global::PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged += UpdateEmissionEntry;
         }
 
         private void OnDisable()
         {
-            global::Player.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEmissionEntry;
+            global::PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEmissionEntry;
         }
 
         private void UpdateEmissionEntry()
@@ -33,7 +33,7 @@ namespace Player
         private IEnumerator UpdateEmission()
         {
             Color startColor = _renderer.material.GetColor(EmissionColorID);
-            Color targetColor = global::Player.Player.Instance.LifeSwitcher.Setting.EmissionColor;
+            Color targetColor = global::PlayerLogic.Player.Instance.LifeSwitcher.Setting.EmissionColor;
 
             if (startColor == targetColor)
                 yield break;

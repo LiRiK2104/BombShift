@@ -1,2 +1,5 @@
 
-public class FinishChunk : Chunk { }
+namespace Chunks
+{
+    public class FinishChunk : Chunk { }
+}

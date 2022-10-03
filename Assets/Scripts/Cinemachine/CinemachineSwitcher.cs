@@ -22,16 +22,16 @@ namespace Cinemachine
 
         private void OnEnable()
         {
-            Player.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
-            Player.Player.Instance.Died += StopFollowing;
-            Player.Player.Instance.Died += StopLookingAt;
+            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
+            PlayerLogic.Player.Instance.Died += StopFollowing;
+            PlayerLogic.Player.Instance.Died += StopLookingAt;
         }
 
         private void OnDisable()
         {
-            Player.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
-            Player.Player.Instance.Died -= StopFollowing;
-            Player.Player.Instance.Died -= StopLookingAt;
+            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
+            PlayerLogic.Player.Instance.Died -= StopFollowing;
+            PlayerLogic.Player.Instance.Died -= StopLookingAt;
         }
 
         public void Shake(float time, float intensity)

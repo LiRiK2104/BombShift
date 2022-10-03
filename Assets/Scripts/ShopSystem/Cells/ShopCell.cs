@@ -1,4 +1,4 @@
-using Player;
+using PlayerLogic;
 using ShopSystem.Cells.States;
 using ShopSystem.Units;
 using UnityEngine;

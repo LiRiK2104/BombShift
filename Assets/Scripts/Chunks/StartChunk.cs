@@ -1,2 +1,5 @@
 
-public class StartChunk : Chunk { }
+namespace Chunks
+{
+    public class StartChunk : Chunk { }
+}

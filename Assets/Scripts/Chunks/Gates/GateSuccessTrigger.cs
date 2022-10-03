@@ -1,5 +1,5 @@
 using Helpers;
-using Player;
+using PlayerLogic;
 using UnityEngine;
 
 namespace Chunks.Gates

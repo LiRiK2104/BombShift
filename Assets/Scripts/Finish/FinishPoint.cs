@@ -1,5 +1,5 @@
 using Environment;
-using Player;
+using PlayerLogic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ namespace Finish
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out PlayerBody playerBody))
-                Player.Player.Instance.LifeSwitcher.Lower();
+                PlayerLogic.Player.Instance.LifeSwitcher.Lower();
         }
 
         private void CreateBuilding(EnvironmentPreset environmentPreset)

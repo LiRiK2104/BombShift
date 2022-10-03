@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     public class PlayerScaler : MonoBehaviour
     {
@@ -17,12 +17,12 @@ namespace Player
 
         private void OnEnable()
         {
-            global::Player.Player.Instance.Died += OnDied;
+            global::PlayerLogic.Player.Instance.Died += OnDied;
         }
 
         private void OnDisable()
         {
-            global::Player.Player.Instance.Died -= OnDied;
+            global::PlayerLogic.Player.Instance.Died -= OnDied;
         }
 
         public void SetScale(float delta)

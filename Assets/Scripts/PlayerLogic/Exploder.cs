@@ -5,7 +5,7 @@ using Helpers;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Exploder : MonoBehaviour

@@ -1,5 +1,5 @@
 using System.Collections;
-using Player.Speed;
+using PlayerLogic.Speed;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +11,7 @@ namespace UI
         private Slider _slider;
         private float _targetValue;
 
-        private SpeedSwitcher SpeedSwitcher => Player.Player.Instance.SpeedSwitcher;
+        private SpeedSwitcher SpeedSwitcher => PlayerLogic.Player.Instance.SpeedSwitcher;
 
         private void Awake()
         {

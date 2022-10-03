@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Player
+namespace PlayerLogic
 {
     public class PlayerScalerInput : MonoBehaviour, IDragHandler
     {
@@ -15,7 +15,7 @@ namespace Player
 
         private void SetScale(float delta)
         {
-            global::Player.Player.Instance.Scaler.SetScale(delta);
+            global::PlayerLogic.Player.Instance.Scaler.SetScale(delta);
         }
     }
 }

@@ -4,7 +4,7 @@ using ShopSystem.Items;
 using ShopSystem.Items.Controlling;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     public class SkinSetter : Singleton<SkinSetter>
     {

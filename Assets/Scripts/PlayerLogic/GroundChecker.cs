@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     public class GroundChecker : MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace Player
         {
             if (_active && HasGround() == false)
             {
-                global::Player.Player.Instance.Die(false);
+                global::PlayerLogic.Player.Instance.Die(false);
                 SetConstraints();
             }
         }
@@ -41,7 +41,7 @@ namespace Player
 
         private void SetConstraints()
         {
-            global::Player.Player.Instance.Mover.Rigidbody.constraints = 
+            global::PlayerLogic.Player.Instance.Mover.Rigidbody.constraints = 
                 RigidbodyConstraints.FreezePositionX | 
                 RigidbodyConstraints.FreezeRotationX |
                 RigidbodyConstraints.FreezeRotationY |

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMover : MonoBehaviour
@@ -18,20 +18,20 @@ namespace Player
 
         private void OnEnable()
         {
-            global::Player.Player.Instance.Died += StopPushing;
+            global::PlayerLogic.Player.Instance.Died += StopPushing;
         }
 
         private void OnDisable()
         {
-            global::Player.Player.Instance.Died -= StopPushing;
+            global::PlayerLogic.Player.Instance.Died -= StopPushing;
         }
 
         private void FixedUpdate()
         {
-            if (_needPush == false || global::Player.Player.Instance.SpeedSwitcher.Setting == null)
+            if (_needPush == false || global::PlayerLogic.Player.Instance.SpeedSwitcher.Setting == null)
                 return;
         
-            Vector3 moveVector = transform.forward * global::Player.Player.Instance.SpeedSwitcher.Setting.Speed;
+            Vector3 moveVector = transform.forward * global::PlayerLogic.Player.Instance.SpeedSwitcher.Setting.Speed;
             _rigidbody.velocity = new Vector3(moveVector.x, _rigidbody.velocity.y, moveVector.z);
         }
     

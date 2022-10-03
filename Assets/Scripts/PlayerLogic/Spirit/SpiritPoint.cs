@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Spirit
+namespace PlayerLogic.Spirit
 {
     public class SpiritPoint : MonoBehaviour { }
 }

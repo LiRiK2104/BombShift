@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Life
+namespace PlayerLogic.Life
 {
     public class LifeSwitcher : MonoBehaviour
     {
@@ -45,7 +45,7 @@ namespace Player.Life
             ClampIndex();
 
             if (_index == MinIndex)
-                Player.Instance.Exploder.Explode();
+                PlayerLogic.Player.Instance.Exploder.Explode();
             else
                 Setting = _lifeSettings[_index];
         

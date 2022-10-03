@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Player.Spirit;
+using PlayerLogic.Spirit;
 using UnityEngine;
 
 namespace Chunks.Gates
@@ -26,8 +26,8 @@ namespace Chunks.Gates
             if (_isUsed)
                 return;
         
-            Player.Player.Instance.SpeedSwitcher.Lower();
-            Player.Player.Instance.LifeSwitcher.Lower();
+            PlayerLogic.Player.Instance.SpeedSwitcher.Lower();
+            PlayerLogic.Player.Instance.LifeSwitcher.Lower();
             MarkAsUsed();
         }
 
@@ -36,7 +36,7 @@ namespace Chunks.Gates
             if (_isUsed)
                 return;
         
-            Player.Player.Instance.SpeedSwitcher.Raise();
+            PlayerLogic.Player.Instance.SpeedSwitcher.Raise();
             MarkAsUsed();
         }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player.Spirit
+namespace PlayerLogic.Spirit
 {
     public class Spirit : MonoBehaviour
     {
@@ -8,12 +8,12 @@ namespace Player.Spirit
     
         protected virtual void OnEnable()
         {
-            Player.Instance.Scaler.ScaleChanged += SetXYScale;
+            PlayerLogic.Player.Instance.Scaler.ScaleChanged += SetXYScale;
         }
 
         protected virtual void OnDisable()
         {
-            Player.Instance.Scaler.ScaleChanged -= SetXYScale;
+            PlayerLogic.Player.Instance.Scaler.ScaleChanged -= SetXYScale;
         }
     
         protected virtual void Update()

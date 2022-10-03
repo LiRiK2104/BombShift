@@ -13,26 +13,26 @@ namespace FX
 
         private void OnEnable()
         {
-            Player.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateEffects;
-            Player.Player.Instance.LifeSwitcher.LifeChanged += UpdateEffects;
+            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateEffects;
+            PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged += UpdateEffects;
         }
 
         private void OnDisable()
         {
-            Player.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateEffects;
-            Player.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEffects;
+            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateEffects;
+            PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEffects;
         }
     
         private void UpdateEffects()
         {
-            if (Player.Player.Instance.SpeedSwitcher.Setting == null || 
-                Player.Player.Instance.LifeSwitcher.Setting == null)
+            if (PlayerLogic.Player.Instance.SpeedSwitcher.Setting == null || 
+                PlayerLogic.Player.Instance.LifeSwitcher.Setting == null)
                 return;
         
             foreach (var template in _effectsTemplates)
             {
-                if (Player.Player.Instance.SpeedSwitcher.Setting.HasEffect(template) || 
-                    Player.Player.Instance.LifeSwitcher.Setting.HasEffect(template))
+                if (PlayerLogic.Player.Instance.SpeedSwitcher.Setting.HasEffect(template) || 
+                    PlayerLogic.Player.Instance.LifeSwitcher.Setting.HasEffect(template))
                     GetEffect(template).Play();
                 else
                     GetEffect(template).Stop();

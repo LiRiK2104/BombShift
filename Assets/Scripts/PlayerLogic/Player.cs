@@ -1,10 +1,10 @@
 using System;
 using Helpers;
-using Player.Life;
-using Player.Speed;
+using PlayerLogic.Life;
+using PlayerLogic.Speed;
 using UnityEngine;
 
-namespace Player
+namespace PlayerLogic
 {
     public class Player : Singleton<Player>
     {

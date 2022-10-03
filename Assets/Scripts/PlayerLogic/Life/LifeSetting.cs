@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Life
+namespace PlayerLogic.Life
 {
     [CreateAssetMenu(menuName = "Create LifeSetting", fileName = "LifeSetting", order = 51)]
     public class LifeSetting : ScriptableObject

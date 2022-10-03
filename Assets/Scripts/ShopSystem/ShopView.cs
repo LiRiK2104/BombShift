@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Player;
+using PlayerLogic;
 using ShopSystem.Cells;
 using ShopSystem.Items;
 using ShopSystem.Pages;
