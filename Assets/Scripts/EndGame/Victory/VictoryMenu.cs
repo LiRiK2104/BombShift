@@ -4,7 +4,7 @@ using Chests;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace End_Game.Victory
+namespace EndGame.Victory
 {
     [RequireComponent(typeof(Animator))]
     public class VictoryMenu : MonoBehaviour
@@ -22,6 +22,11 @@ namespace End_Game.Victory
         {
             _animator = GetComponent<Animator>();
             _openChestButton.onClick.AddListener(OpenChest);
+        }
+
+        public void Initialize(RewardedChestPreset rewardedChestPreset)
+        {
+            _rewardDemonstartor.Initialize(rewardedChestPreset);
         }
 
         private void OpenChest()
