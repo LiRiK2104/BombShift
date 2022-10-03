@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataBase;
 using Helpers;
 using Newtonsoft.Json;
 using ShopSystem.Items;
-using ShopSystem.Items.Controlling;
 using UnityEngine;
 
 namespace ShopSystem

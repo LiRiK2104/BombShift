@@ -1,6 +1,6 @@
 using System;
+using DataBase;
 using Newtonsoft.Json;
-using ShopSystem.Items.Controlling;
 
 namespace ShopSystem.Items
 {

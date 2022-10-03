@@ -31,3 +31,7 @@ MonoBehaviour:
   - {fileID: 4598736036627085326, guid: cc961689c205d484e89429a7aeaa7884, type: 3}
   - {fileID: 3887423453143608181, guid: 5a096d1fe1288e9478eb9d42b1b4500f, type: 3}
   - {fileID: 102252323864098902, guid: baa101831e25e2445a938c19f3c06610, type: 3}
+  _rewardedChestsPresets:
+    _dictionary:
+    - _key: 0
+      _value: {fileID: 11400000, guid: d841c5f475d40f84d93a38e175ed5f4c, type: 2}

@@ -1,7 +1,7 @@
+using DataBase;
 using Helpers;
 using ShopSystem;
 using ShopSystem.Items;
-using ShopSystem.Items.Controlling;
 using UnityEngine;
 
 namespace PlayerLogic
