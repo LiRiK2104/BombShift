@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Chunks.Gates;
+using Helpers;
 using UnityEngine;
 
 public class ChunkSpawner : Singleton<ChunkSpawner>

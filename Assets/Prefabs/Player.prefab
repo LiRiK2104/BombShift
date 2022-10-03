@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4ddd37f827dafcf48a095e162fa1cc51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ddd37f827dafcf48a095e162fa1cc51, type: 3}
 --- !u!4 &843741639740212355 stripped
@@ -699,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ddeeb8917bcc463499c34e93d2b6f7a6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddeeb8917bcc463499c34e93d2b6f7a6, type: 3}

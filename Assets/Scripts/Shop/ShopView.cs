@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using Shop.Cells;
 using Shop.Items;
 using Shop.Pages;
 using Shop.Toggles;
+using Shop.Units;
 using UnityEngine;
 
 namespace Shop
@@ -17,10 +20,13 @@ namespace Shop
         [SerializeField] private Transform _content;
         [SerializeField] private ShopScroll _shopScroll;
         [SerializeField] private ToggleGroup _toggleGroup;
-        [SerializeField] private List<ShopPage> _pages;
-
+        
+        private List<ShopPage> _pages;
         private Animator _animator;
         private bool _isOpened;
+        private bool _isInitialized;
+
+        private event Action Initialized;
 
         private Animator Animator
         {
@@ -33,8 +39,25 @@ namespace Shop
             }
         }
 
-        private void Awake()
+        private void OnEnable()
         {
+            if (_isInitialized)
+                OpenLastSkinPage();
+            else
+                Initialized += OpenLastSkinPage;
+        }
+
+        private void OnDisable()
+        {
+            Initialized -= OpenLastSkinPage;
+        }
+
+        public void Initialize(List<ShopPage> pages)
+        {
+            if (_isInitialized)
+                return;
+
+            _pages = pages;
             List<ShopPageView> spawnedPages = new List<ShopPageView>();
 
             foreach (var page in _pages)
@@ -57,11 +80,9 @@ namespace Shop
             }
 
             _shopScroll.Initialize(spawnedPages);
-        }
-
-        private void OnEnable()
-        {
-            OpenLastSkinPage();
+            
+            _isInitialized = true;
+            Initialized?.Invoke();
         }
 
         public void Open()
@@ -92,6 +113,8 @@ namespace Shop
 
         private void OpenLastSkinPage()
         {
+            Initialized -= OpenLastSkinPage;
+            
             _shopScroll.Index = GetPageIndex(SkinSetter.Instance.Skin);
             _shopScroll.ScrollToIndexInstantly();
         }

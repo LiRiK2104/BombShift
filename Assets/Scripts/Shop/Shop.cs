@@ -1,11 +1,28 @@
+using System;
+using System.Collections.Generic;
+using Helpers;
 using Shop.Items;
+using Shop.Pages;
 using Shop.Units;
 using UnityEngine;
 
 namespace Shop
 {
-    public class Shop : MonoBehaviour
+    [RequireComponent(typeof(Shop))]
+    public class Shop : Singleton<Shop>
     {
+        [SerializeField] private List<ShopPage> _pages;
+        
+        private ShopView _shopView;
+
+        public ShopView ShopView => _shopView;
+        
+        private void Awake()
+        {
+            _shopView = GetComponent<ShopView>();
+            _shopView.Initialize(_pages);
+        }
+
         public void Buy(ShopUnitIdle shopUnit)
         {
             BuySkin(shopUnit.Skin);
@@ -19,6 +36,28 @@ namespace Shop
                 Inventory.Instance.Remove(shopUnit.Currency, shopUnit.CurrencyNeedCount);
                 BuySkin(shopUnit.Skin);
             }
+        }
+        
+        public bool TryGetUnit(Fragment fragment, out ShopUnitPriced pricedUnit)
+        {
+            pricedUnit = null;
+            
+            foreach (var page in _pages)
+            {
+                if (page is ShopPagePriced)
+                {
+                    foreach (var units in page.Units)
+                    {
+                        if (units is ShopUnitPriced foundUnitPriced && foundUnitPriced.Currency == fragment)
+                        {
+                            pricedUnit = foundUnitPriced;
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void BuySkin(Skin skin)
