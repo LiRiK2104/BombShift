@@ -32,10 +32,10 @@ namespace EndGame.Victory
         {
             switch (reward.Currency)
             {
-                case Fragment fragment:
+                /*case Fragment fragment:
                     return Shop.Instance.TryGetUnit(fragment, out ShopUnitPriced shopUnit) &&
                            (Inventory.Instance.TryGetCurrencyCount(fragment, out int hasCurrencyCount) == false ||
-                            hasCurrencyCount < shopUnit.CurrencyNeedCount);
+                            hasCurrencyCount < shopUnit.CurrencyNeedCount);*/
 
                 default:
                     return true;

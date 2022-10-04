@@ -1,6 +1,7 @@
 using EndGame.Victory;
 using Helpers;
 using ShopSystem.Items;
+using TMPro;
 using UnityEngine;
 
 namespace Chests
@@ -12,6 +13,7 @@ namespace Chests
         private static readonly int PullOut = Animator.StringToHash(RewardPointAnimator.Triggers.PullOut);
     
         [SerializeField] private Transform _itemPoint;
+        [SerializeField] private TextMeshProUGUI _itemText;
         [SerializeField] private ChestCreator _chestCreator;
     
         private Animator _animator;
@@ -26,8 +28,10 @@ namespace Chests
 
         public void Initialize(RewardedChestPreset rewardedChestPreset)
         {
-            _itemTemplate = rewardedChestPreset.RewardsSet.GetReward().Currency;
-            
+            ChestReward reward = rewardedChestPreset.RewardsSet.GetReward();
+            _itemTemplate = reward.Currency;
+            _itemText.text = reward.Count.ToString();
+
             _chestCreator.CreateChest(rewardedChestPreset.Chest);
             _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(TVLayer));
         }
