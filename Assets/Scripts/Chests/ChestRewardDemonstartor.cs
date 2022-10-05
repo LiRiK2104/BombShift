@@ -32,9 +32,9 @@ namespace Chests
         public void Initialize(RewardedChestPreset rewardedChestPreset)
         {
             ChestReward reward = rewardedChestPreset.RewardsSet.GetReward();
-            _itemTemplate = reward.Currency;
+            _itemTemplate = reward.GetCurrency();
             _itemCount = reward.Count;
-            _rewardCountText.TextMeshPro.text = _itemCount.ToString();
+            _rewardCountText.TextMeshPro.text = GetFormattedItemCount();
             _rewardCountText.SetIdleState();
 
             _chestCreator.CreateChest(rewardedChestPreset.Chest);
@@ -56,8 +56,8 @@ namespace Chests
         public void MultiplyReward(AdsRewardData adsRewardData)
         {
             _itemCount *= adsRewardData.Multiplier;
-            
-            _rewardCountText.TextMeshPro.text = _itemCount.ToString();
+
+            _rewardCountText.TextMeshPro.text = GetFormattedItemCount();
             _rewardCountText.SetMultipliedState();
         }
 
@@ -70,6 +70,11 @@ namespace Chests
         private void PullOutItem()
         {
             _animator.SetTrigger(PullOut);
+        }
+
+        private string GetFormattedItemCount()
+        {
+            return $"+{_itemCount}";
         }
     }
 
