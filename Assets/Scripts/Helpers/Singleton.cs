@@ -2,51 +2,68 @@ using UnityEngine;
 
 namespace Helpers
 {
-    public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class Singleton<T> : Singleton where T : MonoBehaviour
     {
         private static T _instance;
 
+        private static readonly object Lock = new object();
+
         protected virtual void Awake()
         {
-            if (!_instance) 
-            {
-                _instance = gameObject.GetComponent<T>();    
-            } 
+            if (_instance == null) 
+                _instance = gameObject.GetComponent<T>();  
             else 
-            {
                 Debug.LogError("[Singleton] Second instance of '" + typeof (T) + "' created!");
-            }
         }
 
         public static T Instance
         {
-            get 
+            get
             {
-                if (_instance == null)
+                if (IsQuitting)
                 {
-                    _instance = (T) FindObjectOfType(typeof(T));
-
-                    if (FindObjectsOfType(typeof(T)).Length > 1)
-                    {
-                        Debug.LogError("[Singleton] multiple instances of '" + typeof(T) + "' found!");
-                    }
-
-                    if (_instance == null)
-                    {
-                        GameObject singleton = new GameObject();
-                        _instance = singleton.AddComponent<T>();
-                        singleton.name = "(singleton) " + typeof(T);
-                        DontDestroyOnLoad(singleton);
-                        Debug.Log("[Singleton] An instance of '" + typeof(T) + "' was created: " + singleton);
-                    }
-                    else
-                    {
-                        Debug.Log("[Singleton] Using instance of '" + typeof(T) + "': " + _instance.gameObject.name);
-                    }
+                    Debug.LogError("[Singleton] '" + typeof(T) + "' not returned cause application is quitting!");
+                    return null;
                 }
 
-                return _instance;
+                lock (Lock)
+                {
+                    if (_instance != null)
+                        return _instance;
+                    
+                    var foundInstances = (T[]) FindObjectsOfType(typeof(T));
+
+                    if (foundInstances.Length > 0)
+                    {
+                        if (foundInstances.Length > 1)
+                        {
+                            Debug.LogError("[Singleton] '" + typeof(T) + "' many instances created!");
+                        
+                            for (int i = 1; i < foundInstances.Length; i++)
+                                Destroy(foundInstances[i]);
+                        }
+
+                        return _instance = foundInstances[0];   
+                    }
+                    
+                    Debug.LogError("[Singleton] '" + typeof(T) + "' an instance in the scene not exist!");
+                        
+                    GameObject singleton = new GameObject();
+                    _instance = singleton.AddComponent<T>();
+                    singleton.name = "(singleton) " + typeof(T);
+                    return _instance;
+                }
             }
+        }
+    }
+
+    public abstract class Singleton : MonoBehaviour
+    {
+        public static bool IsQuitting { get; private set; }
+
+        private void OnApplicationQuit()
+        {
+            IsQuitting = true;
         }
     }
 }
