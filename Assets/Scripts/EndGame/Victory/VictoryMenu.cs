@@ -24,6 +24,18 @@ namespace EndGame.Victory
             _openChestButton.onClick.AddListener(OpenChest);
         }
 
+        private void OnEnable()
+        {
+            _adsOffer.CompletelyWatched += _rewardDemonstartor.MultiplyReward;
+            _adsOffer.CanceledWatch += Exit;
+        }
+
+        private void OnDisable()
+        {
+            _adsOffer.CompletelyWatched -= _rewardDemonstartor.MultiplyReward;
+            _adsOffer.CanceledWatch -= Exit;
+        }
+
         public void Initialize(RewardedChestPreset rewardedChestPreset)
         {
             _rewardDemonstartor.Initialize(rewardedChestPreset);
@@ -52,6 +64,16 @@ namespace EndGame.Victory
 
         private void Exit()
         {
+            StartCoroutine(ExitProcessing());
+        }
+
+        private IEnumerator ExitProcessing()
+        {
+            //TODO: Добавить сохранение данных, затухание экрана и перезагрузку сцены.
+            
+            float delay = 2;
+            yield return new WaitForSeconds(delay);
+            
             gameObject.SetActive(false);
         }
     }

@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5038157757854054746}
   - component: {fileID: 7234998248218833834}
   m_Layer: 5
-  m_Name: Sorry No Button
+  m_Name: SkipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

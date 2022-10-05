@@ -2,13 +2,14 @@ using System;
 using System.Linq;
 using Chunks;
 using Chunks.Gates;
+using Helpers;
 using UnityEngine;
 
 namespace PlayerLogic.Spirit
 {
     public class SpiritSetter : MonoBehaviour
     {
-        [SerializeField] private PlayerLogic.Spirit.Spirit _spiritQuad;
+        [SerializeField] private Spirit _spiritQuad;
         [SerializeField] private SpiritBox _spiritBox;
 
         public event Action<Vector3> SpiritPointFound;
@@ -17,14 +18,14 @@ namespace PlayerLogic.Spirit
         {
             Gate.Passed += SetSpirit;
             ChunkSpawner.Instance.GateSpawner.GateSpawned += SetSpirit;
-            PlayerLogic.Player.Instance.Died += Hide;
+            Player.Instance.Died += Hide;
         }
 
         private void OnDisable()
         {
             Gate.Passed -= SetSpirit;
             ChunkSpawner.Instance.GateSpawner.GateSpawned -= SetSpirit;
-            PlayerLogic.Player.Instance.Died -= Hide;
+            Player.Instance.Died -= Hide;
         }
 
         private void Start()
@@ -34,7 +35,7 @@ namespace PlayerLogic.Spirit
 
         private void Show()
         {
-            if (global::PlayerLogic.Player.Instance.Alive == false)
+            if (Player.Instance.Alive == false)
                 return;
         
             _spiritBox.gameObject.SetActive(true);

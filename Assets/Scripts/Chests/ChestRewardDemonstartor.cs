@@ -1,7 +1,9 @@
+using System;
+using Ads;
 using EndGame.Victory;
 using Helpers;
 using ShopSystem.Items;
-using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Chests
@@ -13,12 +15,13 @@ namespace Chests
         private static readonly int PullOut = Animator.StringToHash(RewardPointAnimator.Triggers.PullOut);
     
         [SerializeField] private Transform _itemPoint;
-        [SerializeField] private TextMeshProUGUI _itemText;
         [SerializeField] private ChestCreator _chestCreator;
+        [SerializeField] private RewardCountText _rewardCountText;
     
         private Animator _animator;
         private Item _itemTemplate;
         private Item _item;
+        private int _itemCount;
         private bool _isOpened;
 
         private void Awake()
@@ -30,7 +33,9 @@ namespace Chests
         {
             ChestReward reward = rewardedChestPreset.RewardsSet.GetReward();
             _itemTemplate = reward.Currency;
-            _itemText.text = reward.Count.ToString();
+            _itemCount = reward.Count;
+            _rewardCountText.TextMeshPro.text = _itemCount.ToString();
+            _rewardCountText.SetIdleState();
 
             _chestCreator.CreateChest(rewardedChestPreset.Chest);
             _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(TVLayer));
@@ -46,6 +51,14 @@ namespace Chests
             PullOutItem();
 
             _isOpened = true;
+        }
+        
+        public void MultiplyReward(AdsRewardData adsRewardData)
+        {
+            _itemCount *= adsRewardData.Multiplier;
+            
+            _rewardCountText.TextMeshPro.text = _itemCount.ToString();
+            _rewardCountText.SetMultipliedState();
         }
 
         private void CreateItem()
