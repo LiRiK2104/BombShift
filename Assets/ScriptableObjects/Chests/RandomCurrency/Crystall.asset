@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a635bea39230fe6498c750ae428e3517, type: 3}
-  m_Name: RewardedChestPreset
+  m_Script: {fileID: 11500000, guid: b0e1c0cef214f6d48994436bcd0c1ef2, type: 3}
+  m_Name: Crystall
   m_EditorClassIdentifier: 
-  _chest: {fileID: 4009663476346187709, guid: 80ead7a1a3e9abe4ea95e49b0a84bb38, type: 3}
-  _rewardsSet: {fileID: 11400000, guid: b697cd2a24cc5824b9617ffdf35b85ea, type: 2}
+  _possibleCurrency:
+  - {fileID: 5684113734828441892, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}

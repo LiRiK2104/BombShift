@@ -30,7 +30,7 @@ namespace EndGame.Victory
         
         private bool IsPossibleReward(ChestReward reward)
         {
-            switch (reward.Currency)
+            switch (reward.GetCurrency())
             {
                 /*case Fragment fragment:
                     return Shop.Instance.TryGetUnit(fragment, out ShopUnitPriced shopUnit) &&

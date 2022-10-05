@@ -9,15 +9,19 @@ namespace EndGame.Victory
     {
         private const int MinCount = 0;
 
-        [SerializeField] private Currency _currency;
+        [SerializeField] private RandomCurrency _randomCurrency;
         [SerializeField] private int _count;
-
-        public Currency Currency => _currency;
+        
         public int Count => _count;
 
         private void OnValidate()
         {
             ClampCount();
+        }
+
+        public Currency GetCurrency()
+        {
+            return _randomCurrency.GetRandomCurrency();
         }
 
         private void ClampCount()

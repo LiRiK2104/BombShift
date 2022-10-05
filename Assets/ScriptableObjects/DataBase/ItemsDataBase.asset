@@ -35,3 +35,7 @@ MonoBehaviour:
     _dictionary:
     - _key: 0
       _value: {fileID: 11400000, guid: d841c5f475d40f84d93a38e175ed5f4c, type: 2}
+    - _key: 1
+      _value: {fileID: 11400000, guid: 2b560bed389a7b14f9f6b7924af025d0, type: 2}
+    - _key: 2
+      _value: {fileID: 11400000, guid: 8c131eb0ab2f4fa4786bf3f4e09c25a2, type: 2}
