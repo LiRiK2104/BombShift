@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PlayerLogic.Spirit
 {
-    public class SpiritBox : PlayerLogic.Spirit.Spirit
+    public class SpiritBox : Spirit
     {
         [SerializeField] private SpiritSetter _spiritSetter;
 
@@ -12,7 +12,7 @@ namespace PlayerLogic.Spirit
         {
             get
             {
-                Vector3 playerPosition = PlayerLogic.Player.Instance.transform.position;
+                Vector3 playerPosition = Player.transform.position;
 
                 if (_gatePosition == default)
                 {
@@ -60,7 +60,7 @@ namespace PlayerLogic.Spirit
     
         private void SetZScale()
         {
-            float scaleZ = (Center - global::PlayerLogic.Player.Instance.transform.position).z * 2;
+            float scaleZ = (Center - Player.transform.position).z * 2;
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, scaleZ);
         }
     }

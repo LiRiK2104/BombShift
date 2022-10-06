@@ -2,6 +2,7 @@ using Environment;
 using PlayerLogic;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 
 namespace Finish
 {
@@ -12,6 +13,8 @@ namespace Finish
         [SerializeField] private int _level;
         [SerializeField] private Transform _buildingSpawnPoint;
         [SerializeField] private MeshRenderer _groundMeshRenderer;
+
+        [Inject] private Player _player;
 
         private void OnValidate()
         {
@@ -31,7 +34,7 @@ namespace Finish
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out PlayerBody playerBody))
-                PlayerLogic.Player.Instance.LifeSwitcher.Lower();
+                _player.LifeSwitcher.Lower();
         }
 
         private void CreateBuilding(EnvironmentPreset environmentPreset)

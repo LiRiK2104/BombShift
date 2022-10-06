@@ -9,6 +9,7 @@ namespace PlayerLogic.Life
         private const int MinIndex = -1;
     
         [SerializeField] private List<LifeSetting> _lifeSettings;
+        [SerializeField] private Player _player;
     
         private int _index = 0;
 
@@ -45,7 +46,7 @@ namespace PlayerLogic.Life
             ClampIndex();
 
             if (_index == MinIndex)
-                PlayerLogic.Player.Instance.Exploder.Explode();
+                _player.Exploder.Explode();
             else
                 Setting = _lifeSettings[_index];
         

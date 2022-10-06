@@ -7,7 +7,9 @@ using UnityEngine;
 
 namespace PlayerLogic
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(
+        typeof(Rigidbody), 
+        typeof(Player))]
     public class Exploder : MonoBehaviour
     {
         private const int MinExplosionForce = 0;
@@ -28,9 +30,15 @@ namespace PlayerLogic
     
         [SerializeField] private FX.FX _explosionEffect;
         [SerializeField] private Transform _originPoint;
-
+        
+        private Player _player;
         private bool _isCollided;
-    
+
+        private void Awake()
+        {
+            _player = GetComponent<Player>();
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             if (_isCollided == false && 
@@ -53,7 +61,7 @@ namespace PlayerLogic
             PlayEffect();
             ShakeCamera();
         
-            Player.Instance.Die();
+            _player.Die();
         }
 
         private void AddForce()

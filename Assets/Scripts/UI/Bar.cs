@@ -1,17 +1,21 @@
 using System.Collections;
+using PlayerLogic;
 using PlayerLogic.Speed;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace UI
 {
     [RequireComponent(typeof(Slider))]
     public class Bar : MonoBehaviour
     {
+        [Inject] private Player _player;
+        
         private Slider _slider;
         private float _targetValue;
 
-        private SpeedSwitcher SpeedSwitcher => PlayerLogic.Player.Instance.SpeedSwitcher;
+        private SpeedSwitcher SpeedSwitcher => _player.SpeedSwitcher;
 
         private void Awake()
         {

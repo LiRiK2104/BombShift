@@ -1,12 +1,11 @@
 using System;
-using Helpers;
 using PlayerLogic.Life;
 using PlayerLogic.Speed;
 using UnityEngine;
 
 namespace PlayerLogic
 {
-    public class Player : Singleton<Player>
+    public class Player : MonoBehaviour
     {
         [SerializeField] private PlayerMover _mover;
         [SerializeField] private PlayerScaler _scaler;

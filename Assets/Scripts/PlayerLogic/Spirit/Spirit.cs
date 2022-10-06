@@ -1,19 +1,22 @@
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic.Spirit
 {
     public class Spirit : MonoBehaviour
     {
+        [Inject] protected Player Player;
+        
         private Vector3 _targetPosition;
     
         protected virtual void OnEnable()
         {
-            PlayerLogic.Player.Instance.Scaler.ScaleChanged += SetXYScale;
+            Player.Scaler.ScaleChanged += SetXYScale;
         }
 
         protected virtual void OnDisable()
         {
-            PlayerLogic.Player.Instance.Scaler.ScaleChanged -= SetXYScale;
+            Player.Scaler.ScaleChanged -= SetXYScale;
         }
     
         protected virtual void Update()

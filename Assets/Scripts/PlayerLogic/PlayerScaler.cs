@@ -1,28 +1,36 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic
 {
+    [RequireComponent(typeof(Player))]
     public class PlayerScaler : MonoBehaviour
     {
         [SerializeField] private Transform _playerBody;
         [SerializeField] private Vector3 _scaleA;
         [SerializeField] private Vector3 _scaleB;
-
+        
+        private Player _player;
         private bool _handleScalingEnable = true;
         private float _scaleProgress = 0.5f;
 
         public event Action<Vector3> ScaleChanged;
 
+        private void Awake()
+        {
+            _player = GetComponent<Player>();
+        }
+        
         private void OnEnable()
         {
-            global::PlayerLogic.Player.Instance.Died += OnDied;
+            _player.Died += OnDied;
         }
 
         private void OnDisable()
         {
-            global::PlayerLogic.Player.Instance.Died -= OnDied;
+            _player.Died -= OnDied;
         }
 
         public void SetScale(float delta)

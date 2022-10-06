@@ -7,25 +7,33 @@ using UnityEngine;
 
 namespace PlayerLogic.Spirit
 {
+    [RequireComponent(typeof(Player))]
     public class SpiritSetter : MonoBehaviour
     {
         [SerializeField] private Spirit _spiritQuad;
         [SerializeField] private SpiritBox _spiritBox;
 
+        private Player _player;
+        
         public event Action<Vector3> SpiritPointFound;
+
+        private void Awake()
+        {
+            _player = GetComponent<Player>();
+        }
 
         private void OnEnable()
         {
             Gate.Passed += SetSpirit;
             ChunkSpawner.Instance.GateSpawner.GateSpawned += SetSpirit;
-            Player.Instance.Died += Hide;
+            _player.Died += Hide;
         }
 
         private void OnDisable()
         {
             Gate.Passed -= SetSpirit;
             ChunkSpawner.Instance.GateSpawner.GateSpawned -= SetSpirit;
-            Player.Instance.Died -= Hide;
+            _player.Died -= Hide;
         }
 
         private void Start()
@@ -35,7 +43,7 @@ namespace PlayerLogic.Spirit
 
         private void Show()
         {
-            if (Player.Instance.Alive == false)
+            if (_player.Alive == false)
                 return;
         
             _spiritBox.gameObject.SetActive(true);

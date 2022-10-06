@@ -8,6 +8,7 @@ namespace PlayerLogic.Speed
     {
         [SerializeField] private List<SpeedSetting> _speedSettings = new List<SpeedSetting>();
         [SerializeField] private int _startSettingIndex;
+        [SerializeField] private Player _player;
 
         private int _index = 0;
 
@@ -24,12 +25,12 @@ namespace PlayerLogic.Speed
     
         private void OnEnable()
         {
-            PlayerLogic.Player.Instance.Died += LowerFull;
+            _player.Died += LowerFull;
         }
 
         private void OnDisable()
         {
-            PlayerLogic.Player.Instance.Died -= LowerFull;
+            _player.Died -= LowerFull;
         }
 
         private void Start()

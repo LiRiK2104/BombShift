@@ -4,6 +4,8 @@ namespace PlayerLogic
 {
     public class GroundChecker : MonoBehaviour
     {
+        [SerializeField] private Player _player;
+        
         private bool _active = true;
         private Vector3 _boxCastCenter = Vector3.zero;
     
@@ -11,7 +13,7 @@ namespace PlayerLogic
         {
             if (_active && HasGround() == false)
             {
-                global::PlayerLogic.Player.Instance.Die(false);
+                _player.Die(false);
                 SetConstraints();
             }
         }
@@ -41,7 +43,7 @@ namespace PlayerLogic
 
         private void SetConstraints()
         {
-            global::PlayerLogic.Player.Instance.Mover.Rigidbody.constraints = 
+            _player.Mover.Rigidbody.constraints = 
                 RigidbodyConstraints.FreezePositionX | 
                 RigidbodyConstraints.FreezeRotationX |
                 RigidbodyConstraints.FreezeRotationY |

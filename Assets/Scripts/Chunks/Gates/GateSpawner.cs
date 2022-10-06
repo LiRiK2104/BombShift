@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,7 +20,7 @@ namespace Chunks.Gates
             if (spawnPoint == null)
                 return;
         
-            Instantiate(GetTemplate(), spawnPoint.position, Quaternion.identity, spawnPoint);
+            DiContainerRef.Container.InstantiatePrefab(GetTemplate(), spawnPoint.position, Quaternion.identity, spawnPoint);
             GateSpawned?.Invoke();
         }
 

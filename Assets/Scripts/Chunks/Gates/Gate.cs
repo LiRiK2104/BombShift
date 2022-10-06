@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using PlayerLogic;
 using PlayerLogic.Spirit;
 using UnityEngine;
+using Zenject;
 
 namespace Chunks.Gates
 {
@@ -10,7 +12,9 @@ namespace Chunks.Gates
         [SerializeField] private GateSuccessTrigger _gateSuccessTrigger;
         [SerializeField] private List<GateBlock> _blocks = new List<GateBlock>();
         [SerializeField] private SpiritPoint _spiritPoint;
-    
+
+        [Inject] private Player _player;
+        
         private bool _isUsed;
 
         public static event Action Passed;
@@ -26,8 +30,8 @@ namespace Chunks.Gates
             if (_isUsed)
                 return;
         
-            PlayerLogic.Player.Instance.SpeedSwitcher.Lower();
-            PlayerLogic.Player.Instance.LifeSwitcher.Lower();
+            _player.SpeedSwitcher.Lower();
+            _player.LifeSwitcher.Lower();
             MarkAsUsed();
         }
 
@@ -36,7 +40,7 @@ namespace Chunks.Gates
             if (_isUsed)
                 return;
         
-            PlayerLogic.Player.Instance.SpeedSwitcher.Raise();
+            _player.SpeedSwitcher.Raise();
             MarkAsUsed();
         }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic
 {
@@ -8,6 +9,7 @@ namespace PlayerLogic
     {
         private const string EmissionColorID = "_EmissionColor";
         private Renderer _renderer;
+        private Player _player;
 
         private void Awake()
         {
@@ -16,12 +18,17 @@ namespace PlayerLogic
 
         private void OnEnable()
         {
-            global::PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged += UpdateEmissionEntry;
+            _player.LifeSwitcher.LifeChanged += UpdateEmissionEntry;
         }
 
         private void OnDisable()
         {
-            global::PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEmissionEntry;
+            _player.LifeSwitcher.LifeChanged -= UpdateEmissionEntry;
+        }
+
+        public void Initialize(Player player)
+        {
+            _player = player;
         }
 
         private void UpdateEmissionEntry()
@@ -33,7 +40,7 @@ namespace PlayerLogic
         private IEnumerator UpdateEmission()
         {
             Color startColor = _renderer.material.GetColor(EmissionColorID);
-            Color targetColor = global::PlayerLogic.Player.Instance.LifeSwitcher.Setting.EmissionColor;
+            Color targetColor = _player.LifeSwitcher.Setting.EmissionColor;
 
             if (startColor == targetColor)
                 yield break;

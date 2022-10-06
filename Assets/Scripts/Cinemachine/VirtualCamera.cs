@@ -1,5 +1,7 @@
 using System.Collections;
+using PlayerLogic;
 using UnityEngine;
+using Zenject;
 
 namespace Cinemachine
 {
@@ -8,6 +10,8 @@ namespace Cinemachine
     {
         private const float DefaultShakeTime = 0.5f;
         private const float DefaultShakeIntensity = 1;
+        
+        [Inject] private Player _player;
     
         private CinemachineVirtualCamera _cinemachineVirtualCamera;
         private CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
@@ -41,7 +45,7 @@ namespace Cinemachine
 
         public void UpdateSpeedEffect()
         {
-            _cinemachineTransposer.m_ZDamping = PlayerLogic.Player.Instance.SpeedSwitcher.Setting.CameraDistance;
+            _cinemachineTransposer.m_ZDamping = _player.SpeedSwitcher.Setting.CameraDistance;
         }
 
         private IEnumerator ShakeCore(float time, float intensity)

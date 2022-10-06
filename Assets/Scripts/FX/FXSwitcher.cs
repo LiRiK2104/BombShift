@@ -1,38 +1,47 @@
+using System;
 using System.Collections.Generic;
+using PlayerLogic;
 using UnityEngine;
 
 namespace FX
 {
+    [RequireComponent(typeof(Player))]
     public class FXSwitcher : MonoBehaviour
     {
         [SerializeField] private Transform _originPoint;
         [SerializeField] private List<FX> _effectsTemplates = new List<FX>();
     
         private List<FX> _createdEffects = new List<FX>();
-    
+        private Player _player;
+
+
+        private void Awake()
+        {
+            _player = GetComponent<Player>();
+        }
 
         private void OnEnable()
         {
-            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateEffects;
-            PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged += UpdateEffects;
+            _player.SpeedSwitcher.SpeedChanged += UpdateEffects;
+            _player.LifeSwitcher.LifeChanged += UpdateEffects;
         }
 
         private void OnDisable()
         {
-            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateEffects;
-            PlayerLogic.Player.Instance.LifeSwitcher.LifeChanged -= UpdateEffects;
+            _player.SpeedSwitcher.SpeedChanged -= UpdateEffects;
+            _player.LifeSwitcher.LifeChanged -= UpdateEffects;
         }
     
         private void UpdateEffects()
         {
-            if (PlayerLogic.Player.Instance.SpeedSwitcher.Setting == null || 
-                PlayerLogic.Player.Instance.LifeSwitcher.Setting == null)
+            if (_player.SpeedSwitcher.Setting == null || 
+                _player.LifeSwitcher.Setting == null)
                 return;
         
             foreach (var template in _effectsTemplates)
             {
-                if (PlayerLogic.Player.Instance.SpeedSwitcher.Setting.HasEffect(template) || 
-                    PlayerLogic.Player.Instance.LifeSwitcher.Setting.HasEffect(template))
+                if (_player.SpeedSwitcher.Setting.HasEffect(template) || 
+                    _player.LifeSwitcher.Setting.HasEffect(template))
                     GetEffect(template).Play();
                 else
                     GetEffect(template).Stop();

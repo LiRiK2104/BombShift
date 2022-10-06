@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0effca772285c8f40a3ede0749d0968e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 2114548154960583367}
 --- !u!1 &6909592090665064508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,6 +1120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Life Switcher
       objectReference: {fileID: 0}
+    - target: {fileID: 1855480878842978835, guid: 11a63761745b7ee4ba57b7acd3f06d7e, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 2114548154960583367}
     - target: {fileID: 6169148490503780487, guid: 11a63761745b7ee4ba57b7acd3f06d7e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1368,6 +1373,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3202828789768807802, guid: e9b1ac0e0d8b5104a9c5bff0a4f1471d, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 2114548154960583367}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9b1ac0e0d8b5104a9c5bff0a4f1471d, type: 3}
 --- !u!4 &6861570637493452274 stripped

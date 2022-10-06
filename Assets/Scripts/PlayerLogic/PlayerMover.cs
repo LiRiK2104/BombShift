@@ -2,9 +2,12 @@ using UnityEngine;
 
 namespace PlayerLogic
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(
+        typeof(Rigidbody), 
+        typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
+        private Player _player;
         private Rigidbody _rigidbody;
         private bool _needPush = true;
     
@@ -14,24 +17,25 @@ namespace PlayerLogic
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _player = GetComponent<Player>();
         }
 
         private void OnEnable()
         {
-            global::PlayerLogic.Player.Instance.Died += StopPushing;
+            _player.Died += StopPushing;
         }
 
         private void OnDisable()
         {
-            global::PlayerLogic.Player.Instance.Died -= StopPushing;
+            _player.Died -= StopPushing;
         }
 
         private void FixedUpdate()
         {
-            if (_needPush == false || global::PlayerLogic.Player.Instance.SpeedSwitcher.Setting == null)
+            if (_needPush == false || _player.SpeedSwitcher.Setting == null)
                 return;
         
-            Vector3 moveVector = transform.forward * global::PlayerLogic.Player.Instance.SpeedSwitcher.Setting.Speed;
+            Vector3 moveVector = transform.forward * _player.SpeedSwitcher.Setting.Speed;
             _rigidbody.velocity = new Vector3(moveVector.x, _rigidbody.velocity.y, moveVector.z);
         }
     

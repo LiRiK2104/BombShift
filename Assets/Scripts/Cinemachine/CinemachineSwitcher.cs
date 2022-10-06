@@ -1,5 +1,7 @@
 using Helpers;
+using PlayerLogic;
 using UnityEngine;
+using Zenject;
 
 namespace Cinemachine
 {
@@ -8,6 +10,8 @@ namespace Cinemachine
     {
         [SerializeField] private VirtualCamera _followingCamera;
         [SerializeField] private VirtualCamera _finishSpectatingCamera;
+        
+        [Inject] private Player _player;
 
         private Animator _animator;
         private VirtualCamera _activeCamera;
@@ -22,16 +26,16 @@ namespace Cinemachine
 
         private void OnEnable()
         {
-            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
-            PlayerLogic.Player.Instance.Died += StopFollowing;
-            PlayerLogic.Player.Instance.Died += StopLookingAt;
+            _player.SpeedSwitcher.SpeedChanged += UpdateSpeedEffect;
+            _player.Died += StopFollowing;
+            _player.Died += StopLookingAt;
         }
 
         private void OnDisable()
         {
-            PlayerLogic.Player.Instance.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
-            PlayerLogic.Player.Instance.Died -= StopFollowing;
-            PlayerLogic.Player.Instance.Died -= StopLookingAt;
+            _player.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
+            _player.Died -= StopFollowing;
+            _player.Died -= StopLookingAt;
         }
 
         public void Shake(float time, float intensity)
