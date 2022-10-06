@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using Helpers;
 using UnityEngine;
+using Zenject;
 
 namespace Environment
 {
-    public class EnvironmentCreator : Singleton<EnvironmentCreator>
+    public class EnvironmentCreator : MonoBehaviour, IInitializable
     {
         private static string _lastIndexKey = "last_index";
     
         [SerializeField] private List<EnvironmentPreset> _environmentPresets = new List<EnvironmentPreset>();
     
-        public event Action<EnvironmentPreset> Generate;
+        public event Action<EnvironmentPreset> Generating;
 
         private int Index
         {
@@ -32,13 +32,16 @@ namespace Environment
                 return index;
             }
         }
-
-        protected override void Awake()
-        {
-            base.Awake();
         
+        public void Initialize()
+        {
+            Generate();
+        }
+        
+        private void Generate()
+        {
             var preset = _environmentPresets[Index];
-            Generate?.Invoke(preset);
+            Generating?.Invoke(preset);
             RenderSettings.skybox = preset.SkyboxMaterial;
         }
     }

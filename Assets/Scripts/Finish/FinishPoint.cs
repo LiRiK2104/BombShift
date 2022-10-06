@@ -15,6 +15,7 @@ namespace Finish
         [SerializeField] private MeshRenderer _groundMeshRenderer;
 
         [Inject] private Player _player;
+        [Inject] private EnvironmentCreator _environmentCreator;
 
         private void OnValidate()
         {
@@ -23,12 +24,12 @@ namespace Finish
 
         private void OnEnable()
         {
-            EnvironmentCreator.Instance.Generate += CreateBuilding;
+            _environmentCreator.Generating += CreateBuilding;
         }
 
         private void OnDisable()
         {
-            EnvironmentCreator.Instance.Generate -= CreateBuilding;
+            _environmentCreator.Generating -= CreateBuilding;
         }
 
         private void OnTriggerEnter(Collider other)
