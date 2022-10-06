@@ -4,6 +4,7 @@ using Chunks;
 using Chunks.Gates;
 using Helpers;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic.Spirit
 {
@@ -12,6 +13,8 @@ namespace PlayerLogic.Spirit
     {
         [SerializeField] private Spirit _spiritQuad;
         [SerializeField] private SpiritBox _spiritBox;
+
+        [Inject] private ChunkSpawner _chunkSpawner;
 
         private Player _player;
         
@@ -25,14 +28,14 @@ namespace PlayerLogic.Spirit
         private void OnEnable()
         {
             Gate.Passed += SetSpirit;
-            ChunkSpawner.Instance.GateSpawner.GateSpawned += SetSpirit;
+            _chunkSpawner.GateSpawner.GateSpawned += SetSpirit;
             _player.Died += Hide;
         }
 
         private void OnDisable()
         {
             Gate.Passed -= SetSpirit;
-            ChunkSpawner.Instance.GateSpawner.GateSpawned -= SetSpirit;
+            _chunkSpawner.GateSpawner.GateSpawned -= SetSpirit;
             _player.Died -= Hide;
         }
 

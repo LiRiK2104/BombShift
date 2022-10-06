@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using Chunks.Gates;
 using Helpers;
 using UnityEngine;
+using Zenject;
 
 namespace Chunks
 {
-    public class ChunkSpawner : Singleton<ChunkSpawner>
+    public class ChunkSpawner : MonoBehaviour, IInitializable
     {
         private const int MinChunksCount = 5;
         private const int MaxChunksCount = 30;
@@ -20,8 +21,9 @@ namespace Chunks
         private Roulette _roulette;
 
         public GateSpawner GateSpawner => _gateSpawner;
+        
 
-        private void Start()
+        public void Initialize()
         {
             Spawn();
         }
@@ -37,7 +39,7 @@ namespace Chunks
                 if (template == null)
                     continue;
             
-                var chunk = Instantiate(template, spawnPoint.position, Quaternion.identity, _chunksContainer);
+                var chunk = DiContainerRef.Container.InstantiatePrefabForComponent<Chunk>(template, spawnPoint.position, Quaternion.identity, _chunksContainer);
                 _gateSpawner.Spawn(chunk.GateSpawnPoint);
             
                 spawnPoint = chunk.EndPoint;

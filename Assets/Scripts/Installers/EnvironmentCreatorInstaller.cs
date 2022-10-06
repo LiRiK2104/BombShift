@@ -14,7 +14,7 @@ namespace Installers
                 transform.position, Quaternion.identity, null);
 
             Container.Bind<EnvironmentCreator>().FromInstance(instance).AsSingle();
-            Container.Bind<IInitializable>().FromInstance(instance).AsSingle();
+            Container.Bind<IInitializable>().FromInstance(instance);
         }
     }
 }
