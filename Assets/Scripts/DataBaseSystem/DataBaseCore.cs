@@ -4,10 +4,10 @@ using Helpers;
 using ShopSystem.Items;
 using UnityEngine;
 
-namespace DataBase
+namespace DataBaseSystem
 {
-    [CreateAssetMenu(menuName = "Create ItemsDataBase", fileName = "ItemsDataBase", order = 67)]
-    public class ItemsDataBaseCore : ScriptableObject
+    [CreateAssetMenu(menuName = "DataBase", fileName = "DataBase", order = 67)]
+    public class DataBaseCore : ScriptableObject
     {
         [SerializeField] private List<Item> _items = new List<Item>();
 

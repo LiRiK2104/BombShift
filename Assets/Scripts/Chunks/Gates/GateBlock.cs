@@ -2,12 +2,15 @@ using Cinemachine;
 using Helpers;
 using PlayerLogic;
 using UnityEngine;
+using Zenject;
 
 namespace Chunks.Gates
 {
     [RequireComponent(typeof(Rigidbody))]
     public class GateBlock : MonoBehaviour
     {
+        [Inject] private CinemachineSwitcher _cinemachineSwitcher;
+        
         private Rigidbody _rigidbody;
         private Gate _gate;
         private int _layerAfterExplosion;
@@ -43,7 +46,7 @@ namespace Chunks.Gates
         {
             float time = 0.5f;
             float intensity = 2;
-            CinemachineSwitcher.Instance.Shake(time, intensity);
+            _cinemachineSwitcher.Shake(time, intensity);
         }
 
         private Vector3 GetDirection()

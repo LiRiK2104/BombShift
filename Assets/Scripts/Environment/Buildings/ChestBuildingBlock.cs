@@ -1,9 +1,9 @@
-using System;
 using Chests;
-using DataBase;
+using DataBaseSystem;
 using EndGame;
 using EndGame.Victory;
 using UnityEngine;
+using Zenject;
 
 namespace Environment.Buildings
 {
@@ -12,8 +12,9 @@ namespace Environment.Buildings
         [SerializeField] private RewardLevel _rewardLevel;
         [SerializeField] private ChestCreator _chestCreator;
 
-        private RewardedChestPreset _rewardedChestPreset =>
-            ItemsDataBase.Instance.Core.GetRewardedChestPreset(_rewardLevel);
+        [Inject] private DataBase _dataBase;
+
+        private RewardedChestPreset _rewardedChestPreset => _dataBase.Core.GetRewardedChestPreset(_rewardLevel);
         
         private void Start()
         {

@@ -259,6 +259,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7073926077042799743, guid: 1c9072e9d7315f640b56836e48fd8145, type: 3}
   m_PrefabInstance: {fileID: 7073926076542669752}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &591322185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591322186}
+  - component: {fileID: 591322187}
+  m_Layer: 0
+  m_Name: Cinemachine Switcher Installer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591322186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591322185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1569474000}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591322187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591322185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f75fcc2161bfa2458474e2e97e4b12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cinemachineSwitcherPrefab: {fileID: 2860124785421823597, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
 --- !u!1 &606688776
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.06857113, y: -0.21141286, z: 0.014870437, w: 0.97487515}
+  m_LocalRotation: {x: 0.06857117, y: -0.21141283, z: 0.014870443, w: 0.97487515}
   m_LocalPosition: {x: -11.79, y: 3.1890001, z: -6.2499986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1018,7 +1062,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6058623425920608764, guid: 75ef9049fa0280644a7a30d315b7d5dd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6058623425920608764, guid: 75ef9049fa0280644a7a30d315b7d5dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1117,6 +1161,7 @@ Transform:
   - {fileID: 51904217}
   - {fileID: 1652884815}
   - {fileID: 1154991811}
+  - {fileID: 591322186}
   m_Father: {fileID: 1624798538}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1138,6 +1183,7 @@ MonoBehaviour:
   - {fileID: 1153416982}
   - {fileID: 1652884816}
   - {fileID: 1154991812}
+  - {fileID: 591322187}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1239,7 +1285,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 230849400424259822, guid: 841a48b2ed246ca4a9430d33f6216595, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 230849400424259822, guid: 841a48b2ed246ca4a9430d33f6216595, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1410,7 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 1346284090}
     - target: {fileID: 2392612666071022996, guid: 96358c1878d75d4419e3db311eee1187, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2392612666071022996, guid: 96358c1878d75d4419e3db311eee1187, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2491,6 +2537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virtual Cameras Handler
       objectReference: {fileID: 0}
+    - target: {fileID: 135458682995002294, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 328347348414197243, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_Follow
       value: 
@@ -2585,15 +2635,15 @@ PrefabInstance:
       objectReference: {fileID: 1186388965}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06857113
+      value: 0.06857117
       objectReference: {fileID: 0}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.21141286
+      value: -0.21141283
       objectReference: {fileID: 0}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.014870437
+      value: 0.014870443
       objectReference: {fileID: 0}
     - target: {fileID: 6272256346789678136, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_IsActive
@@ -2637,7 +2687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8573222535740504537, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8573222535740504537, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalPosition.x

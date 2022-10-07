@@ -1,11 +1,14 @@
 using System;
-using DataBase;
+using DataBaseSystem;
 using Newtonsoft.Json;
+using Zenject;
 
 namespace ShopSystem.Items
 {
     public class ItemConverter : JsonConverter
     {
+        [Inject] private DataBase _dataBase;
+        
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             if (value == null)
@@ -22,7 +25,7 @@ namespace ShopSystem.Items
             {
                 case JsonToken.Integer:
                     if (int.TryParse(reader.Value.ToString(), out int id) && 
-                        ItemsDataBase.Instance.Core.TryGetItem(id, out Item item))
+                        _dataBase.Core.TryGetItem(id, out Item item))
                         return item;
                     else
                         return null;

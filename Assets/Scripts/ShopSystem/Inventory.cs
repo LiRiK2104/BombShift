@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DataBase;
+using DataBaseSystem;
 using Helpers;
 using Newtonsoft.Json;
 using ShopSystem.Items;
 using UnityEngine;
+using Zenject;
 
 namespace ShopSystem
 {
@@ -15,6 +16,8 @@ namespace ShopSystem
         private const string CurrencyKey = "CURRENCY";
 
         [SerializeField] private List<Skin> _skinsForStart = new List<Skin>();
+
+        [Inject] private DataBase _dataBase;
         
         private List<CurrencyContainer> _currencyContainers = new List<CurrencyContainer>();
         private List<Skin> _skins = new List<Skin>();
@@ -131,7 +134,7 @@ namespace ShopSystem
             _skins.Clear();
 
             foreach (var id in skinsId)
-                if (ItemsDataBase.Instance.Core.TryGetItem(id, out Item item) &&
+                if (_dataBase.Core.TryGetItem(id, out Item item) &&
                     item is Skin skin &&
                     _skins.Contains(skin) == false)
                 {

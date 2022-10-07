@@ -6,7 +6,7 @@ using Zenject;
 namespace Cinemachine
 {
     [RequireComponent(typeof(Animator))]
-    public class CinemachineSwitcher : Singleton<CinemachineSwitcher>
+    public class CinemachineSwitcher : MonoBehaviour, IInitializable
     {
         [SerializeField] private VirtualCamera _followingCamera;
         [SerializeField] private VirtualCamera _finishSpectatingCamera;
@@ -15,14 +15,7 @@ namespace Cinemachine
 
         private Animator _animator;
         private VirtualCamera _activeCamera;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            _animator = GetComponent<Animator>();
         
-            _activeCamera = _followingCamera;
-        }
 
         private void OnEnable()
         {
@@ -36,6 +29,12 @@ namespace Cinemachine
             _player.SpeedSwitcher.SpeedChanged -= UpdateSpeedEffect;
             _player.Died -= StopFollowing;
             _player.Died -= StopLookingAt;
+        }
+        
+        public void Initialize()
+        {
+            _animator = GetComponent<Animator>();
+            _activeCamera = _followingCamera;
         }
 
         public void Shake(float time, float intensity)

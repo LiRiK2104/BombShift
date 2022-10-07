@@ -4,6 +4,7 @@ using Environment.Buildings;
 using Helpers;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic
 {
@@ -30,6 +31,8 @@ namespace PlayerLogic
     
         [SerializeField] private FX.FX _explosionEffect;
         [SerializeField] private Transform _originPoint;
+        
+        [Inject] private CinemachineSwitcher _cinemachineSwitcher;
         
         private Player _player;
         private bool _isCollided;
@@ -91,7 +94,7 @@ namespace PlayerLogic
     
         private void ShakeCamera()
         {
-            CinemachineSwitcher.Instance.Shake(_cameraShakeTime, _cameraShakeIntensity);
+            _cinemachineSwitcher.Shake(_cameraShakeTime, _cameraShakeIntensity);
         }
     }
 }

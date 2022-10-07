@@ -1,8 +1,9 @@
-using DataBase;
+using DataBaseSystem;
 using Helpers;
 using ShopSystem;
 using ShopSystem.Items;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic
 {
@@ -11,6 +12,8 @@ namespace PlayerLogic
         private const string _savedSkinKey = "SKIN";
 
         [SerializeField] private Skin _defaultSkin;
+
+        [Inject] private DataBase _dataBase;
 
         private Skin _skin;
 
@@ -65,7 +68,7 @@ namespace PlayerLogic
             int id = PlayerPrefs.GetInt(_savedSkinKey, _defaultSkin.Id);
             _skin = _defaultSkin;
 
-            if (ItemsDataBase.Instance.Core.TryGetItem(id, out Item item) && 
+            if (_dataBase.Core.TryGetItem(id, out Item item) && 
                 item is Skin skin)
                 _skin = skin;
         }
