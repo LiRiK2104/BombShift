@@ -1,24 +1,35 @@
 using System.Collections.Generic;
-using Helpers;
 using ShopSystem.Items;
 using ShopSystem.Pages;
 using ShopSystem.Units;
 using UnityEngine;
+using Zenject;
 
 namespace ShopSystem
 {
-    [RequireComponent(typeof(Shop))]
-    public class Shop : Singleton<Shop>
+    [RequireComponent(typeof(ShopView))]
+    public class Shop : MonoBehaviour, IInitializable
     {
         [SerializeField] private List<ShopPage> _pages;
+
+        [Inject] private Inventory _inventory; 
         
         private ShopView _shopView;
 
-        public ShopView ShopView => _shopView;
-        
-        private void Awake()
+        public ShopView ShopView
         {
-            _shopView = GetComponent<ShopView>();
+            get
+            {
+                if (_shopView == null)
+                    _shopView = GetComponent<ShopView>();
+
+                return _shopView;
+            }
+        }
+        
+        
+        public void Initialize()
+        {
             _shopView.Initialize(_pages);
         }
 
@@ -29,10 +40,10 @@ namespace ShopSystem
         
         public void Buy(ShopUnitPriced shopUnit)
         {
-            if (Inventory.Instance.TryGetCurrencyCount(shopUnit.Currency, out int hasCount) && 
+            if (_inventory.TryGetCurrencyCount(shopUnit.Currency, out int hasCount) && 
                 hasCount >= shopUnit.CurrencyNeedCount)
             {
-                Inventory.Instance.Remove(shopUnit.Currency, shopUnit.CurrencyNeedCount);
+                _inventory.Remove(shopUnit.Currency, shopUnit.CurrencyNeedCount);
                 BuySkin(shopUnit.Skin);
             }
         }
@@ -61,7 +72,7 @@ namespace ShopSystem
 
         private void BuySkin(Skin skin)
         {
-            Inventory.Instance.Add(skin);
+            _inventory.Add(skin);
             //TODO: Добавить в очередь баннер о новом скине 
         }
     }

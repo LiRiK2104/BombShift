@@ -1,5 +1,4 @@
 using DataBaseSystem;
-using Helpers;
 using ShopSystem;
 using ShopSystem.Items;
 using UnityEngine;
@@ -7,13 +6,14 @@ using Zenject;
 
 namespace PlayerLogic
 {
-    public class SkinSetter : Singleton<SkinSetter>
+    public class SkinSetter : MonoBehaviour, IInitializable
     {
         private const string _savedSkinKey = "SKIN";
 
         [SerializeField] private Skin _defaultSkin;
 
         [Inject] private DataBase _dataBase;
+        [Inject] private Inventory _inventory;
 
         private Skin _skin;
 
@@ -27,25 +27,24 @@ namespace PlayerLogic
                 return _skin;
             }
         }
-
-        protected override void Awake()
-        {
-            base.Awake();
         
-            if (Inventory.Instance.IsLoaded)
-                SetSavedSkin();
-            else
-                Inventory.Instance.Loaded += SetSavedSkin;
-        }
 
         private void OnDisable()
         {
-            Inventory.Instance.Loaded -= SetSavedSkin;
+            _inventory.Loaded -= SetSavedSkin;
+        }
+        
+        public void Initialize()
+        {
+            if (_inventory.IsLoaded)
+                SetSavedSkin();
+            else
+                _inventory.Loaded += SetSavedSkin;
         }
 
         public void SetSkin(Skin skin)
         {
-            if (Inventory.Instance.HasSkin(skin))
+            if (_inventory.HasSkin(skin))
             {
                 _skin = skin;
                 SaveSkin();
@@ -55,9 +54,9 @@ namespace PlayerLogic
     
         private void SetSavedSkin()
         {
-            Inventory.Instance.Loaded -= SetSavedSkin;
+            _inventory.Loaded -= SetSavedSkin;
         
-            if (Inventory.Instance.HasSkin(_skin))
+            if (_inventory.HasSkin(_skin))
             {
                 //TODO: устанавливать скин на игрока
             }

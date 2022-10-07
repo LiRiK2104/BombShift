@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataBaseSystem;
-using Helpers;
 using Newtonsoft.Json;
 using ShopSystem.Items;
 using UnityEngine;
@@ -10,7 +9,7 @@ using Zenject;
 
 namespace ShopSystem
 {
-    public class Inventory : Singleton<Inventory>
+    public class Inventory : MonoBehaviour, IInitializable
     {
         private const string SkinsKey = "SKINS";
         private const string CurrencyKey = "CURRENCY";
@@ -27,20 +26,16 @@ namespace ShopSystem
         public event Action SkinAdded;
         
         public bool IsLoaded { get; private set; }
-
-
-        protected override void Awake()
+        
+        
+        public void Initialize()
         {
-            base.Awake();
-
             Load();
             IsLoaded = true;
             Loaded?.Invoke();
 
             foreach (var skin in _skinsForStart)
-            {
                 Add(skin);
-            }
         }
 
         public void Add(Skin skin)

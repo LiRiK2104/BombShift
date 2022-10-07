@@ -3,6 +3,7 @@ using ShopSystem.Cells.States;
 using ShopSystem.Units;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using ToggleGroup = ShopSystem.Toggles.ToggleGroup;
 using Toggle = ShopSystem.Toggles.Toggle;
 
@@ -15,6 +16,8 @@ namespace ShopSystem.Cells
         [SerializeField] private Button _button;
         [SerializeField] private OpenState _openState;
 
+        [Inject] protected Inventory Inventory;
+        [Inject] private SkinSetter _skinSetter;
         
         private bool _initialized;
         private ShopCellState _activeState;
@@ -42,7 +45,7 @@ namespace ShopSystem.Cells
 
         protected virtual void OnEnable()
         {
-            Inventory.Instance.SkinAdded += UpdateState;
+            Inventory.SkinAdded += UpdateState;
             
             _toggle.Activating += ActiveState.Select;
             _toggle.Deactivating += ActiveState.Deselect;
@@ -51,7 +54,7 @@ namespace ShopSystem.Cells
 
         protected virtual void OnDisable()
         {
-            Inventory.Instance.SkinAdded -= UpdateState;
+            Inventory.SkinAdded -= UpdateState;
             
             _toggle.Activating -= ActiveState.Select;
             _toggle.Deactivating -= ActiveState.Deselect;
@@ -76,7 +79,7 @@ namespace ShopSystem.Cells
 
         private void UpdateState()
         {
-            if (Inventory.Instance.HasSkin(ShopUnit.Skin))
+            if (Inventory.HasSkin(ShopUnit.Skin))
                 Open();
             else
                 Close();
@@ -99,9 +102,9 @@ namespace ShopSystem.Cells
             if (_initialized == false)
                 return;
 
-            if (Inventory.Instance.HasSkin(ShopUnit.Skin))
+            if (Inventory.HasSkin(ShopUnit.Skin))
             {
-                SkinSetter.Instance.SetSkin(ShopUnit.Skin);
+                _skinSetter.SetSkin(ShopUnit.Skin);
                 _shopToggleGroup.SelectToggle(_toggle);
             }
         }

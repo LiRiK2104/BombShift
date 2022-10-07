@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using PlayerLogic;
 using ShopSystem.Cells;
 using ShopSystem.Items;
 using ShopSystem.Pages;
 using ShopSystem.Toggles;
 using UnityEngine;
+using Zenject;
 
 namespace ShopSystem
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(
+        typeof(Animator), 
+        typeof(ToggleGroup))]
     public class ShopView : MonoBehaviour
     {
         private static readonly int OpenedState = Animator.StringToHash(ShopAnimator.OpenedStatus);
@@ -18,8 +22,11 @@ namespace ShopSystem
         [SerializeField] private ShopPageView _pageTemplate;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopScroll _shopScroll;
-        [SerializeField] private ToggleGroup _toggleGroup;
+
+        [Inject] private Inventory _inventory;
+        [Inject] private SkinSetter _skinSetter;
         
+        private ToggleGroup _toggleGroup;
         private List<ShopPage> _pages;
         private Animator _animator;
         private bool _isOpened;
@@ -36,6 +43,12 @@ namespace ShopSystem
 
                 return _animator;
             }
+        }
+        
+
+        private void Awake()
+        {
+            _toggleGroup = GetComponent<ToggleGroup>();
         }
 
         private void OnEnable()
@@ -61,25 +74,26 @@ namespace ShopSystem
 
             foreach (var page in _pages)
             {
-                var spawnedPage = Instantiate(_pageTemplate, _content);
+                var spawnedPage = DiContainerRef.Container.InstantiatePrefabForComponent<ShopPageView>(_pageTemplate, _content);
 
                 spawnedPage.Initialize(page, _toggleGroup);
                 spawnedPages.Add(spawnedPage);
             }
 
-            var currentSkin = SkinSetter.Instance.Skin;
+            var currentSkin = _skinSetter.Skin;
             
             foreach (var page in spawnedPages)
             {
                 if (page.TryGetCell(currentSkin, out ShopCell cell) && 
-                    Inventory.Instance.HasSkin(currentSkin))
+                    _inventory.HasSkin(currentSkin))
                 {
                     _toggleGroup.SelectToggle(cell.Toggle);
                 }
             }
 
             _shopScroll.Initialize(spawnedPages);
-            
+
+
             _isInitialized = true;
             Initialized?.Invoke();
         }
@@ -90,7 +104,6 @@ namespace ShopSystem
                 return;
          
             _isOpened = true;
-            gameObject.SetActive(true);
             SetAnimatorState();
         }
         
@@ -100,21 +113,14 @@ namespace ShopSystem
                 return;
             
             _isOpened = false;
-            StartCoroutine(DisableWithDelay());
             SetAnimatorState();
-        }
-
-        private IEnumerator DisableWithDelay()
-        {
-            yield return new WaitForSeconds(ShopAnimator.CloseAnimationDuration);
-            gameObject.SetActive(false);
         }
 
         private void OpenLastSkinPage()
         {
             Initialized -= OpenLastSkinPage;
             
-            _shopScroll.Index = GetPageIndex(SkinSetter.Instance.Skin);
+            _shopScroll.Index = GetPageIndex(_skinSetter.Skin);
             _shopScroll.ScrollToIndexInstantly();
         }
         

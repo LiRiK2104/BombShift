@@ -1,3 +1,4 @@
+using Helpers;
 using ShopSystem.Items;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace ShopSystem.Cells.States
             if (_previewParent == null)
                 return;
             
-            var preview = Instantiate(skin, _previewParent);
+            var preview = DiContainerRef.Container.InstantiatePrefab(skin, _previewParent);
             SetUILayer(preview.gameObject);
         }
     }

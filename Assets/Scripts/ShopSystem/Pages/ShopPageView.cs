@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Helpers;
 using ShopSystem.Cells;
 using ShopSystem.Items;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace ShopSystem.Pages
         
             foreach (var unit in shopPage.Units)
             {
-                var cell = Instantiate(shopPage.CellTemplate, _grid.transform);
+                var cell = DiContainerRef.Container.InstantiatePrefabForComponent<ShopCell>(shopPage.CellTemplate, _grid.transform);
                 cell.Initialize(unit, shopToggleGroup);
                 _cells.Add(cell);
                 
