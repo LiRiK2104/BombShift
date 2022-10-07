@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EndGame
 {
-    public class Judge : Singleton<Judge>
+    public class GameOver : MonoBehaviour
     {
         [SerializeField] private VictoryMenu _victoryMenu;
 

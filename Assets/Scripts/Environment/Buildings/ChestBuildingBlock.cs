@@ -13,6 +13,7 @@ namespace Environment.Buildings
         [SerializeField] private ChestCreator _chestCreator;
 
         [Inject] private DataBase _dataBase;
+        [Inject] private GameOver _gameOver;
 
         private RewardedChestPreset _rewardedChestPreset => _dataBase.Core.GetRewardedChestPreset(_rewardLevel);
         
@@ -29,7 +30,7 @@ namespace Environment.Buildings
             if (_rewardedChestPreset == null)
                 return;
             
-            Judge.Instance.Win(_rewardedChestPreset);
+            _gameOver.Win(_rewardedChestPreset);
             //TODO: Воспроизвести эффект
             
             base.DestructSelf();
