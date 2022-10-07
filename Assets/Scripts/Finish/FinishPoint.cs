@@ -1,4 +1,5 @@
 using Environment;
+using Helpers;
 using PlayerLogic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace Finish
         {
             var preset = environmentPreset.GetFinishPointPreset(_level);
         
-            Instantiate(preset.Building, _buildingSpawnPoint.position, quaternion.identity, transform);
+            DiContainerRef.Container.InstantiatePrefab(preset.Building, _buildingSpawnPoint.position, quaternion.identity, transform);
             _groundMeshRenderer.material = preset.GroundMaterial;
         }
     }
