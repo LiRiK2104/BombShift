@@ -1,4 +1,6 @@
+using RoundLogic;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerLogic
 {
@@ -7,6 +9,8 @@ namespace PlayerLogic
         typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
+        [Inject] private RoundRunner _roundRunner;
+        
         private Player _player;
         private Rigidbody _rigidbody;
         private bool _needPush;
@@ -22,11 +26,13 @@ namespace PlayerLogic
 
         private void OnEnable()
         {
+            _roundRunner.Starter.Starting += StartPushing;
             _player.Died += StopPushing;
         }
 
         private void OnDisable()
         {
+            _roundRunner.Starter.Starting -= StartPushing;
             _player.Died -= StopPushing;
         }
 
@@ -41,7 +47,7 @@ namespace PlayerLogic
 
         private void StartPushing()
         {
-            _needPush = false;
+            _needPush = true;
         }
     
         private void StopPushing()

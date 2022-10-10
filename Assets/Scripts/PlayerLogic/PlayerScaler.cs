@@ -11,6 +11,8 @@ namespace PlayerLogic
         [SerializeField] private Transform _playerBody;
         [SerializeField] private Vector3 _scaleA;
         [SerializeField] private Vector3 _scaleB;
+
+        [Inject] private PlayerScalerInput _playerScalerInput;
         
         private Player _player;
         private bool _handleScalingEnable = true;
@@ -25,15 +27,17 @@ namespace PlayerLogic
         
         private void OnEnable()
         {
+            _playerScalerInput.Dragging += SetScale;
             _player.Died += OnDied;
         }
 
         private void OnDisable()
         {
+            _playerScalerInput.Dragging += SetScale;
             _player.Died -= OnDied;
         }
 
-        public void SetScale(float delta)
+        private void SetScale(float delta)
         {
             if (_handleScalingEnable == false)
                 return;

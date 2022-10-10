@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Canvas))]
-public class TestCanvas : MonoBehaviour
+public class UiCameraSetter : MonoBehaviour
 {
     private Canvas _canvas;
 
