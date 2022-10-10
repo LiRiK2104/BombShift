@@ -9,7 +9,7 @@ namespace PlayerLogic
     {
         private Player _player;
         private Rigidbody _rigidbody;
-        private bool _needPush = true;
+        private bool _needPush;
     
         public Rigidbody Rigidbody => _rigidbody;
 
@@ -38,11 +38,10 @@ namespace PlayerLogic
             Vector3 moveVector = transform.forward * _player.SpeedSwitcher.Setting.Speed;
             _rigidbody.velocity = new Vector3(moveVector.x, _rigidbody.velocity.y, moveVector.z);
         }
-    
-        public void Stop()
+
+        private void StartPushing()
         {
-            StopPushing();
-            _rigidbody.velocity = Vector3.zero;
+            _needPush = false;
         }
     
         private void StopPushing()

@@ -1,7 +1,7 @@
 using Chests;
 using DataBaseSystem;
-using EndGame;
-using EndGame.Victory;
+using RoundLogic.Finish;
+using RoundLogic.Finish.Victory;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +13,7 @@ namespace Environment.Buildings
         [SerializeField] private ChestCreator _chestCreator;
 
         [Inject] private DataBase _dataBase;
-        [Inject] private GameOver _gameOver;
+        [Inject] private RoundEnder _roundEnder;
 
         private RewardedChestPreset _rewardedChestPreset => _dataBase.Core.GetRewardedChestPreset(_rewardLevel);
         
@@ -30,7 +30,7 @@ namespace Environment.Buildings
             if (_rewardedChestPreset == null)
                 return;
             
-            _gameOver.Win(_rewardedChestPreset);
+            _roundEnder.Win(_rewardedChestPreset);
             //TODO: Воспроизвести эффект
             
             base.DestructSelf();

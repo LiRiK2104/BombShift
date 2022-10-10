@@ -4,7 +4,7 @@ using PlayerLogic;
 using UnityEngine;
 using Zenject;
 
-namespace Finish
+namespace RoundLogic.Finish.FinishField
 {
     public class FinishPreparer : MonoBehaviour
     {

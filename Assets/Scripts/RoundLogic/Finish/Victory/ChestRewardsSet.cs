@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using Helpers;
-using ShopSystem;
-using ShopSystem.Items;
-using ShopSystem.Units;
 using UnityEngine;
 
-namespace EndGame.Victory
+namespace RoundLogic.Finish.Victory
 {
     [CreateAssetMenu(menuName = "ChestRewardsSet", fileName = "ChestRewardsSet", order = 51)]
     public class ChestRewardsSet : ScriptableObject

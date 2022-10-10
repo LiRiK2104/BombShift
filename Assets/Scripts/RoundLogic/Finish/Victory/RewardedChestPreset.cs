@@ -1,7 +1,7 @@
 using Chests;
 using UnityEngine;
 
-namespace EndGame.Victory
+namespace RoundLogic.Finish.Victory
 {
     [CreateAssetMenu(menuName = "RewardedChestPreset", fileName = "RewardedChestPreset", order = 51)]
     public class RewardedChestPreset : ScriptableObject

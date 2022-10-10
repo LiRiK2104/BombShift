@@ -4,7 +4,7 @@ using Chests;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EndGame.Victory
+namespace RoundLogic.Finish.Victory
 {
     [RequireComponent(typeof(Animator))]
     public class VictoryMenu : MonoBehaviour

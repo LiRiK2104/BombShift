@@ -2,7 +2,7 @@ using System;
 using ShopSystem.Items;
 using UnityEngine;
 
-namespace EndGame.Victory
+namespace RoundLogic.Finish.Victory
 {
     [Serializable]
     public class ChestReward

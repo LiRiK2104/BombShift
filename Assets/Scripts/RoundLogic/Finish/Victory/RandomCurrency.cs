@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using ShopSystem.Items;
 using UnityEngine;
 
-namespace EndGame.Victory
+namespace RoundLogic.Finish.Victory
 {
     [CreateAssetMenu(menuName = "RandomCurrency", fileName = "RandomCurrency", order = 51)]
     public class RandomCurrency : ScriptableObject

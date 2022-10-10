@@ -1,10 +1,9 @@
-using EndGame.Victory;
-using Helpers;
+using RoundLogic.Finish.Victory;
 using UnityEngine;
 
-namespace EndGame
+namespace RoundLogic.Finish
 {
-    public class GameOver : MonoBehaviour
+    public class RoundEnder : MonoBehaviour
     {
         [SerializeField] private VictoryMenu _victoryMenu;
 

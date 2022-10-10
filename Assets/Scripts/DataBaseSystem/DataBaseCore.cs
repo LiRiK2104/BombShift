@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using EndGame.Victory;
 using Helpers;
+using RoundLogic.Finish.Victory;
 using ShopSystem.Items;
 using UnityEngine;
 
