@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 15
+  _spiritColor: {r: 0.8962264, g: 0.47976163, b: 0.28324133, a: 1}

@@ -39,3 +39,4 @@ MonoBehaviour:
       _value: {fileID: 11400000, guid: 2b560bed389a7b14f9f6b7924af025d0, type: 2}
     - _key: 2
       _value: {fileID: 11400000, guid: 8c131eb0ab2f4fa4786bf3f4e09c25a2, type: 2}
+  _defaultSkin: {fileID: 808074907051681860, guid: e3a13914c54efaa4bbaaa643968099f9, type: 3}

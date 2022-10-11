@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f5f66e20f7ff6408aa2d492228a2b2, type: 3}
   m_Name: ShopPageIdle
   m_EditorClassIdentifier: 
-  _name: "\u0420\u0415\u0414\u041A\u0418\u0415"
+  _name: "\u0412\u0417\u0420\u042B\u0412\u0427\u0410\u0422\u041A\u0410"
   _nameTextColor: {r: 1, g: 1, b: 1, a: 1}
-  _tapeColor: {r: 0.8301887, g: 0.34069067, b: 0.34069067, a: 1}
+  _tapeColor: {r: 0.19651122, g: 0.6037736, b: 0.22659314, a: 1}
   _cellTemplate: {fileID: 7767941340209808821, guid: 711e297162a7eb640aa13c5c13cf8a4e, type: 3}
   _shopUnits:
-  - {fileID: 11400000, guid: 0a5032c6ed31d2b41ba358f7bd365fc3, type: 2}
-  - {fileID: 11400000, guid: b23966f6ea5730543aabcd1e84887468, type: 2}
-  - {fileID: 11400000, guid: 11cd0d7985e706b46982bc039bfbe9fa, type: 2}
-  - {fileID: 11400000, guid: 65bb13b50fec8cb47969d90d45c2b15a, type: 2}
-  - {fileID: 11400000, guid: e5a0806946c4106499b4690ac5353222, type: 2}
-  - {fileID: 11400000, guid: 992332b6175cb5848bb003a2c8ea49be, type: 2}
+  - {fileID: 11400000, guid: 6d2de55e30fcf094fb3c086b465c9ce5, type: 2}
+  - {fileID: 11400000, guid: a4392d201245f0443a872786367a5530, type: 2}
+  - {fileID: 11400000, guid: 67efb543b29a7b24fbbecb884ee94f12, type: 2}
+  - {fileID: 11400000, guid: a2b89a0fac65360419a3de3c4ee4c45b, type: 2}
+  - {fileID: 11400000, guid: f9ecbfe34b5626146bf1444acc5340e7, type: 2}
+  - {fileID: 11400000, guid: 069ca16fc3de6c947977b3f5e795ae88, type: 2}

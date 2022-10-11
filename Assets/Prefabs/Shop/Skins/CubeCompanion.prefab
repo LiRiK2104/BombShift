@@ -2104,6 +2104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 7
+  _spiritColor: {r: 1, g: 0, b: 0.95709896, a: 1}
 --- !u!1 &6654077261763703481
 GameObject:
   m_ObjectHideFlags: 0

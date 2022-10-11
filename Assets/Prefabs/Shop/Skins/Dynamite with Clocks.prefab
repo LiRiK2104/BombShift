@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _spiritColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &7817945046022561997
 GameObject:
   m_ObjectHideFlags: 0

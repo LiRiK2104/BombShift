@@ -5,9 +5,16 @@ namespace PlayerLogic.Spirit
 {
     public class Spirit : MonoBehaviour
     {
+        [SerializeField] private MeshRenderer _meshRenderer;
+        
         [Inject] protected Player Player;
         
         private Vector3 _targetPosition;
+
+        public Color Color
+        {
+            set => _meshRenderer.material.color = value;
+        }
     
         protected virtual void OnEnable()
         {
@@ -28,7 +35,7 @@ namespace PlayerLogic.Spirit
         {
             _targetPosition = targetPosition;
         }
-    
+
         protected virtual void SetPosition()
         {
             transform.position = _targetPosition;

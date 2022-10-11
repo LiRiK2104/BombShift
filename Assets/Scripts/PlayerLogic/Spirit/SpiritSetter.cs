@@ -2,7 +2,9 @@ using System;
 using System.Linq;
 using Chunks;
 using Chunks.Gates;
-using Helpers;
+using RoundLogic;
+using ShopSystem;
+using ShopSystem.Items;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +17,7 @@ namespace PlayerLogic.Spirit
         [SerializeField] private SpiritBox _spiritBox;
 
         [Inject] private ChunkSpawner _chunkSpawner;
+        [Inject] private RoundRunner _roundRunner;
 
         private Player _player;
         
@@ -27,21 +30,25 @@ namespace PlayerLogic.Spirit
 
         private void OnEnable()
         {
+            _player.SkinSetter.SkinSetted += SetColor;
             Gate.Passed += SetSpirit;
+            _roundRunner.Starter.Starting += SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned += SetSpirit;
             _player.Died += Hide;
         }
 
         private void OnDisable()
         {
+            _player.SkinSetter.SkinSetted -= SetColor;
             Gate.Passed -= SetSpirit;
+            _roundRunner.Starter.Starting -= SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned -= SetSpirit;
             _player.Died -= Hide;
         }
 
         private void Start()
         {
-            SetSpirit();
+            Hide();
         }
 
         private void Show()
@@ -70,6 +77,15 @@ namespace PlayerLogic.Spirit
             {
                 Hide();
             }
+        }
+        
+        private void SetColor(Skin skin)
+        {
+            float quadAlpha = 0.5f;
+            float boxAlpha = 0.25f;
+
+            _spiritQuad.Color = new Color(skin.SpiritColor.r, skin.SpiritColor.g, skin.SpiritColor.b, quadAlpha);
+            _spiritBox.Color = new Color(skin.SpiritColor.r, skin.SpiritColor.g, skin.SpiritColor.b, boxAlpha);
         }
 
         private bool TryFindSpiritPoint(out Transform point)

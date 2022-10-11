@@ -1,4 +1,3 @@
-using PlayerLogic;
 using ShopSystem.Cells.States;
 using ShopSystem.Units;
 using UnityEngine;
@@ -17,8 +16,8 @@ namespace ShopSystem.Cells
         [SerializeField] private OpenState _openState;
 
         [Inject] protected Inventory Inventory;
-        [Inject] private SkinSetter _skinSetter;
-        
+        [Inject] private Shop _shop;
+
         private bool _initialized;
         private ShopCellState _activeState;
         private ToggleGroup _shopToggleGroup;
@@ -104,8 +103,8 @@ namespace ShopSystem.Cells
 
             if (Inventory.HasSkin(ShopUnit.Skin))
             {
-                _skinSetter.SetSkin(ShopUnit.Skin);
                 _shopToggleGroup.SelectToggle(_toggle);
+                _shop.OnSelectedCell(this);
             }
         }
     }

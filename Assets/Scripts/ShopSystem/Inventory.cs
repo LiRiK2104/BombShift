@@ -135,6 +135,11 @@ namespace ShopSystem
                 {
                     _skins.Add(skin);
                 }
+
+            var defaultSkin = _dataBase.Core.DefaultSkin;
+            
+            if (_skins.Contains(defaultSkin) == false)
+                _skins.Add(defaultSkin);
         }
 
         private void LoadCurrency()

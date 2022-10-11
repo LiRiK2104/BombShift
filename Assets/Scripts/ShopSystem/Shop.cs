@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using ShopSystem.Cells;
 using ShopSystem.Items;
 using ShopSystem.Pages;
 using ShopSystem.Units;
@@ -15,6 +17,8 @@ namespace ShopSystem
         [Inject] private Inventory _inventory; 
         
         private ShopView _shopView;
+        
+        public event Action<Skin> Selected;
 
         public ShopView ShopView
         {
@@ -68,6 +72,11 @@ namespace ShopSystem
             }
 
             return false;
+        }
+
+        public void OnSelectedCell(ShopCell shopCell)
+        {
+            Selected?.Invoke(shopCell.ShopUnit.Skin);
         }
 
         private void BuySkin(Skin skin)

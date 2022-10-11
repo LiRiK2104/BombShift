@@ -14,6 +14,11 @@ namespace DataBaseSystem
         [SerializeField] private UnityDictionary<RewardLevel, RewardedChestPreset> _rewardedChestsPresets =
             new UnityDictionary<RewardLevel, RewardedChestPreset>();
 
+        [SerializeField] private Skin _defaultSkin;
+
+        public Skin DefaultSkin => _defaultSkin;
+        
+        
         public bool TryGetItem(int id, out Item foundItem)
         {
             foundItem = null;

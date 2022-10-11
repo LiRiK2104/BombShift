@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Helpers;
 using PlayerLogic;
@@ -24,15 +23,13 @@ namespace ShopSystem
         [SerializeField] private ShopScroll _shopScroll;
 
         [Inject] private Inventory _inventory;
-        [Inject] private SkinSetter _skinSetter;
+        [Inject] private Player _player;
         
         private ToggleGroup _toggleGroup;
         private List<ShopPage> _pages;
         private Animator _animator;
         private bool _isOpened;
         private bool _isInitialized;
-
-        private event Action Initialized;
 
         private Animator Animator
         {
@@ -51,19 +48,6 @@ namespace ShopSystem
             _toggleGroup = GetComponent<ToggleGroup>();
         }
 
-        private void OnEnable()
-        {
-            if (_isInitialized)
-                OpenLastSkinPage();
-            else
-                Initialized += OpenLastSkinPage;
-        }
-
-        private void OnDisable()
-        {
-            Initialized -= OpenLastSkinPage;
-        }
-
         public void Initialize(List<ShopPage> pages)
         {
             if (_isInitialized)
@@ -80,7 +64,7 @@ namespace ShopSystem
                 spawnedPages.Add(spawnedPage);
             }
 
-            var currentSkin = _skinSetter.Skin;
+            var currentSkin = _player.SkinSetter.SkinPrefab;
             
             foreach (var page in spawnedPages)
             {
@@ -95,7 +79,6 @@ namespace ShopSystem
 
 
             _isInitialized = true;
-            Initialized?.Invoke();
         }
 
         public void Open()
@@ -105,6 +88,7 @@ namespace ShopSystem
          
             _isOpened = true;
             SetAnimatorState();
+            OpenLastSkinPage();
         }
         
         public void Close()
@@ -118,9 +102,7 @@ namespace ShopSystem
 
         private void OpenLastSkinPage()
         {
-            Initialized -= OpenLastSkinPage;
-            
-            _shopScroll.Index = GetPageIndex(_skinSetter.Skin);
+            _shopScroll.Index = GetPageIndex(_player.SkinSetter.SkinPrefab);
             _shopScroll.ScrollToIndexInstantly();
         }
         
