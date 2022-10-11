@@ -1,3 +1,4 @@
+using System;
 using ShopSystem.Cells.States;
 using ShopSystem.Units;
 using UnityEngine;
@@ -8,6 +9,7 @@ using Toggle = ShopSystem.Toggles.Toggle;
 
 namespace ShopSystem.Cells
 {
+    [RequireComponent(typeof(ShopCellView))]
     public abstract class ShopCell : MonoBehaviour
     {
         [SerializeField] private ToggleGroup _statesToggleGroup;
@@ -21,8 +23,10 @@ namespace ShopSystem.Cells
         private bool _initialized;
         private ShopCellState _activeState;
         private ToggleGroup _shopToggleGroup;
+        private ShopCellView _shopCellView;
 
         public Toggle Toggle => _toggle;
+        public ShopCellView ShopCellView => _shopCellView;
         public ShopUnit ShopUnit { get; private set; }
         protected abstract LockedState LockedState { get; }
 
@@ -40,6 +44,12 @@ namespace ShopSystem.Cells
             {
                 _activeState = value;
             }
+        }
+        
+
+        private void Awake()
+        {
+            _shopCellView = GetComponent<ShopCellView>();
         }
 
         protected virtual void OnEnable()

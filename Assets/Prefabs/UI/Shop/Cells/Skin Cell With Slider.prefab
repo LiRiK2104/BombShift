@@ -193,6 +193,8 @@ GameObject:
   - component: {fileID: 1059518674167494575}
   - component: {fileID: 3015482309028466971}
   - component: {fileID: 6740452746710623744}
+  - component: {fileID: 1583587075220553282}
+  - component: {fileID: 4445669677345430360}
   m_Layer: 5
   m_Name: Skin Cell With Slider
   m_TagString: Untagged
@@ -269,6 +271,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d25df77756b140a38fadf3174d794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1583587075220553282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968902988754639577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a73b53bceac24142858b593485c129f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &4445669677345430360
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968902988754639577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9500bb440ac3714985c83731d683876, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &689348379908386854
 PrefabInstance:
   m_ObjectHideFlags: 0

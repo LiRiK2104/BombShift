@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7767941340209808821}
   - component: {fileID: 3320221396256446965}
   - component: {fileID: 7148084036277399738}
+  - component: {fileID: 5353950991191645009}
   m_Layer: 5
   m_Name: Skin Cell Idle
   m_TagString: Untagged
@@ -191,6 +192,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065d25df77756b140a38fadf3174d794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5353950991191645009
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582244694264732068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b9500bb440ac3714985c83731d683876, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8116475929513046393
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +507,10 @@ PrefabInstance:
     - target: {fileID: 6294501282049895756, guid: acf3fafb7c904bc439fe339fc2e2c695, type: 3}
       propertyPath: m_Name
       value: Open State
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294501282049895756, guid: acf3fafb7c904bc439fe339fc2e2c695, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6359554090791217609, guid: acf3fafb7c904bc439fe339fc2e2c695, type: 3}
       propertyPath: m_IsActive
