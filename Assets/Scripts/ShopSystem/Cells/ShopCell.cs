@@ -25,6 +25,12 @@ namespace ShopSystem.Cells
         private ToggleGroup _shopToggleGroup;
         private ShopCellView _shopCellView;
 
+        public bool IsClickable
+        {
+            get => _button.interactable;
+            set => _button.interactable = value;
+        }
+        public bool IsOpened { get; private set; }
         public Toggle Toggle => _toggle;
         public ShopCellView ShopCellView => _shopCellView;
         public ShopUnit ShopUnit { get; private set; }
@@ -98,12 +104,14 @@ namespace ShopSystem.Cells
         {
             _statesToggleGroup.SelectToggle(_openState.Toggle);
             ActiveState = _openState;
+            IsOpened = true;
         }
     
         private void Close()
         {
             _statesToggleGroup.SelectToggle(LockedState.Toggle);
             ActiveState = LockedState;
+            IsOpened = false;
         }
 
         private void Select()

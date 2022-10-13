@@ -7,9 +7,9 @@ namespace ShopSystem.Cells
     {
         private Animator _animator;
         private static readonly int HiddenTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.StayHidden);
-        private static readonly int RouletteSelectTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.RouletteSelect);
-        private static readonly int RouletteDeselectTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.RouletteDeselect);
         private static readonly int ShowTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.Show);
+        private static readonly int UnlockTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.Unlock);
+        private static readonly int RouletteSelectedFlag = Animator.StringToHash(ShopCellAnimator.Flags.RouletteSelected);
 
         private void Awake()
         {
@@ -28,12 +28,17 @@ namespace ShopSystem.Cells
         
         public void RouletteSelect()
         {
-            _animator.SetTrigger(RouletteSelectTrigger);
+            _animator.SetBool(RouletteSelectedFlag, true);
         }
         
         public void RouletteDeselect()
         {
-            _animator.SetTrigger(RouletteDeselectTrigger);
+            _animator.SetBool(RouletteSelectedFlag, false);
+        }
+        
+        public void Unlock()
+        {
+            _animator.SetTrigger(UnlockTrigger);
         }
     }
 }
@@ -44,7 +49,11 @@ public static class ShopCellAnimator
     {
         public const string Show = nameof(Show);
         public const string StayHidden = nameof(StayHidden);
-        public const string RouletteSelect = nameof(RouletteSelect);
-        public const string RouletteDeselect = nameof(RouletteDeselect);
+        public const string Unlock = nameof(Unlock);
+    }
+    
+    public static class Flags
+    {
+        public const string RouletteSelected = nameof(RouletteSelected);
     }
 }
