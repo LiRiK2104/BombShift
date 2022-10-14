@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1113823176719404961}
-  - component: {fileID: 5684113734828441892}
+  - component: {fileID: 6543705992779813664}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5684113734828441892
+--- !u!114 &6543705992779813664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 305902739509302555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9bbd797021e564f92c6c2f55141c66, type: 3}
+  m_Script: {fileID: 11500000, guid: 405a82707517ada469f6fcb3ce8efe32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 24
