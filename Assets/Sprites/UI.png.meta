@@ -205,13 +205,13 @@ TextureImporter:
       name: UI_1
       rect:
         serializedVersion: 2
-        x: 2301
-        y: 2986
-        width: 245
-        height: 343
+        x: 2318
+        y: 2796
+        width: 205
+        height: 286
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 173, y: 155, z: 25, w: 150}
+      border: {x: 173, y: 137, z: 0, w: 136}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -226,13 +226,13 @@ TextureImporter:
       name: UI_2
       rect:
         serializedVersion: 2
-        x: 2320
-        y: 2533
-        width: 418
-        height: 347
+        x: 2321
+        y: 2456
+        width: 342
+        height: 284
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 171, y: 160, z: 177, w: 158}
+      border: {x: 136, y: 137, z: 136, w: 133}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -270,11 +270,11 @@ TextureImporter:
         serializedVersion: 2
         x: 2322
         y: 2102
-        width: 422
-        height: 346
+        width: 345
+        height: 285
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 160, y: 161, z: 167, w: 165}
+      border: {x: 137, y: 136, z: 138, w: 136}
       outline: []
       physicsShape: []
       tessellationDetail: 0

@@ -13,7 +13,7 @@ namespace RoundLogic.Finish.Victory
     
         [SerializeField] private ChestRewardDemonstartor _rewardDemonstartor;
         [SerializeField] private Button _openChestButton;
-        [SerializeField] private AdsOffer _adsOffer;
+        [SerializeField] private VictoryAdsOffer victoryAdsOffer;
 
         private Animator _animator;
         private bool _chestOpened;
@@ -26,14 +26,14 @@ namespace RoundLogic.Finish.Victory
 
         private void OnEnable()
         {
-            _adsOffer.CompletelyWatched += _rewardDemonstartor.MultiplyReward;
-            _adsOffer.CanceledWatch += Exit;
+            victoryAdsOffer.CompletelyWatched += _rewardDemonstartor.MultiplyReward;
+            victoryAdsOffer.Ended += Exit;
         }
 
         private void OnDisable()
         {
-            _adsOffer.CompletelyWatched -= _rewardDemonstartor.MultiplyReward;
-            _adsOffer.CanceledWatch -= Exit;
+            victoryAdsOffer.CompletelyWatched -= _rewardDemonstartor.MultiplyReward;
+            victoryAdsOffer.Ended -= Exit;
         }
 
         public void Initialize(RewardedChestPreset rewardedChestPreset)
@@ -59,11 +59,13 @@ namespace RoundLogic.Finish.Victory
             float chestOpeningTime = 3;
         
             yield return new WaitForSeconds(chestOpeningTime);
-            _adsOffer.Initialize(Exit);
+            victoryAdsOffer.Initialize();
+            victoryAdsOffer.Ended += Exit;
         }
 
         private void Exit()
         {
+            victoryAdsOffer.Ended -= Exit;
             StartCoroutine(ExitProcessing());
         }
 

@@ -53,9 +53,9 @@ namespace Chests
             _isOpened = true;
         }
         
-        public void MultiplyReward(AdsRewardData adsRewardData)
+        public void MultiplyReward(AdsMultiplierReward adsMultiplierReward)
         {
-            _itemCount *= adsRewardData.Multiplier;
+            _itemCount *= adsMultiplierReward.Multiplier;
 
             _rewardCountText.TextMeshPro.text = GetFormattedItemCount();
             _rewardCountText.SetMultipliedState();
