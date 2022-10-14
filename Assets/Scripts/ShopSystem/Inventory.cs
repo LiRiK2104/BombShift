@@ -14,6 +14,7 @@ namespace ShopSystem
         private const string SkinsKey = "SKINS";
         private const string CurrencyKey = "CURRENCY";
 
+        [SerializeField] private Gem _gemReference;
         [SerializeField] private List<Skin> _skinsForStart = new List<Skin>();
 
         [Inject] private DataBase _dataBase;
@@ -76,6 +77,12 @@ namespace ShopSystem
         public bool HasSkin(Skin skin)
         {
             return _skins.Contains(skin);
+        }
+
+        public int GetGemsCount()
+        {
+            TryGetCurrencyCount(_gemReference, out int count);
+            return count;
         }
 
         public bool TryGetCurrencyCount(Currency currency, out int count)
