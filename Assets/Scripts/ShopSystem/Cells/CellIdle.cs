@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShopSystem.Cells
 {
-    public class ShopCellIdle : ShopCell
+    public class CellIdle : Cell
     {
         [SerializeField] private LockedState _lockedState;
     

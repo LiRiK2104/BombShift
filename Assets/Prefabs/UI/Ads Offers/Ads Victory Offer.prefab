@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3258644814723336504}
   - component: {fileID: 2411519916977434921}
   m_Layer: 5
-  m_Name: ADS Offer
+  m_Name: Ads Victory Offer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

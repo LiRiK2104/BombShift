@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89f5f66e20f7ff6408aa2d492228a2b2, type: 3}
-  m_Name: ShopPageIdle
+  m_Name: ShopPageRoulette
   m_EditorClassIdentifier: 
   _name: "\u0412\u0417\u0420\u042B\u0412\u0427\u0410\u0422\u041A\u0410"
   _nameTextColor: {r: 1, g: 1, b: 1, a: 1}
   _tapeColor: {r: 0.19651122, g: 0.6037736, b: 0.22659314, a: 1}
+  _price: 750
   _cellTemplate: {fileID: 7767941340209808821, guid: 711e297162a7eb640aa13c5c13cf8a4e, type: 3}
   _shopUnits:
   - {fileID: 11400000, guid: 6d2de55e30fcf094fb3c086b465c9ce5, type: 2}
@@ -23,3 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2b89a0fac65360419a3de3c4ee4c45b, type: 2}
   - {fileID: 11400000, guid: f9ecbfe34b5626146bf1444acc5340e7, type: 2}
   - {fileID: 11400000, guid: 069ca16fc3de6c947977b3f5e795ae88, type: 2}
+  _buyBlockPrefab: {fileID: 1997004541726880869, guid: c2690d1e13d2b954e8e595b42f6d61cd, type: 3}

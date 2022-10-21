@@ -59,7 +59,7 @@ namespace Ads
         
         private void SetRewardText()
         {
-            _rewardCountTMP.text = _rewardCount.ToString();
+            _rewardCountTMP.text = $"+{_rewardCount.ToString()}";
         }
     }
     

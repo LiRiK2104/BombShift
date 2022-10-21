@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace ShopSystem.Cells.States
 {
-    public abstract class ShopCellState : MonoBehaviour
+    public abstract class State : MonoBehaviour
     {
         protected const string LayerUIName = "UI";
         
         [SerializeField] private Toggle _toggle;
         [SerializeField] private GameObject _content;
-        [SerializeField] private CellSelectionFrame selectionSelectionFrame;
+        [SerializeField] private SelectionFrame selectionSelectionFrame;
 
         public Toggle Toggle => _toggle;
         

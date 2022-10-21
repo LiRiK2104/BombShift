@@ -1,5 +1,5 @@
-using System;
 using ShopSystem.Cells.States;
+using ShopSystem.InfoBlocks;
 using ShopSystem.Units;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,8 +9,8 @@ using Toggle = ShopSystem.Toggles.Toggle;
 
 namespace ShopSystem.Cells
 {
-    [RequireComponent(typeof(ShopCellView))]
-    public abstract class ShopCell : MonoBehaviour
+    [RequireComponent(typeof(CellView))]
+    public abstract class Cell : MonoBehaviour
     {
         [SerializeField] private ToggleGroup _statesToggleGroup;
         [SerializeField] private Toggle _toggle;
@@ -21,9 +21,9 @@ namespace ShopSystem.Cells
         [Inject] private Shop _shop;
 
         private bool _initialized;
-        private ShopCellState _activeState;
+        private State _activeState;
         private ToggleGroup _shopToggleGroup;
-        private ShopCellView _shopCellView;
+        private CellView _cellView;
 
         public bool IsClickable
         {
@@ -32,11 +32,11 @@ namespace ShopSystem.Cells
         }
         public bool IsOpened { get; private set; }
         public Toggle Toggle => _toggle;
-        public ShopCellView ShopCellView => _shopCellView;
-        public ShopUnit ShopUnit { get; private set; }
+        public CellView CellView => _cellView;
+        public Unit Unit { get; private set; }
         protected abstract LockedState LockedState { get; }
 
-        private ShopCellState ActiveState
+        private State ActiveState
         {
             get
             {
@@ -55,7 +55,7 @@ namespace ShopSystem.Cells
 
         private void Awake()
         {
-            _shopCellView = GetComponent<ShopCellView>();
+            _cellView = GetComponent<CellView>();
         }
 
         protected virtual void OnEnable()
@@ -76,15 +76,15 @@ namespace ShopSystem.Cells
             _button.onClick.RemoveListener(Select);
         }
 
-        public virtual void Initialize(ShopUnit shopUnit, ToggleGroup shopPageToggleGroup)
+        public virtual void Initialize(Unit unit, ToggleGroup shopPageToggleGroup)
         {
             if (_initialized)
                 return;
 
             _shopToggleGroup = shopPageToggleGroup;
-            ShopUnit = shopUnit;
+            Unit = unit;
 
-            _openState.SetPreview(shopUnit.Skin);
+            _openState.SetPreview(unit.Skin);
             _statesToggleGroup.AddToggle(_openState.Toggle);
             _statesToggleGroup.AddToggle(LockedState.Toggle);
             UpdateState();
@@ -94,7 +94,7 @@ namespace ShopSystem.Cells
 
         private void UpdateState()
         {
-            if (Inventory.HasSkin(ShopUnit.Skin))
+            if (Inventory.HasSkin(Unit.Skin))
                 Open();
             else
                 Close();
@@ -119,10 +119,14 @@ namespace ShopSystem.Cells
             if (_initialized == false)
                 return;
 
-            if (Inventory.HasSkin(ShopUnit.Skin))
+            if (Inventory.HasSkin(Unit.Skin))
             {
                 _shopToggleGroup.SelectToggle(_toggle);
                 _shop.OnSelectedCell(this);
+            }
+            else if (Unit is IInfoBlockOwner infoBlockOwner)
+            {
+                _shop.ShopView.InfoBlocksContainer.SetInfoBlock(infoBlockOwner);
             }
         }
     }

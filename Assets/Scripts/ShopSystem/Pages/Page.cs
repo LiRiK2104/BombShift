@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ShopSystem.Pages
 {
-    public abstract class ShopPage : ScriptableObject
+    public abstract class Page : ScriptableObject
     {
         protected const int MaxUnitsCount = 6;
 
@@ -13,8 +13,8 @@ namespace ShopSystem.Pages
         [SerializeField] private Color _nameTextColor;
         [SerializeField] private Color _tapeColor;
     
-        public abstract ShopCell CellTemplate { get; }
-        public abstract List<ShopUnit> Units { get; }
+        public abstract Cell CellTemplate { get; }
+        public abstract List<Unit> Units { get; }
 
         public string Name => _name;
         public Color NameTextColor => _nameTextColor;

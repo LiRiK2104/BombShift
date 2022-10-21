@@ -9,25 +9,36 @@ namespace ShopSystem
 {
     public class ShopScroll : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     {
+        private const int NullIndex = -1;
+        
         [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private global::ShopSystem.DotContent.DotContent _dotContent;
+        [SerializeField] private DotContentLogic.DotContent _dotContent;
         [SerializeField] private float _lerpSpeed = 10;
         [SerializeField] private int _dragMilliseconds = 100;
 
         private bool _isInitialized;
-    
         private bool _isDragging;
         private TimeSpan _beginDragTime;
         private float _beginDragX;
-        private int _index;
-    
+        private int _index = NullIndex;
         private List<RectTransform> _items = new List<RectTransform>();
+
+        public event Action<int> IndexChanged;
 
         public int Index
         {
+            get
+            {
+                return _index == NullIndex ? 0 : _index;
+            }
+            
             set
             {
+                int lastIndex = _index;
                 _index = Mathf.Clamp(value, 0, _items.Count);
+
+                if (_index != lastIndex)
+                    IndexChanged?.Invoke(_index);
             }
         }
         
@@ -45,11 +56,11 @@ namespace ShopSystem
             if (_isInitialized && _isDragging == false)
             {
                 ScrollToIndex();
-                _dotContent.UpdateDots(_index);
+                _dotContent.UpdateDots(Index);
             }
         }
         
-        public void Initialize(List<ShopPageView> items)
+        public void Initialize(List<PageView> items)
         {
             if (_isInitialized)
                 throw new InvalidOperationException("Already initialized");
@@ -70,7 +81,7 @@ namespace ShopSystem
         public void OnEndDrag(PointerEventData eventData)
         {
             _isDragging = false;
-            _index = GetNextIndex(eventData);
+            Index = GetNextIndex(eventData);
         }
         
         public void ScrollToIndexInstantly()
@@ -84,7 +95,7 @@ namespace ShopSystem
             int direction = -Math.Sign(eventData.position.x - _beginDragX);
 
             int nextIndex = dragTime.Milliseconds < _dragMilliseconds ? 
-                Mathf.Clamp(_index + direction, 0, _items.Count - 1) : 
+                Mathf.Clamp(Index + direction, 0, _items.Count - 1) : 
                 GetNearestIndex();
 
             return nextIndex;
@@ -117,8 +128,12 @@ namespace ShopSystem
 
         private Vector2 GetNextContentPosition()
         {
-            RectTransform item = _items[_index];
-            float contentTargetPositionX = -1 * Mathf.Clamp(item.anchoredPosition.x - item.sizeDelta.x / 2, 0, Mathf.Abs(Content.sizeDelta.x));
+            RectTransform page = _items[Index];
+            float leftContentBoundX = 0;
+            float rightContentBoundX = Mathf.Abs(Content.sizeDelta.x);
+            float pagePosition = page.anchoredPosition.x - page.sizeDelta.x / 2;
+
+            float contentTargetPositionX = -1 * Mathf.Clamp(pagePosition, leftContentBoundX, rightContentBoundX);
             return new Vector2(contentTargetPositionX, Content.anchoredPosition.y);
         }
     }

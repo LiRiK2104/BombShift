@@ -6,8 +6,8 @@ namespace UI.GrayscaleLogic
 {
     public class GrayscaleGroup : MonoBehaviour
     {
-        private List<Grayscale> _grayscales = new List<Grayscale>();
-
+        private List<Grayscale> _grayscales;
+        
         public bool IsGrayAll
         {
             get
@@ -21,13 +21,15 @@ namespace UI.GrayscaleLogic
                 _grayscales.ForEach(grayscale => grayscale.IsGray = value);
             }
         }
-    
-        private void Awake()
+
+        public void Initialize()
         {
             _grayscales = GetComponentsInChildren<Grayscale>().ToList();
         
             if (TryGetComponent(out Grayscale myGrayscale))
                 _grayscales.Add(myGrayscale);
+
+            _grayscales.ForEach(grayscale => grayscale.Initialize());
         }
     }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   _skin: {fileID: 5222036574076128898, guid: 6e9639e1e50f69f4284a757ff609a400, type: 3}
   _currency: {fileID: 383324450638537755, guid: 1fc9927ae8994eb4d84388e692c6d652, type: 3}
   _currencyNeedCount: 25
+  _sliderBlock: {fileID: 7287794387060137545, guid: 71f896a92cfd57541952e83d8cd69010, type: 3}

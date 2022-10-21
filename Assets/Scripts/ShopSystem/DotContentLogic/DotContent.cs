@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ShopSystem.DotContent
+namespace ShopSystem.DotContentLogic
 {
     public class DotContent : MonoBehaviour
     {

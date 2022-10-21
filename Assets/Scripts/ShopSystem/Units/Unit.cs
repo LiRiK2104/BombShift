@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShopSystem.Units
 {
-    public abstract class ShopUnit : ScriptableObject
+    public abstract class Unit : ScriptableObject
     {
         [SerializeField] private Skin _skin;
 

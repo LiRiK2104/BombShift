@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Helpers;
 using PlayerLogic;
 using ShopSystem.Cells;
+using ShopSystem.InfoBlocks;
 using ShopSystem.Items;
 using ShopSystem.Pages;
 using ShopSystem.Toggles;
@@ -18,19 +18,22 @@ namespace ShopSystem
     {
         private static readonly int OpenedState = Animator.StringToHash(ShopAnimator.OpenedStatus);
         
-        [SerializeField] private ShopPageView _pageTemplate;
+        [SerializeField] private PageView _pageTemplate;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopScroll _shopScroll;
+        [SerializeField] private InfoBlocksContainer _infoBlocksContainer;
 
         [Inject] private Inventory _inventory;
         [Inject] private Player _player;
         
         private ToggleGroup _toggleGroup;
-        private List<ShopPage> _pages;
+        private List<Page> _pages;
         private Animator _animator;
         private bool _isOpened;
         private bool _isInitialized;
 
+        public InfoBlocksContainer InfoBlocksContainer => _infoBlocksContainer;
+        
         private Animator Animator
         {
             get
@@ -48,17 +51,27 @@ namespace ShopSystem
             _toggleGroup = GetComponent<ToggleGroup>();
         }
 
-        public void Initialize(List<ShopPage> pages)
+        private void OnEnable()
+        {
+            _shopScroll.IndexChanged += SetInfoBlock;
+        }
+
+        private void OnDisable()
+        {
+            _shopScroll.IndexChanged -= SetInfoBlock;
+        }
+
+        public void Initialize(List<Page> pages)
         {
             if (_isInitialized)
                 return;
 
             _pages = pages;
-            List<ShopPageView> spawnedPages = new List<ShopPageView>();
+            List<PageView> spawnedPages = new List<PageView>();
 
             foreach (var page in _pages)
             {
-                var spawnedPage = DiContainerRef.Container.InstantiatePrefabForComponent<ShopPageView>(_pageTemplate, _content);
+                var spawnedPage = DiContainerRef.Container.InstantiatePrefabForComponent<PageView>(_pageTemplate, _content);
 
                 spawnedPage.Initialize(page, _toggleGroup);
                 spawnedPages.Add(spawnedPage);
@@ -68,7 +81,7 @@ namespace ShopSystem
             
             foreach (var page in spawnedPages)
             {
-                if (page.TryGetCell(currentSkin, out ShopCell cell) && 
+                if (page.TryGetCell(currentSkin, out Cell cell) && 
                     _inventory.HasSkin(currentSkin))
                 {
                     _toggleGroup.SelectToggle(cell.Toggle);
@@ -76,7 +89,6 @@ namespace ShopSystem
             }
 
             _shopScroll.Initialize(spawnedPages);
-
 
             _isInitialized = true;
         }
@@ -98,6 +110,17 @@ namespace ShopSystem
             
             _isOpened = false;
             SetAnimatorState();
+        }
+
+        private Page GetPage(int index)
+        {
+            index = Mathf.Clamp(index, 0, _pages.Count - 1);
+            return _pages[index];
+        }
+
+        private void SetInfoBlock(int pageIndex)
+        {
+            _infoBlocksContainer.SetInfoBlock(GetPage(pageIndex));
         }
 
         private void OpenLastSkinPage()
@@ -130,7 +153,6 @@ namespace ShopSystem
 
     static class ShopAnimator
     {
-        public const float CloseAnimationDuration = 0.4f;
         public const string OpenedStatus = "Opened";
     }
 }

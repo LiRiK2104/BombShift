@@ -12,6 +12,7 @@ namespace UI.GrayscaleLogic
         private Color _idleColor;
         private Color _grayscaleColor;
         private bool _isGray;
+        private bool _isInitialized;
 
         public bool IsGray
         {
@@ -24,17 +25,23 @@ namespace UI.GrayscaleLogic
         }
         
 
-        private void Awake()
+        public void Initialize()
         {
             _image = GetComponent<Image>();
+            
             _idleColor = _image.color;
             _grayscaleColor = new Color(_idleColor.grayscale, _idleColor.grayscale, _idleColor.grayscale, _idleColor.a);
 
             _image.material = _grayscaleMaterial;
+
+            _isInitialized = true;
         }
 
         private void SwitchGrayscale(bool isGrayscale)
         {
+            if (_isInitialized == false)
+                return;
+            
             string grayscaleParameter = "_GrayscaleAmount";
             float amount = isGrayscale ? 1 : 0;
             

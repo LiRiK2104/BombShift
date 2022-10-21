@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +10,12 @@ using ToggleGroup = ShopSystem.Toggles.ToggleGroup;
 
 namespace ShopSystem.Pages
 {
-    public class ShopPageView : MonoBehaviour
+    public class PageView : MonoBehaviour
     {
         [SerializeField] private GridLayoutGroup _grid;
         [SerializeField] private PageTape _pageTape;
         
-        private List<ShopCell> _cells = new List<ShopCell>();
+        private List<Cell> _cells = new List<Cell>();
 
         private void OnEnable()
         {
@@ -30,15 +29,15 @@ namespace ShopSystem.Pages
                 StartCoroutine(Roll());
         }
 
-        public void Initialize(ShopPage shopPage, ToggleGroup shopToggleGroup)
+        public void Initialize(Page page, ToggleGroup shopToggleGroup)
         {
             _cells.Clear();
         
-            _pageTape.Initialize(shopPage.Name, shopPage.NameTextColor, shopPage.TapeColor);
+            _pageTape.Initialize(page.Name, page.NameTextColor, page.TapeColor);
         
-            foreach (var unit in shopPage.Units)
+            foreach (var unit in page.Units)
             {
-                var cell = DiContainerRef.Container.InstantiatePrefabForComponent<ShopCell>(shopPage.CellTemplate, _grid.transform);
+                var cell = DiContainerRef.Container.InstantiatePrefabForComponent<Cell>(page.CellTemplate, _grid.transform);
                 cell.Initialize(unit, shopToggleGroup);
                 _cells.Add(cell);
                 
@@ -46,7 +45,7 @@ namespace ShopSystem.Pages
             }
         }
 
-        public bool TryGetCell(Skin skin, out ShopCell foundCell)
+        public bool TryGetCell(Skin skin, out Cell foundCell)
         {
             foundCell = null;
             
@@ -55,7 +54,7 @@ namespace ShopSystem.Pages
             
             foreach (var cell in _cells)
             {
-                if (cell.ShopUnit.Skin == skin)
+                if (cell.Unit.Skin == skin)
                 {
                     foundCell = cell;
                     return true;
@@ -72,7 +71,7 @@ namespace ShopSystem.Pages
             foreach (var cell in _cells)
             {
                 yield return new WaitForSeconds(interval);
-                cell.ShopCellView.Show();
+                cell.CellView.Show();
             }
         }
         
@@ -96,7 +95,7 @@ namespace ShopSystem.Pages
             while (interval < maxInterval)
             {
                 DeselectAllExcept(lockedCells, index);
-                lockedCells[index].ShopCellView.RouletteSelect();
+                lockedCells[index].CellView.RouletteSelect();
 
                 yield return new WaitForSeconds(interval);
                 
@@ -107,19 +106,19 @@ namespace ShopSystem.Pages
             }
 
             DeselectAllExcept(lockedCells, index);
-            lockedCells[index].ShopCellView.Unlock();
-            lockedCells[index].ShopCellView.RouletteDeselect();
+            lockedCells[index].CellView.Unlock();
+            lockedCells[index].CellView.RouletteDeselect();
             
             foreach (var cell in _cells)
                 cell.IsClickable = true;
         }
 
-        private void DeselectAllExcept(ShopCell[] shopCells, int exceptionIndex)
+        private void DeselectAllExcept(Cell[] shopCells, int exceptionIndex)
         {
             for (int i = 0; i < shopCells.Length; i++)
             {
                 if (i != exceptionIndex)
-                    shopCells[i].ShopCellView.RouletteDeselect();
+                    shopCells[i].CellView.RouletteDeselect();
             }
         }
     }

@@ -12,7 +12,7 @@ namespace ShopSystem
     [RequireComponent(typeof(ShopView))]
     public class Shop : MonoBehaviour, IInitializable
     {
-        [SerializeField] private List<ShopPage> _pages;
+        [SerializeField] private List<Page> _pages;
 
         [Inject] private Inventory _inventory; 
         
@@ -37,32 +37,32 @@ namespace ShopSystem
             _shopView.Initialize(_pages);
         }
 
-        public void Buy(ShopUnitIdle shopUnit)
+        public void Buy(UnitIdle unit)
         {
-            BuySkin(shopUnit.Skin);
+            BuySkin(unit.Skin);
         }
         
-        public void Buy(ShopUnitPriced shopUnit)
+        public void Buy(UnitPriced unit)
         {
-            if (_inventory.TryGetCurrencyCount(shopUnit.Currency, out int hasCount) && 
-                hasCount >= shopUnit.CurrencyNeedCount)
+            if (_inventory.TryGetCurrencyCount(unit.Currency, out int hasCount) && 
+                hasCount >= unit.CurrencyNeedCount)
             {
-                _inventory.Remove(shopUnit.Currency, shopUnit.CurrencyNeedCount);
-                BuySkin(shopUnit.Skin);
+                _inventory.Remove(unit.Currency, unit.CurrencyNeedCount);
+                BuySkin(unit.Skin);
             }
         }
         
-        public bool TryGetUnit(Fragment fragment, out ShopUnitPriced pricedUnit)
+        public bool TryGetUnit(Fragment fragment, out UnitPriced pricedUnit)
         {
             pricedUnit = null;
             
             foreach (var page in _pages)
             {
-                if (page is ShopPagePriced)
+                if (page is PagePriced)
                 {
                     foreach (var units in page.Units)
                     {
-                        if (units is ShopUnitPriced foundUnitPriced && foundUnitPriced.Currency == fragment)
+                        if (units is UnitPriced foundUnitPriced && foundUnitPriced.Currency == fragment)
                         {
                             pricedUnit = foundUnitPriced;
                             return true;
@@ -74,9 +74,9 @@ namespace ShopSystem
             return false;
         }
 
-        public void OnSelectedCell(ShopCell shopCell)
+        public void OnSelectedCell(Cell cell)
         {
-            Selected?.Invoke(shopCell.ShopUnit.Skin);
+            Selected?.Invoke(cell.Unit.Skin);
         }
 
         private void BuySkin(Skin skin)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ShopSystem.DotContent
+namespace ShopSystem.DotContentLogic
 {
     [RequireComponent(typeof(Image))]
     public class Dot : MonoBehaviour

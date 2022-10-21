@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ShopSystem.Cells
 {
     [RequireComponent(typeof(Animator))]
-    public class ShopCellView : MonoBehaviour
+    public class CellView : MonoBehaviour
     {
         private Animator _animator;
         private static readonly int HiddenTrigger = Animator.StringToHash(ShopCellAnimator.Triggers.StayHidden);

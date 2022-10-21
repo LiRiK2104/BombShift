@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ShopSystem.Cells
 {
-    public class ShopCellWithSlider : ShopCell
+    public class CellWithSlider : Cell
     {
         [SerializeField] private LockedFragmentState _lockedFragmentState;
 
@@ -24,23 +24,23 @@ namespace ShopSystem.Cells
             Inventory.CurrencyAdded -= UpdateSlider;
         }
 
-        public override void Initialize(ShopUnit shopUnit, ToggleGroup shopPageToggleGroup)
+        public override void Initialize(Unit unit, ToggleGroup shopPageToggleGroup)
         {
-            base.Initialize(shopUnit, shopPageToggleGroup);
-            Initialize(shopUnit as ShopUnitPriced);
+            base.Initialize(unit, shopPageToggleGroup);
+            Initialize(unit as UnitPriced);
         }
 
-        private void Initialize(ShopUnitPriced shopUnit)
+        private void Initialize(UnitPriced unit)
         {
-            Inventory.TryGetCurrencyCount(shopUnit.Currency, out int fragmentCollectedCount);
+            Inventory.TryGetCurrencyCount(unit.Currency, out int fragmentCollectedCount);
                 
-            _lockedFragmentState.SetPreview(shopUnit.Currency as Fragment);
-            _lockedFragmentState.Slider.Initialize(shopUnit.CurrencyNeedCount, fragmentCollectedCount);
+            _lockedFragmentState.SetPreview(unit.Currency as Fragment);
+            _lockedFragmentState.Slider.Initialize(unit.CurrencyNeedCount, fragmentCollectedCount);
         }
 
         private void UpdateSlider()
         {
-            if (ShopUnit is ShopUnitPriced shopUnitPriced && 
+            if (Unit is UnitPriced shopUnitPriced && 
                 Inventory.TryGetCurrencyCount(shopUnitPriced.Currency, out int hasCount))
             {
                 _lockedFragmentState.Slider.SetValue(hasCount);   

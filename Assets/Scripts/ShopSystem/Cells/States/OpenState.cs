@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShopSystem.Cells.States
 {
-    public class OpenState : ShopCellState
+    public class OpenState : State
     {
         [SerializeField] private Transform _previewParent;
 
