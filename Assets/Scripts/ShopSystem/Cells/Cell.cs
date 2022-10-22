@@ -24,12 +24,7 @@ namespace ShopSystem.Cells
         private State _activeState;
         private ToggleGroup _shopToggleGroup;
         private CellView _cellView;
-
-        public bool IsClickable
-        {
-            get => _button.interactable;
-            set => _button.interactable = value;
-        }
+        
         public bool IsOpened { get; private set; }
         public Toggle Toggle => _toggle;
         public CellView CellView => _cellView;

@@ -4,8 +4,10 @@ using System.Linq;
 using Helpers;
 using ShopSystem.Cells;
 using ShopSystem.Items;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using ToggleGroup = ShopSystem.Toggles.ToggleGroup;
 
 namespace ShopSystem.Pages
@@ -14,6 +16,8 @@ namespace ShopSystem.Pages
     {
         [SerializeField] private GridLayoutGroup _grid;
         [SerializeField] private PageTape _pageTape;
+
+        [Inject] private TouchBlocker _touchBlocker;
         
         private List<Cell> _cells = new List<Cell>();
 
@@ -88,8 +92,7 @@ namespace ShopSystem.Pages
             if (lockedCells.Length == 0)
                 yield break;
 
-            foreach (var cell in _cells)
-                cell.IsClickable = false;
+            _touchBlocker.Enable();
             
 
             while (interval < maxInterval)
@@ -109,8 +112,7 @@ namespace ShopSystem.Pages
             lockedCells[index].CellView.Unlock();
             lockedCells[index].CellView.RouletteDeselect();
             
-            foreach (var cell in _cells)
-                cell.IsClickable = true;
+            _touchBlocker.Disable();
         }
 
         private void DeselectAllExcept(Cell[] shopCells, int exceptionIndex)
