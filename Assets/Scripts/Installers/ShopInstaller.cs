@@ -6,16 +6,12 @@ namespace Installers
 {
     public class ShopInstaller : MonoInstaller
     {
-        [SerializeField] private Shop _shopPrefab;
+        [SerializeField] private Shop _shop;
         
         public override void InstallBindings()
         {
-            var instance =
-                Container.InstantiatePrefabForComponent<Shop>(_shopPrefab, transform.position, Quaternion.identity,
-                    null);
-
-            Container.Bind<Shop>().FromInstance(instance).AsSingle();
-            Container.Bind<IInitializable>().FromInstance(instance);
+            Container.Bind<Shop>().FromInstance(_shop).AsSingle();
+            Container.Bind<IInitializable>().FromInstance(_shop);
         }
     }
 }

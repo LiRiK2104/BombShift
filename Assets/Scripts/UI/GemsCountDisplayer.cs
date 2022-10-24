@@ -1,4 +1,5 @@
 using ShopSystem;
+using ShopSystem.Items;
 using TMPro;
 using UnityEngine;
 using Zenject;

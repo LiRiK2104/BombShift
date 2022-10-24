@@ -1,3 +1,4 @@
+using Ads;
 using UnityEngine;
 
 namespace ShopSystem.InfoBlocks
@@ -5,6 +6,7 @@ namespace ShopSystem.InfoBlocks
     public class BuyBlock : InfoBlock
     {
         [SerializeField] private BuyButton _buyButton;
+        [SerializeField] private RouletteAdsOffer _rouletteAdsOffer;
 
         private int _price;
 
@@ -22,6 +24,8 @@ namespace ShopSystem.InfoBlocks
                 _price = buyBlockData.Price;
                 UpdateButton();
             }
+            
+            _rouletteAdsOffer.Initialize();
         }
 
         private void UpdateButton()

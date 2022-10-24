@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8547506967914980148}
   - component: {fileID: 8547506967914980149}
   - component: {fileID: 5941869172568494531}
-  - component: {fileID: 1997004541726880869}
   m_Layer: 5
   m_Name: Roulette Ads Offer
   m_TagString: Untagged
@@ -80,21 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WatchAdsButton: {fileID: 2555499174817666886}
   _reward: {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
-  _rewardCount: 750
+  _rewardCount: 250
   _rewardCountTMP: {fileID: 7249454581169409971}
---- !u!114 &1997004541726880869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8547506967914980151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c4bb7c72af304c478c02eac7bf1dece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buyButton: {fileID: 330438316869460015}
 --- !u!1 &8547506967928837839
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,17 +266,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2603826654528551248, guid: f30b293071b93a941b98a8b52ee84db0, type: 3}
   m_PrefabInstance: {fileID: 2993376844112783164}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &330438316869460015 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3251440082956470035, guid: f30b293071b93a941b98a8b52ee84db0, type: 3}
-  m_PrefabInstance: {fileID: 2993376844112783164}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d52ed64371e17044933310f5b25573b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8547506966285807310
 PrefabInstance:
   m_ObjectHideFlags: 0

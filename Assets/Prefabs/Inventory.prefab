@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7988b450206f0c54186fab66e385ec58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skins: []
+  _gemReference: {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
+  _skinsForStart: []

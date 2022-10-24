@@ -1,6 +1,5 @@
 using Ads;
 using Helpers;
-using RoundLogic.Finish.Victory;
 using ShopSystem.Items;
 using UI;
 using UnityEngine;
@@ -17,26 +16,40 @@ namespace Chests
         [SerializeField] private ChestCreator _chestCreator;
         [SerializeField] private RewardCountText _rewardCountText;
     
+        private VictoryAdsOffer _adsOffer;
         private Animator _animator;
         private Item _itemTemplate;
         private Item _item;
         private int _itemCount;
         private bool _isOpened;
 
+        
         private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
 
-        public void Initialize(RewardedChestPreset rewardedChestPreset)
+        private void OnEnable()
         {
-            ChestReward reward = rewardedChestPreset.RewardsSet.GetReward();
-            _itemTemplate = reward.GetCurrency();
-            _itemCount = reward.Count;
+            Subscribe();
+        }
+
+        private void OnDisable()
+        {
+            Unsubscribe();
+        }
+
+
+        public void Initialize(Currency currency, int count, Chest chest, VictoryAdsOffer adsOffer)
+        {
+            _itemTemplate = currency;
+            _itemCount = count;
+            _adsOffer = adsOffer;
+
             _rewardCountText.TextMeshPro.text = GetFormattedItemCount();
             _rewardCountText.SetIdleState();
 
-            _chestCreator.CreateChest(rewardedChestPreset.Chest);
+            _chestCreator.CreateChest(chest);
             _chestCreator.Chest.gameObject.SetLayerToThisAndChildren(LayerMask.NameToLayer(TVLayer));
         }
 
@@ -52,7 +65,23 @@ namespace Chests
             _isOpened = true;
         }
         
-        public void MultiplyReward(AdsMultiplierReward adsMultiplierReward)
+        private void Subscribe()
+        {
+            if (_adsOffer == null)
+                return;
+            
+            _adsOffer.CompletelyWatched += MultiplyReward;
+        }
+
+        private void Unsubscribe()
+        {
+            if (_adsOffer == null)
+                return;
+            
+            _adsOffer.CompletelyWatched -= MultiplyReward;
+        }
+        
+        private void MultiplyReward(AdsMultiplierReward adsMultiplierReward)
         {
             _itemCount *= adsMultiplierReward.Multiplier;
 

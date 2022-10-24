@@ -1,7 +1,8 @@
-using System;
+using ShopSystem;
 using ShopSystem.Items;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Ads
 {
@@ -13,10 +14,10 @@ namespace Ads
         [SerializeField] private Gem _reward;
         [SerializeField] [Range(MinRewardCount, MaxRewardCount)] private int _rewardCount;
         [SerializeField] private TextMeshProUGUI _rewardCountTMP;
-        
-        public event Action<AdsCurrencyReward> CompletelyWatched;
-        
-        
+
+        [Inject] private Inventory _inventory;
+
+
         private void Awake()
         {
             SetRewardText();
@@ -44,7 +45,7 @@ namespace Ads
         
         protected override void StartOffer()
         {
-            WatchAdsButton.gameObject.SetActive(false);
+            WatchAdsButton.gameObject.SetActive(true);
         }
 
         protected override void CancelOffer()
@@ -54,24 +55,12 @@ namespace Ads
 
         protected override void OnCompletelyWatched()
         {
-            CompletelyWatched?.Invoke(new AdsCurrencyReward(_reward, _rewardCount));
+            _inventory.Add(_reward, _rewardCount);
         }
         
         private void SetRewardText()
         {
             _rewardCountTMP.text = $"+{_rewardCount.ToString()}";
-        }
-    }
-    
-    public class AdsCurrencyReward
-    {
-        public Gem Gem { get; }
-        public int Count { get; }
-
-        public AdsCurrencyReward(Gem gem, int count)
-        {
-            Count = count;
-            Gem = gem;
         }
     }
 }

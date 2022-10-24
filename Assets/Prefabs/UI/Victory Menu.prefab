@@ -529,6 +529,7 @@ GameObject:
   - component: {fileID: 6058623425328138208}
   - component: {fileID: 6058623425328138209}
   - component: {fileID: 6058623425328138210}
+  - component: {fileID: 4676169480739991353}
   m_Layer: 5
   m_Name: Victory Canvas
   m_TagString: Untagged
@@ -575,7 +576,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6058623425328138209
 MonoBehaviour:
@@ -617,6 +618,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4676169480739991353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058623425328138211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73e7e6f133eba64481a088c0ed869b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6058623425413039536
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00015258789}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 800, y: 373.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6058623425413039548
@@ -789,8 +802,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6058623425811270411}
-  - component: {fileID: 6058623425811270409}
-  - component: {fileID: 6058623425811270410}
   m_Layer: 5
   m_Name: Victory Sign
   m_TagString: Untagged
@@ -819,44 +830,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 469}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6058623425811270409
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6058623425811270412}
-  m_CullTransparentMesh: 1
---- !u!114 &6058623425811270410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6058623425811270412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6058623425920608765
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6058623425920608764}
   - component: {fileID: 6939840350549020938}
+  - component: {fileID: 8718077101726753227}
   - component: {fileID: 3590568061993148945}
   m_Layer: 0
   m_Name: Victory Menu
@@ -903,9 +877,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0051089b179eb5b42badb74929a57a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewardDemonstartor: {fileID: 221655408515125327}
+  _rewardCreditor: {fileID: 8718077101726753227}
+  _rewardDemonstrator: {fileID: 221655408515125327}
   _openChestButton: {fileID: 6058623425096279100}
-  victoryAdsOffer: {fileID: 6366670679990864723}
+  _victoryAdsOffer: {fileID: 6366670679990864723}
+--- !u!114 &8718077101726753227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058623425920608765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f9f7001b21ff347be9711aada6ae18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3590568061993148945
 Animator:
   serializedVersion: 3
@@ -1067,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -9.999725}
+  m_AnchoredPosition: {x: 0, y: -110}
   m_SizeDelta: {x: 800, y: 373.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6058623426244004927
@@ -1091,7 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.20392157}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.72156864}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

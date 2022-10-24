@@ -44,6 +44,8 @@ namespace ShopSystem
             if (HasSkin(skin) == false)
             {
                 _skins.Add(skin);
+                SaveSkins();
+                
                 SkinAdded?.Invoke();
             }
         }
@@ -60,6 +62,7 @@ namespace ShopSystem
                 _currencyContainers.Add(container);
             }
             
+            SaveCurrency();
             CurrencyAdded?.Invoke();
         }
 
@@ -71,6 +74,8 @@ namespace ShopSystem
 
                 if (container.Count == 0)
                     _currencyContainers.Remove(container);
+                
+                SaveCurrency();
             }
         }
 
@@ -104,12 +109,6 @@ namespace ShopSystem
             return foundContainer != null;
         }
 
-        private void Save()
-        {
-            SaveSkins();
-            SaveCurrency();
-        }
-    
         private void Load()
         {
             LoadSkins();
@@ -124,7 +123,10 @@ namespace ShopSystem
     
         private void SaveCurrency()
         {
-            string json = JsonConvert.SerializeObject(_currencyContainers);
+            var convertedContainers = 
+                _currencyContainers.ToDictionary(container => container.Currency.Id, container => container.Count);
+            
+            string json = JsonConvert.SerializeObject(convertedContainers);
             PlayerPrefs.SetString(CurrencyKey, json);
         }
     
@@ -152,7 +154,16 @@ namespace ShopSystem
         private void LoadCurrency()
         {
             string json = PlayerPrefs.GetString(CurrencyKey, "");
-            _currencyContainers = JsonConvert.DeserializeObject<List<CurrencyContainer>>(json) ?? _currencyContainers;
+            var containers = JsonConvert.DeserializeObject<Dictionary<int, int>>(json);
+
+            if (containers == null || containers.Count == 0)
+                return;
+            
+            _currencyContainers.Clear();
+            
+            foreach (var keyValuePair in containers)
+                if (_dataBase.Core.TryGetItem(keyValuePair.Key, out Item item) && item is Currency currency)
+                    Add(currency, keyValuePair.Value);
         }
     }
 }

@@ -16,12 +16,8 @@ MonoBehaviour:
   - _item:
       _randomCurrency: {fileID: 11400000, guid: 2937da648716e634ab741497896ff882, type: 2}
       _count: 150
-    _probability: 60
+    _probability: 50
   - _item:
       _randomCurrency: {fileID: 11400000, guid: bd9690dab81926f458a233c1eedeafb6, type: 2}
       _count: 1
-    _probability: 30
-  - _item:
-      _randomCurrency: {fileID: 11400000, guid: 2937da648716e634ab741497896ff882, type: 2}
-      _count: 150
-    _probability: 10
+    _probability: 50

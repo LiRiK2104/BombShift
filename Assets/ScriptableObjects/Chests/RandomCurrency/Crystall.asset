@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Crystall
   m_EditorClassIdentifier: 
   _possibleCurrency:
-  - {fileID: 5684113734828441892, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
+  - {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}

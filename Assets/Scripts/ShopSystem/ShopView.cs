@@ -46,11 +46,6 @@ namespace ShopSystem
         }
         
 
-        private void Awake()
-        {
-            _toggleGroup = GetComponent<ToggleGroup>();
-        }
-
         private void OnEnable()
         {
             _shopScroll.IndexChanged += SetInfoBlock;
@@ -65,6 +60,8 @@ namespace ShopSystem
         {
             if (_isInitialized)
                 return;
+            
+            _toggleGroup = GetComponent<ToggleGroup>();
 
             _pages = pages;
             List<PageView> spawnedPages = new List<PageView>();

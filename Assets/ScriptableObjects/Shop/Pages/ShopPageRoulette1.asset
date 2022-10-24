@@ -24,4 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65bb13b50fec8cb47969d90d45c2b15a, type: 2}
   - {fileID: 11400000, guid: e5a0806946c4106499b4690ac5353222, type: 2}
   - {fileID: 11400000, guid: 992332b6175cb5848bb003a2c8ea49be, type: 2}
-  _buyBlockPrefab: {fileID: 1997004541726880869, guid: c2690d1e13d2b954e8e595b42f6d61cd, type: 3}
+  _buyBlockPrefab: {fileID: 3212956928046182993, guid: 974a6407c62aa384985777dd65dd2547, type: 3}

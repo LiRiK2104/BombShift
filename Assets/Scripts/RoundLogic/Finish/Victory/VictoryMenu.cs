@@ -1,8 +1,11 @@
 using System.Collections;
 using Ads;
 using Chests;
+using ShopSystem;
+using ShopSystem.Items;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace RoundLogic.Finish.Victory
 {
@@ -10,13 +13,18 @@ namespace RoundLogic.Finish.Victory
     public class VictoryMenu : MonoBehaviour
     {
         private static readonly int OpenChestTrigger = Animator.StringToHash(VictoryMenuAnimator.Triggers.OpenChest);
-    
-        [SerializeField] private ChestRewardDemonstrator rewardDemonstrator;
+
+        [SerializeField] private RewardCreditor _rewardCreditor;
+        [SerializeField] private ChestRewardDemonstrator _rewardDemonstrator;
         [SerializeField] private Button _openChestButton;
-        [SerializeField] private VictoryAdsOffer victoryAdsOffer;
+        [SerializeField] private VictoryAdsOffer _victoryAdsOffer;
+
+        [Inject] private Shop _shop;
+        [Inject] private Inventory _inventory;
 
         private Animator _animator;
         private bool _chestOpened;
+        private RewardValidator _rewardValidator;
 
         private void Awake()
         {
@@ -26,19 +34,30 @@ namespace RoundLogic.Finish.Victory
 
         private void OnEnable()
         {
-            victoryAdsOffer.CompletelyWatched += rewardDemonstrator.MultiplyReward;
-            victoryAdsOffer.Ended += Exit;
+            _victoryAdsOffer.Ended += Exit;
         }
 
         private void OnDisable()
         {
-            victoryAdsOffer.CompletelyWatched -= rewardDemonstrator.MultiplyReward;
-            victoryAdsOffer.Ended -= Exit;
+            _victoryAdsOffer.Ended -= Exit;
         }
 
         public void Initialize(RewardedChestPreset rewardedChestPreset)
         {
-            rewardDemonstrator.Initialize(rewardedChestPreset);
+            _rewardValidator ??= new RewardValidator(_shop, _inventory);
+            ChestReward reward;
+            
+            do
+            {
+                reward = rewardedChestPreset.RewardsSet.GetRandomReward();
+            } 
+            while (_rewardValidator.RewardIsValid(reward) == false);
+                
+            Currency currency = reward.GetCurrency();
+            int count = reward.Count;
+            
+            _rewardCreditor.Initialize(currency, count, _victoryAdsOffer);
+            _rewardDemonstrator.Initialize(currency, count, rewardedChestPreset.Chest, _victoryAdsOffer);
         }
 
         private void OpenChest()
@@ -47,7 +66,7 @@ namespace RoundLogic.Finish.Victory
                 return;
         
             _animator.SetTrigger(OpenChestTrigger);
-            rewardDemonstrator.Open();
+            _rewardDemonstrator.Open();
 
             StartCoroutine(WaitToShowAdsOffer());
 
@@ -59,13 +78,13 @@ namespace RoundLogic.Finish.Victory
             float chestOpeningTime = 3;
         
             yield return new WaitForSeconds(chestOpeningTime);
-            victoryAdsOffer.Initialize();
-            victoryAdsOffer.Ended += Exit;
+            _victoryAdsOffer.Initialize();
+            _victoryAdsOffer.Ended += Exit;
         }
 
         private void Exit()
         {
-            victoryAdsOffer.Ended -= Exit;
+            _victoryAdsOffer.Ended -= Exit;
             StartCoroutine(ExitProcessing());
         }
 

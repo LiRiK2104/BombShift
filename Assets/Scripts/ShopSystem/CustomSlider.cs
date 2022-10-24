@@ -29,7 +29,7 @@ namespace ShopSystem
 
         public void SetValue(int value)
         {
-            _progress = Mathf.Lerp(_minValue, _maxValue, value);
+            _progress = Mathf.InverseLerp(_minValue, _maxValue, value);
             _textMeshPro.text = GetProgressString(value);
             UpdateFillZone();
         }
