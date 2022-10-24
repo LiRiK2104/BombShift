@@ -11,7 +11,7 @@ namespace RoundLogic.Finish.Victory
     {
         private static readonly int OpenChestTrigger = Animator.StringToHash(VictoryMenuAnimator.Triggers.OpenChest);
     
-        [SerializeField] private ChestRewardDemonstartor _rewardDemonstartor;
+        [SerializeField] private ChestRewardDemonstrator rewardDemonstrator;
         [SerializeField] private Button _openChestButton;
         [SerializeField] private VictoryAdsOffer victoryAdsOffer;
 
@@ -26,19 +26,19 @@ namespace RoundLogic.Finish.Victory
 
         private void OnEnable()
         {
-            victoryAdsOffer.CompletelyWatched += _rewardDemonstartor.MultiplyReward;
+            victoryAdsOffer.CompletelyWatched += rewardDemonstrator.MultiplyReward;
             victoryAdsOffer.Ended += Exit;
         }
 
         private void OnDisable()
         {
-            victoryAdsOffer.CompletelyWatched -= _rewardDemonstartor.MultiplyReward;
+            victoryAdsOffer.CompletelyWatched -= rewardDemonstrator.MultiplyReward;
             victoryAdsOffer.Ended -= Exit;
         }
 
         public void Initialize(RewardedChestPreset rewardedChestPreset)
         {
-            _rewardDemonstartor.Initialize(rewardedChestPreset);
+            rewardDemonstrator.Initialize(rewardedChestPreset);
         }
 
         private void OpenChest()
@@ -47,7 +47,7 @@ namespace RoundLogic.Finish.Victory
                 return;
         
             _animator.SetTrigger(OpenChestTrigger);
-            _rewardDemonstartor.Open();
+            rewardDemonstrator.Open();
 
             StartCoroutine(WaitToShowAdsOffer());
 

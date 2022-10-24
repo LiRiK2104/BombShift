@@ -905,7 +905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rewardDemonstartor: {fileID: 221655408515125327}
   _openChestButton: {fileID: 6058623425096279100}
-  _adsOffer: {fileID: 6366670679990864723}
+  victoryAdsOffer: {fileID: 6366670679990864723}
 --- !u!95 &3590568061993148945
 Animator:
   serializedVersion: 3

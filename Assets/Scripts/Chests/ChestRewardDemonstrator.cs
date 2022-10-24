@@ -1,4 +1,3 @@
-using System;
 using Ads;
 using Helpers;
 using RoundLogic.Finish.Victory;
@@ -9,7 +8,7 @@ using UnityEngine;
 namespace Chests
 {
     [RequireComponent(typeof(Animator))]
-    public class ChestRewardDemonstartor : MonoBehaviour
+    public class ChestRewardDemonstrator : MonoBehaviour
     {
         private const string TVLayer = "TV";
         private static readonly int PullOut = Animator.StringToHash(RewardPointAnimator.Triggers.PullOut);
