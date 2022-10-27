@@ -26,11 +26,11 @@ namespace ShopSystem.InfoBlocks
 
     public abstract class InfoBlockData { }
 
-    public class BuyBlockData : InfoBlockData
+    public class RouletteBlockData : InfoBlockData
     {
         public int Price { get; }
 
-        public BuyBlockData(int price)
+        public RouletteBlockData(int price)
         {
             Price = price;
         }

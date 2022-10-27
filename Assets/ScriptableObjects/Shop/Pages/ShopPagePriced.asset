@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: "\u041B\u0415\u0413\u0415\u041D\u0414\u0410\u0420\u041D\u042B\u0415"
   _nameTextColor: {r: 1, g: 1, b: 1, a: 1}
   _tapeColor: {r: 0.9677078, g: 0.46293163, b: 0.9716981, a: 1}
+  _pageView: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
   _cellTemplate: {fileID: 1059518674167494575, guid: 32c252a1a2eeb3e49be4a7e23f4fff2c, type: 3}
   _shopUnits:
   - {fileID: 11400000, guid: c06cdd05b5b671d45851a454ba5bbb0f, type: 2}

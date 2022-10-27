@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UI.GrayscaleLogic;
 using UnityEngine;
@@ -31,9 +32,12 @@ namespace ShopSystem
             _inventory.CurrencyAdded -= UpdateAccess;
         }
 
-        public void Initialize(int price)
+        public void Initialize(int price, Action buyFunction)
         {
             _button = GetComponent<Button>();
+            _button.onClick.RemoveAllListeners();
+            _button.onClick.AddListener(() => buyFunction());
+            
             _grayscaleGroup = GetComponent<GrayscaleGroup>();
             _grayscaleGroup.Initialize();
             

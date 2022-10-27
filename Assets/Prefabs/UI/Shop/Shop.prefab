@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4709498760427076855}
   - component: {fileID: 6016438223687926446}
   - component: {fileID: 5153679274912070060}
+  - component: {fileID: 3861515937220651888}
   - component: {fileID: 999051448830093028}
   m_Layer: 0
   m_Name: Shop
@@ -75,10 +76,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f679378c76535344eaf4975820540240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pageTemplate: {fileID: 8098357004780897885, guid: 682370646564cd74ea16456c06b89db7, type: 3}
   _content: {fileID: 8852621164327577245}
   _shopScroll: {fileID: 6750425257567849472}
   _infoBlocksContainer: {fileID: 2006325853095615598}
+  _rouletteStarter: {fileID: 3861515937220651888}
+--- !u!114 &3861515937220651888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782609996878986945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a33434a237338949bc3e391e090e408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &999051448830093028
 Animator:
   serializedVersion: 3

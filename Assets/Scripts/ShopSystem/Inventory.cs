@@ -66,6 +66,11 @@ namespace ShopSystem
             CurrencyAdded?.Invoke();
         }
 
+        public void AddGems(int count)
+        {
+            Add(_gemReference, count);
+        }
+
         public void Remove(Currency currency, int count)
         {
             if (HasCurrency(currency, out CurrencyContainer container))
@@ -77,6 +82,11 @@ namespace ShopSystem
                 
                 SaveCurrency();
             }
+        }
+
+        public void RemoveGems(int count)
+        {
+            Remove(_gemReference, count);
         }
 
         public bool HasSkin(Skin skin)

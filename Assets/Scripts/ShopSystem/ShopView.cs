@@ -18,21 +18,23 @@ namespace ShopSystem
     {
         private static readonly int OpenedState = Animator.StringToHash(ShopAnimator.OpenedStatus);
         
-        [SerializeField] private PageView _pageTemplate;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopScroll _shopScroll;
         [SerializeField] private InfoBlocksContainer _infoBlocksContainer;
+        [SerializeField] private RouletteStarter _rouletteStarter;
 
         [Inject] private Inventory _inventory;
         [Inject] private Player _player;
         
-        private ToggleGroup _toggleGroup;
+        private List<PageView> _spawnedPages;
+        private ToggleGroup _unitsToggleGroup;
         private List<Page> _pages;
         private Animator _animator;
         private bool _isOpened;
         private bool _isInitialized;
 
         public InfoBlocksContainer InfoBlocksContainer => _infoBlocksContainer;
+        public RouletteStarter RouletteStarter => _rouletteStarter;
         
         private Animator Animator
         {
@@ -49,11 +51,13 @@ namespace ShopSystem
         private void OnEnable()
         {
             _shopScroll.IndexChanged += SetInfoBlock;
+            _shopScroll.IndexChanged += SetRoulettePage;
         }
 
         private void OnDisable()
         {
             _shopScroll.IndexChanged -= SetInfoBlock;
+            _shopScroll.IndexChanged -= SetRoulettePage;
         }
 
         public void Initialize(List<Page> pages)
@@ -61,31 +65,31 @@ namespace ShopSystem
             if (_isInitialized)
                 return;
             
-            _toggleGroup = GetComponent<ToggleGroup>();
+            _unitsToggleGroup = GetComponent<ToggleGroup>();
 
             _pages = pages;
-            List<PageView> spawnedPages = new List<PageView>();
+            _spawnedPages = new List<PageView>();
 
             foreach (var page in _pages)
             {
-                var spawnedPage = DiContainerRef.Container.InstantiatePrefabForComponent<PageView>(_pageTemplate, _content);
+                var spawnedPage = DiContainerRef.Container.InstantiatePrefabForComponent<PageView>(page.PageViewTemplate, _content);
 
-                spawnedPage.Initialize(page, _toggleGroup);
-                spawnedPages.Add(spawnedPage);
+                spawnedPage.Initialize(page, _unitsToggleGroup);
+                _spawnedPages.Add(spawnedPage);
             }
 
             var currentSkin = _player.SkinSetter.SkinPrefab;
             
-            foreach (var page in spawnedPages)
+            foreach (var pageView in _spawnedPages)
             {
-                if (page.TryGetCell(currentSkin, out Cell cell) && 
+                if (pageView.TryGetCell(currentSkin, out Cell cell) && 
                     _inventory.HasSkin(currentSkin))
                 {
-                    _toggleGroup.SelectToggle(cell.Toggle);
+                    _unitsToggleGroup.SelectToggle(cell.Toggle);
                 }
             }
 
-            _shopScroll.Initialize(spawnedPages);
+            _shopScroll.Initialize(_spawnedPages);
 
             _isInitialized = true;
         }
@@ -115,9 +119,23 @@ namespace ShopSystem
             return _pages[index];
         }
 
+        private PageView GetSpawnedPage(int index)
+        {
+            index = Mathf.Clamp(index, 0, _spawnedPages.Count - 1);
+            return _spawnedPages[index];
+        }
+
         private void SetInfoBlock(int pageIndex)
         {
             _infoBlocksContainer.SetInfoBlock(GetPage(pageIndex));
+        }
+
+        private void SetRoulettePage(int pageIndex)
+        {
+            var pageView = GetSpawnedPage(pageIndex);
+            
+            if (pageView is RoulettePageView roulettePageView)
+                _rouletteStarter.PageView = roulettePageView;
         }
 
         private void OpenLastSkinPage()

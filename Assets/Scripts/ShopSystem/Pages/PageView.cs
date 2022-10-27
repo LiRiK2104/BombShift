@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Helpers;
 using ShopSystem.Cells;
 using ShopSystem.Items;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 using ToggleGroup = ShopSystem.Toggles.ToggleGroup;
 
 namespace ShopSystem.Pages
@@ -17,25 +14,18 @@ namespace ShopSystem.Pages
         [SerializeField] private GridLayoutGroup _grid;
         [SerializeField] private PageTape _pageTape;
 
-        [Inject] private TouchBlocker _touchBlocker;
+        protected List<Cell> Cells = new List<Cell>();
+
         
-        private List<Cell> _cells = new List<Cell>();
-
-        private void OnEnable()
+        protected void OnEnable()
         {
-            StopCoroutine(ShowCellsAnimated());
-            StartCoroutine(ShowCellsAnimated());
+            StopCoroutine(PlayCellsShowAnimation());
+            StartCoroutine(PlayCellsShowAnimation());
         }
 
-        private void Update()
+        public virtual void Initialize(Page page, ToggleGroup shopToggleGroup)
         {
-            if (Input.GetKeyDown(KeyCode.S))
-                StartCoroutine(Roll());
-        }
-
-        public void Initialize(Page page, ToggleGroup shopToggleGroup)
-        {
-            _cells.Clear();
+            Cells.Clear();
         
             _pageTape.Initialize(page.Name, page.NameTextColor, page.TapeColor);
         
@@ -43,7 +33,7 @@ namespace ShopSystem.Pages
             {
                 var cell = DiContainerRef.Container.InstantiatePrefabForComponent<Cell>(page.CellTemplate, _grid.transform);
                 cell.Initialize(unit, shopToggleGroup);
-                _cells.Add(cell);
+                Cells.Add(cell);
                 
                 shopToggleGroup.AddToggle(cell.Toggle);
             }
@@ -53,10 +43,10 @@ namespace ShopSystem.Pages
         {
             foundCell = null;
             
-            if (_cells == null || _cells.Count == 0)
+            if (Cells == null || Cells.Count == 0)
                 return false;
             
-            foreach (var cell in _cells)
+            foreach (var cell in Cells)
             {
                 if (cell.Unit.Skin == skin)
                 {
@@ -68,59 +58,14 @@ namespace ShopSystem.Pages
             return false;
         }
 
-        private IEnumerator ShowCellsAnimated()
+        private IEnumerator PlayCellsShowAnimation()
         {
             float interval = 0.05f;
 
-            foreach (var cell in _cells)
+            foreach (var cell in Cells)
             {
                 yield return new WaitForSeconds(interval);
                 cell.CellView.Show();
-            }
-        }
-        
-        private IEnumerator Roll()
-        {
-            float maxInterval = 1f;
-            float interval = 0.05f;
-            float slowdown = 1.2f;
-            
-            var lockedCells = _cells.Where(cell => cell.IsOpened == false).ToArray();
-            int index = 0;
-
-            
-            if (lockedCells.Length == 0)
-                yield break;
-
-            _touchBlocker.Enable();
-            
-
-            while (interval < maxInterval)
-            {
-                DeselectAllExcept(lockedCells, index);
-                lockedCells[index].CellView.RouletteSelect();
-
-                yield return new WaitForSeconds(interval);
-                
-                interval *= slowdown;
-                
-                if (interval < maxInterval)
-                    index = index >= lockedCells.Length - 1 ? 0 : index + 1;    
-            }
-
-            DeselectAllExcept(lockedCells, index);
-            lockedCells[index].CellView.Unlock();
-            lockedCells[index].CellView.RouletteDeselect();
-            
-            _touchBlocker.Disable();
-        }
-
-        private void DeselectAllExcept(Cell[] shopCells, int exceptionIndex)
-        {
-            for (int i = 0; i < shopCells.Length; i++)
-            {
-                if (i != exceptionIndex)
-                    shopCells[i].CellView.RouletteDeselect();
             }
         }
     }

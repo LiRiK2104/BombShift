@@ -1,27 +1,38 @@
+using System;
 using Ads;
 using UnityEngine;
+using Zenject;
 
 namespace ShopSystem.InfoBlocks
 {
-    public class BuyBlock : InfoBlock
+    public class RouletteBlock : InfoBlock
     {
         [SerializeField] private BuyButton _buyButton;
         [SerializeField] private RouletteAdsOffer _rouletteAdsOffer;
 
+        [Inject] private Shop _shop;
+        
         private int _price;
+        private Action _rollFunction;
 
 
         private void OnEnable()
         {
             UpdateButton();
-            //TODO: Подключение функции прокрутки
         }
 
         public override void Initialize(InfoBlockData infoBlockData)
         {
-            if (infoBlockData is BuyBlockData buyBlockData)
+            if (infoBlockData is RouletteBlockData rouletteBlockData)
             {
-                _price = buyBlockData.Price;
+                _price = rouletteBlockData.Price;
+                
+                _rollFunction = () =>
+                {
+                    _shop.SetGemsDeposit(_price);
+                    _shop.ShopView.RouletteStarter.Roll();
+                };
+                
                 UpdateButton();
             }
             
@@ -30,7 +41,7 @@ namespace ShopSystem.InfoBlocks
 
         private void UpdateButton()
         {
-            _buyButton.Initialize(_price);
+            _buyButton.Initialize(_price, _rollFunction);
         }
     }
 }

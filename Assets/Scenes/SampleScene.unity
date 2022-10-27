@@ -776,7 +776,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.068571135, y: -0.21141285, z: 0.014870436, w: 0.97487515}
+  m_LocalRotation: {x: 0.06857115, y: -0.21141285, z: 0.014870441, w: 0.97487515}
   m_LocalPosition: {x: -11.79, y: 3.1890001, z: -6.2499986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1331,6 +1331,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2207215830576608094, guid: 15e6ef14c662313459267c86fb059a69, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -456.9652
+      objectReference: {fileID: 0}
     - target: {fileID: 2376093674689994715, guid: 15e6ef14c662313459267c86fb059a69, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1409,7 +1413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8852621164327577245, guid: 15e6ef14c662313459267c86fb059a69, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0028762738
+      value: -0.011049424
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e6ef14c662313459267c86fb059a69, type: 3}
@@ -2623,7 +2627,7 @@ PrefabInstance:
       objectReference: {fileID: 1186388965}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.068571135
+      value: 0.06857115
       objectReference: {fileID: 0}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2631,7 +2635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6041944573101903542, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.014870436
+      value: 0.014870441
       objectReference: {fileID: 0}
     - target: {fileID: 6272256346789678136, guid: 5a544901289001649a6ff1e325baf6a4, type: 3}
       propertyPath: m_IsActive

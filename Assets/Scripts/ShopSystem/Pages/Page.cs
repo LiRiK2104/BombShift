@@ -13,6 +13,7 @@ namespace ShopSystem.Pages
         [SerializeField] private Color _nameTextColor;
         [SerializeField] private Color _tapeColor;
     
+        public abstract PageView PageViewTemplate { get; }
         public abstract Cell CellTemplate { get; }
         public abstract List<Unit> Units { get; }
 

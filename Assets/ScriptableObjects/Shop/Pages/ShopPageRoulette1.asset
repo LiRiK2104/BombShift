@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: "\u041E\u0421\u041E\u0411\u042B\u0415"
   _nameTextColor: {r: 1, g: 1, b: 1, a: 1}
   _tapeColor: {r: 0.8301887, g: 0.34069067, b: 0.34069067, a: 1}
+  _roulettePageView: {fileID: 2341725331617179325, guid: 628096e4f328d7f46815187c1fb8bd2a, type: 3}
   _price: 1500
   _cellTemplate: {fileID: 7767941340209808821, guid: 711e297162a7eb640aa13c5c13cf8a4e, type: 3}
   _shopUnits:
@@ -24,4 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65bb13b50fec8cb47969d90d45c2b15a, type: 2}
   - {fileID: 11400000, guid: e5a0806946c4106499b4690ac5353222, type: 2}
   - {fileID: 11400000, guid: 992332b6175cb5848bb003a2c8ea49be, type: 2}
-  _buyBlockPrefab: {fileID: 3212956928046182993, guid: 974a6407c62aa384985777dd65dd2547, type: 3}
+  rouletteBlockPrefab: {fileID: 3212956928046182993, guid: 974a6407c62aa384985777dd65dd2547, type: 3}

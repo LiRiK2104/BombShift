@@ -12,6 +12,8 @@ namespace ShopSystem
     [RequireComponent(typeof(ShopView))]
     public class Shop : MonoBehaviour, IInitializable
     {
+        private const string GemsDepositKey = "gems_deposit";
+
         [SerializeField] private List<Page> _pages;
 
         [Inject] private Inventory _inventory; 
@@ -31,24 +33,49 @@ namespace ShopSystem
             }
         }
         
-        
+
         public void Initialize()
         {
+            TransferGemsDepositToInventory();
             _shopView.Initialize(_pages);
         }
 
-        public void Buy(UnitIdle unit)
+        public void Buy(UnitIdle unit, PageRoulette pageRoulette)
         {
-            BuySkin(unit.Skin);
+            int inventoryCount = _inventory.GetGemsCount();
+            int depositCount = LoadGemsDeposit();
+
+            if (inventoryCount + depositCount >= pageRoulette.Price)
+            {
+                depositCount -= pageRoulette.Price;
+
+                if (depositCount < 0)
+                    _inventory.RemoveGems(Mathf.Abs(depositCount));
+                else
+                    _inventory.AddGems(depositCount);
+                
+                SetZeroDeposit();
+                BuySkin(unit.Skin);
+            }
         }
         
         public void Buy(UnitPriced unit)
         {
-            if (_inventory.TryGetCurrencyCount(unit.Currency, out int hasCount) && 
-                hasCount >= unit.CurrencyNeedCount)
+            if (_inventory.TryGetCurrencyCount(unit.Currency, out int hasCount) && hasCount >= unit.CurrencyNeedCount)
             {
                 _inventory.Remove(unit.Currency, unit.CurrencyNeedCount);
                 BuySkin(unit.Skin);
+            }
+        }
+
+        public void SetGemsDeposit(int price)
+        {
+            int hasGems = _inventory.GetGemsCount();
+            
+            if (hasGems >= price)
+            {
+                _inventory.RemoveGems(price);
+                SaveGemsDeposit(price);
             }
         }
         
@@ -77,6 +104,29 @@ namespace ShopSystem
         public void OnSelectedCell(Cell cell)
         {
             Selected?.Invoke(cell.Unit.Skin);
+        }
+
+
+        private void SetZeroDeposit()
+        {
+            SaveGemsDeposit(0);
+        }
+        
+        private void SaveGemsDeposit(int gemsDeposit)
+        {
+            PlayerPrefs.SetInt(GemsDepositKey, gemsDeposit);
+        }
+
+        private int LoadGemsDeposit()
+        {
+            return PlayerPrefs.GetInt(GemsDepositKey, 0);
+        }
+        
+        private void TransferGemsDepositToInventory()
+        {
+            int depositGems = LoadGemsDeposit();
+            _inventory.AddGems(depositGems);
+            SetZeroDeposit();
         }
 
         private void BuySkin(Skin skin)
