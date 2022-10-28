@@ -1953,6 +1953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeButton: {fileID: 1932709377394114939}
+  _startOverButton: {fileID: 6937014597410130086}
 --- !u!1 &7673434104689680392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7778640897183989308
 RectTransform:
   m_ObjectHideFlags: 0

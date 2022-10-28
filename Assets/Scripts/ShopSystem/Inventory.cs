@@ -91,7 +91,7 @@ namespace ShopSystem
 
         public bool HasSkin(Skin skin)
         {
-            return _skins.Contains(skin);
+            return skin == _dataBase.Core.DefaultSkin || _skins.Contains(skin);
         }
 
         public int GetGemsCount()
@@ -111,6 +111,14 @@ namespace ShopSystem
             }
 
             return false;
+        }
+
+        public void DeleteAll()
+        {
+            _skins.Clear();
+            _currencyContainers.Clear();
+            SaveSkins();
+            SaveCurrency();
         }
 
         private bool HasCurrency(Currency currency, out CurrencyContainer foundContainer)
