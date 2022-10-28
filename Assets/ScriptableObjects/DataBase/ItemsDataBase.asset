@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: ItemsDataBase
   m_EditorClassIdentifier: 
   _items:
+  - {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
+  - {fileID: 808074907051681860, guid: e3a13914c54efaa4bbaaa643968099f9, type: 3}
+  - {fileID: 8956775279645656450, guid: eeae196c7cfc39f4ea839a81c81506f5, type: 3}
+  - {fileID: 4060392755751222911, guid: 22c68e0593e72904486a357d8305742d, type: 3}
+  - {fileID: 687897240724165653, guid: 0aea2c7378b3f9446a127f003b487477, type: 3}
+  - {fileID: 1314462815651180657, guid: 74f28270e02d3144ea8b6bbe1ae05545, type: 3}
+  - {fileID: 8181180152656369316, guid: da79eb55c44d95a428b65a38c2b1a625, type: 3}
   - {fileID: 2164290539585421283, guid: 6e2e40443f87b2747848179df0eb77e5, type: 3}
   - {fileID: 5222036574076128898, guid: 6e9639e1e50f69f4284a757ff609a400, type: 3}
   - {fileID: 9068487995453398851, guid: 3d689bb70f62fd74ca351659fd05914e, type: 3}
@@ -31,7 +38,6 @@ MonoBehaviour:
   - {fileID: 4598736036627085326, guid: cc961689c205d484e89429a7aeaa7884, type: 3}
   - {fileID: 3887423453143608181, guid: 5a096d1fe1288e9478eb9d42b1b4500f, type: 3}
   - {fileID: 102252323864098902, guid: baa101831e25e2445a938c19f3c06610, type: 3}
-  - {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
   _rewardedChestsPresets:
     _dictionary:
     - _key: 0

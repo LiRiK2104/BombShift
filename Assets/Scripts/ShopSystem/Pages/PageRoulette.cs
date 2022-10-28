@@ -17,7 +17,7 @@ namespace ShopSystem.Pages
         [SerializeField] private CellIdle _cellTemplate;
         [SerializeField] private List<UnitIdle> _shopUnits = new List<UnitIdle>(MaxUnitsCount);
         [SerializeField] private RouletteBlock rouletteBlockPrefab;
-        
+
         private RouletteBlockData _rouletteBlockData;
 
         public override PageView PageViewTemplate => _roulettePageView;
@@ -35,6 +35,15 @@ namespace ShopSystem.Pages
 
                 return _rouletteBlockData;
             }
+        }
+
+        public bool CanShowInfoBlock(Inventory inventory)
+        {
+            foreach (var unit in Units)
+                if (inventory.HasSkin(unit.Skin) == false)
+                    return true;
+
+            return false;
         }
     }
 }

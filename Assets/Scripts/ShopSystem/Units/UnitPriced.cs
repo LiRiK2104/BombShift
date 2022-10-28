@@ -30,6 +30,11 @@ namespace ShopSystem.Units
             }
         }
 
+        public bool CanShowInfoBlock(Inventory inventory)
+        {
+            return inventory.HasSkin(Skin) == false;
+        }
+
 
         private void OnValidate()
         {

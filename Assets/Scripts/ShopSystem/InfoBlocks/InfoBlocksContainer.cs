@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using Helpers;
 using ShopSystem.Pages;
 using UnityEngine;
+using Zenject;
 
 namespace ShopSystem.InfoBlocks
 {
     public class InfoBlocksContainer : MonoBehaviour
     {
+        [Inject] private Inventory _inventory;
+        
         private List<InfoBlock> _spawnedBlocks = new List<InfoBlock>();
 
         public void SetInfoBlock(IInfoBlockOwner infoBlockOwner)
@@ -14,7 +17,7 @@ namespace ShopSystem.InfoBlocks
             var infoBlock = GetCreatedInfoBlock(infoBlockOwner.InfoBlockPrefab);
 
             HideAllBlocks();
-            infoBlock.gameObject.SetActive(true);
+            infoBlock.gameObject.SetActive(infoBlockOwner.CanShowInfoBlock(_inventory));
             infoBlock.Initialize(infoBlockOwner.InfoBlockData);
         }
 

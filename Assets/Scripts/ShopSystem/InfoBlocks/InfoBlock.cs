@@ -22,6 +22,8 @@ namespace ShopSystem.InfoBlocks
         public InfoBlock InfoBlockPrefab { get; }
 
         public InfoBlockData InfoBlockData { get; }
+
+        public bool CanShowInfoBlock(Inventory inventory);
     }
 
     public abstract class InfoBlockData { }
