@@ -81,7 +81,7 @@ namespace Dev
         private void ClampCount()
         {
             int minCount = 0;
-            int maxCount = 1000;
+            int maxCount = 10000;
             string text = _countInputField.text;
 
             int.TryParse(text, out int count);
