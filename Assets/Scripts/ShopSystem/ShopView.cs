@@ -50,14 +50,13 @@ namespace ShopSystem
 
         private void OnEnable()
         {
-            _shopScroll.IndexChanged += SetInfoBlock;
-            _shopScroll.IndexChanged += SetRoulettePage;
+            if (_isInitialized)
+                Subscribe();
         }
 
         private void OnDisable()
         {
-            _shopScroll.IndexChanged -= SetInfoBlock;
-            _shopScroll.IndexChanged -= SetRoulettePage;
+            Unsubscribe();
         }
 
         public void Initialize(List<Page> pages)
@@ -92,6 +91,7 @@ namespace ShopSystem
             _shopScroll.Initialize(_spawnedPages);
 
             _isInitialized = true;
+            Subscribe();
         }
 
         public void Open()
@@ -113,6 +113,20 @@ namespace ShopSystem
             SetAnimatorState();
         }
 
+        private void Subscribe()
+        {
+            _shopScroll.IndexChanged += UpdateInfoBlock;
+            _shopScroll.IndexChanged += SetRoulettePage;
+            _inventory.SkinAdded += UpdateInfoBlock; 
+        }
+        
+        private void Unsubscribe()
+        {
+            _shopScroll.IndexChanged -= UpdateInfoBlock;
+            _shopScroll.IndexChanged -= SetRoulettePage;
+            _inventory.SkinAdded -= UpdateInfoBlock;    
+        }
+
         private Page GetPage(int index)
         {
             index = Mathf.Clamp(index, 0, _pages.Count - 1);
@@ -125,9 +139,14 @@ namespace ShopSystem
             return _spawnedPages[index];
         }
 
-        private void SetInfoBlock(int pageIndex)
+        private void UpdateInfoBlock(int pageIndex)
         {
-            _infoBlocksContainer.SetInfoBlock(GetPage(pageIndex));
+            _infoBlocksContainer.UpdateInfoBlock(GetPage(pageIndex));
+        }
+        
+        private void UpdateInfoBlock()
+        {
+            _infoBlocksContainer.UpdateInfoBlock(GetPage(_shopScroll.Index));
         }
 
         private void SetRoulettePage(int pageIndex)

@@ -11,8 +11,9 @@ namespace ShopSystem.InfoBlocks
         [Inject] private Inventory _inventory;
         
         private List<InfoBlock> _spawnedBlocks = new List<InfoBlock>();
-
-        public void SetInfoBlock(IInfoBlockOwner infoBlockOwner)
+        
+        
+        public void UpdateInfoBlock(IInfoBlockOwner infoBlockOwner)
         {
             var infoBlock = GetCreatedInfoBlock(infoBlockOwner.InfoBlockPrefab);
 
@@ -21,10 +22,10 @@ namespace ShopSystem.InfoBlocks
             infoBlock.UpdateInfo(infoBlockOwner.InfoBlockData);
         }
 
-        public void SetInfoBlock(Page page)
+        public void UpdateInfoBlock(Page page)
         {
             if (page is IInfoBlockOwner infoBlockOwner)
-                SetInfoBlock(infoBlockOwner);
+                UpdateInfoBlock(infoBlockOwner);
             else
                 HideAllBlocks();
         }

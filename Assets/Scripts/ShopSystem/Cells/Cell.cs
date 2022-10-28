@@ -121,7 +121,7 @@ namespace ShopSystem.Cells
             }
             else if (Unit is IInfoBlockOwner infoBlockOwner)
             {
-                _shop.ShopView.InfoBlocksContainer.SetInfoBlock(infoBlockOwner);
+                _shop.ShopView.InfoBlocksContainer.UpdateInfoBlock(infoBlockOwner);
             }
         }
     }
