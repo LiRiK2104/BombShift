@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,15 +24,21 @@ namespace UI.GrayscaleLogic
                 SwitchGrayscale(_isGray);
             }
         }
-        
 
-        public void Initialize()
+
+        private void Awake()
         {
-            _image = GetComponent<Image>();
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (_isInitialized)
+                return;
             
+            _image = GetComponent<Image>();
             _idleColor = _image.color;
             _grayscaleColor = new Color(_idleColor.grayscale, _idleColor.grayscale, _idleColor.grayscale, _idleColor.a);
-
             _image.material = _grayscaleMaterial;
 
             _isInitialized = true;
@@ -40,7 +47,7 @@ namespace UI.GrayscaleLogic
         private void SwitchGrayscale(bool isGrayscale)
         {
             if (_isInitialized == false)
-                return;
+                Initialize();
             
             string grayscaleParameter = "_GrayscaleAmount";
             float amount = isGrayscale ? 1 : 0;

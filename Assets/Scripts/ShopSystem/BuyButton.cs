@@ -15,11 +15,17 @@ namespace ShopSystem
         [SerializeField] private TextMeshProUGUI _priceTMP;
         
         [Inject] private Inventory _inventory;
-        
+
+        private bool _isInitialized;
         private int _price;
         private Button _button;
         private GrayscaleGroup _grayscaleGroup;
-        
+
+
+        private void Awake()
+        {
+            Initialize();
+        }
 
         private void OnEnable()
         {
@@ -32,18 +38,28 @@ namespace ShopSystem
             _inventory.CurrencyAdded -= UpdateAccess;
         }
 
-        public void Initialize(int price, Action buyFunction)
+        public void UpdateInfo(int price, Action buyFunction)
         {
-            _button = GetComponent<Button>();
+            if (_button == null || _grayscaleGroup == null)
+                Initialize();
+            
             _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(() => buyFunction());
-            
-            _grayscaleGroup = GetComponent<GrayscaleGroup>();
-            _grayscaleGroup.Initialize();
-            
+
             _price = price;
             _priceTMP.text = _price.ToString();
             UpdateAccess();
+        }
+
+        private void Initialize()
+        {
+            if (_isInitialized)
+                return;
+
+            _button = GetComponent<Button>();
+            _grayscaleGroup = GetComponent<GrayscaleGroup>();
+            
+            _isInitialized = true;
         }
 
         private void UpdateAccess()

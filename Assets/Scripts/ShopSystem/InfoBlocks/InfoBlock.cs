@@ -14,7 +14,7 @@ namespace ShopSystem.InfoBlocks
             Prefab = prefab;
         }
 
-        public abstract void Initialize(InfoBlockData infoBlockData);
+        public abstract void UpdateInfo(InfoBlockData infoBlockData);
     }
 
     public interface IInfoBlockOwner

@@ -18,7 +18,7 @@ namespace ShopSystem.InfoBlocks
 
             HideAllBlocks();
             infoBlock.gameObject.SetActive(infoBlockOwner.CanShowInfoBlock(_inventory));
-            infoBlock.Initialize(infoBlockOwner.InfoBlockData);
+            infoBlock.UpdateInfo(infoBlockOwner.InfoBlockData);
         }
 
         public void SetInfoBlock(Page page)

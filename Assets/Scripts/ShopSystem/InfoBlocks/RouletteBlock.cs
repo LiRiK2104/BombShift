@@ -21,7 +21,7 @@ namespace ShopSystem.InfoBlocks
             UpdateButton();
         }
 
-        public override void Initialize(InfoBlockData infoBlockData)
+        public override void UpdateInfo(InfoBlockData infoBlockData)
         {
             if (infoBlockData is RouletteBlockData rouletteBlockData)
             {
@@ -41,7 +41,7 @@ namespace ShopSystem.InfoBlocks
 
         private void UpdateButton()
         {
-            _buyButton.Initialize(_price, _rollFunction);
+            _buyButton.UpdateInfo(_price, _rollFunction);
         }
     }
 }

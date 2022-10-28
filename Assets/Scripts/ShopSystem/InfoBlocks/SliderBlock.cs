@@ -19,7 +19,7 @@ namespace ShopSystem.InfoBlocks
             UpdateSlider();
         }
 
-        public override void Initialize(InfoBlockData infoBlockData)
+        public override void UpdateInfo(InfoBlockData infoBlockData)
         {
             if (infoBlockData is SliderBlockData sliderBlockData)
             {
