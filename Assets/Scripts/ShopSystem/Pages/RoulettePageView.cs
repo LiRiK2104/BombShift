@@ -36,11 +36,12 @@ namespace ShopSystem.Pages
             float interval = 0.05f;
             float slowdown = 1.2f;
             var lockedCells = Cells.Where(cell => cell.IsOpened == false).ToArray();
-            int index = 0;
 
-            
+
             if (_isRolling || lockedCells.Length == 0)
                 yield break;
+
+            int index = Random.Range(0, lockedCells.Length);
 
             _isRolling = true;
             _touchBlocker.Enable();
