@@ -117,14 +117,14 @@ namespace ShopSystem
         {
             _shopScroll.IndexChanged += UpdateInfoBlock;
             _shopScroll.IndexChanged += SetRoulettePage;
-            _inventory.SkinAdded += UpdateInfoBlock; 
+            _inventory.SkinAdded += skin => UpdateInfoBlock(); 
         }
         
         private void Unsubscribe()
         {
             _shopScroll.IndexChanged -= UpdateInfoBlock;
             _shopScroll.IndexChanged -= SetRoulettePage;
-            _inventory.SkinAdded -= UpdateInfoBlock;    
+            _inventory.SkinAdded -= skin => UpdateInfoBlock();    
         }
 
         private Page GetPage(int index)

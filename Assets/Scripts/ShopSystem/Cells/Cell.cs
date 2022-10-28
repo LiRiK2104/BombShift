@@ -1,5 +1,6 @@
 using ShopSystem.Cells.States;
 using ShopSystem.InfoBlocks;
+using ShopSystem.Items;
 using ShopSystem.Units;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,8 +56,9 @@ namespace ShopSystem.Cells
 
         protected virtual void OnEnable()
         {
-            Inventory.SkinAdded += UpdateState;
-            
+            Inventory.SkinAdded += skin => UpdateState();
+            Inventory.SkinAdded += TrySelect;
+
             _toggle.Activating += ActiveState.Select;
             _toggle.Deactivating += ActiveState.Deselect;
             _button.onClick.AddListener(Select);
@@ -64,7 +66,8 @@ namespace ShopSystem.Cells
 
         protected virtual void OnDisable()
         {
-            Inventory.SkinAdded -= UpdateState;
+            Inventory.SkinAdded -= skin => UpdateState();
+            Inventory.SkinAdded -= TrySelect;
             
             _toggle.Activating -= ActiveState.Select;
             _toggle.Deactivating -= ActiveState.Deselect;
@@ -107,6 +110,12 @@ namespace ShopSystem.Cells
             _statesToggleGroup.SelectToggle(LockedState.Toggle);
             ActiveState = LockedState;
             IsOpened = false;
+        }
+
+        private void TrySelect(Skin skin)
+        {
+            if (skin == Unit.Skin)
+                Select();
         }
 
         private void Select()

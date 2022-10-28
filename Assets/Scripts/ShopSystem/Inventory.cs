@@ -24,7 +24,7 @@ namespace ShopSystem
 
         public event Action Loaded;
         public event Action CurrencyAdded;
-        public event Action SkinAdded;
+        public event Action<Skin> SkinAdded;
         
         public bool IsLoaded { get; private set; }
         
@@ -46,7 +46,7 @@ namespace ShopSystem
                 _skins.Add(skin);
                 SaveSkins();
                 
-                SkinAdded?.Invoke();
+                SkinAdded?.Invoke(skin);
             }
         }
     
