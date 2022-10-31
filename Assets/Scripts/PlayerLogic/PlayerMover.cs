@@ -26,13 +26,13 @@ namespace PlayerLogic
 
         private void OnEnable()
         {
-            _roundRunner.Starter.Starting += StartPushing;
+            _roundRunner.Starter.RoundStarted += StartPushing;
             _player.Died += StopPushing;
         }
 
         private void OnDisable()
         {
-            _roundRunner.Starter.Starting -= StartPushing;
+            _roundRunner.Starter.RoundStarted -= StartPushing;
             _player.Died -= StopPushing;
         }
 

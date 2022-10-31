@@ -32,7 +32,7 @@ namespace PlayerLogic.Spirit
         {
             _player.SkinSetter.SkinSetted += SetColor;
             Gate.Passed += SetSpirit;
-            _roundRunner.Starter.Starting += SetSpirit;
+            _roundRunner.Starter.RoundStarted += SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned += SetSpirit;
             _player.Died += Hide;
         }
@@ -41,7 +41,7 @@ namespace PlayerLogic.Spirit
         {
             _player.SkinSetter.SkinSetted -= SetColor;
             Gate.Passed -= SetSpirit;
-            _roundRunner.Starter.Starting -= SetSpirit;
+            _roundRunner.Starter.RoundStarted -= SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned -= SetSpirit;
             _player.Died -= Hide;
         }

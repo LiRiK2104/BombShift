@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DataBaseSystem;
-using PlayerLogic.Spirit;
 using ShopSystem;
-using ShopSystem.Cells;
 using ShopSystem.Items;
 using UnityEngine;
 using Zenject;

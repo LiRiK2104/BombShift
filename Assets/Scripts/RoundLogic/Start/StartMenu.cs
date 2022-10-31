@@ -19,7 +19,7 @@ namespace RoundLogic.Start
             _buttons = GetComponentsInChildren<Button>();
         }
 
-        public void OnStart()
+        public void Hide()
         {
             foreach (var button in _buttons)
                 button.interactable = false;
