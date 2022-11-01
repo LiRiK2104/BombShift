@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using Progress;
 using UnityEngine;
+using Scene = SceneManagement.Scene;
 using UnityEngine.UI;
 using Zenject;
 
@@ -15,7 +17,7 @@ namespace Dev
         public void Initialize()
         {
 #if UNITY_EDITOR
-            _closeButton.onClick.AddListener(Close);
+            _closeButton.onClick.AddListener(Scene.Reload);
             _startOverButton.onClick.AddListener(StartOver);
 #else
             Close();

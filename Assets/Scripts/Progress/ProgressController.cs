@@ -1,4 +1,5 @@
 using UnityEngine;
+using Scene = SceneManagement.Scene;
 
 namespace Progress
 {
@@ -7,7 +8,7 @@ namespace Progress
         public void StartOver()
         {
             PlayerPrefs.DeleteAll();
-            UnityEditor.EditorApplication.isPlaying = false;
+            Scene.Reload();
         }
     }
 }
