@@ -21,6 +21,7 @@ namespace ShopSystem
         private ShopView _shopView;
         
         public event Action<Skin> Selected;
+        public event Action<Skin> Collected;
 
         public ShopView ShopView
         {
@@ -32,7 +33,13 @@ namespace ShopSystem
                 return _shopView;
             }
         }
+
         
+        private void Start()
+        {
+            BuyCollectedSkins();
+        }
+
 
         public void Initialize()
         {
@@ -55,15 +62,6 @@ namespace ShopSystem
                     _inventory.AddGems(depositCount);
                 
                 SetZeroDeposit();
-                BuySkin(unit.Skin);
-            }
-        }
-        
-        public void Buy(UnitPriced unit)
-        {
-            if (_inventory.TryGetCurrencyCount(unit.Currency, out int hasCount) && hasCount >= unit.CurrencyNeedCount)
-            {
-                _inventory.Remove(unit.Currency, unit.CurrencyNeedCount);
                 BuySkin(unit.Skin);
             }
         }
@@ -105,8 +103,34 @@ namespace ShopSystem
         {
             Selected?.Invoke(cell.Unit.Skin);
         }
-
-
+        
+        private void Buy(UnitPriced unit)
+        {
+            if (_inventory.TryGetCurrencyCount(unit.Currency, out int hasCount) && hasCount >= unit.CurrencyNeedCount)
+            {
+                _inventory.Remove(unit.Currency, unit.CurrencyNeedCount);
+                BuySkin(unit.Skin);
+            }
+        }
+        
+        private void BuyCollectedSkins()
+        {
+            foreach (var page in _pages)
+            {
+                foreach (var unit in page.Units)
+                {
+                    if (unit is UnitPriced unitPriced && 
+                        _inventory.HasSkin(unitPriced.Skin) == false && 
+                        _inventory.TryGetCurrencyCount(unitPriced.Currency, out int hasCount) && 
+                        hasCount >= unitPriced.CurrencyNeedCount)
+                    {
+                        Buy(unitPriced);
+                        Collected?.Invoke(unitPriced.Skin);
+                    }
+                }
+            }
+        }
+        
         private void SetZeroDeposit()
         {
             SaveGemsDeposit(0);

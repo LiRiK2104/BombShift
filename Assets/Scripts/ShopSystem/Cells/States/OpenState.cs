@@ -1,9 +1,11 @@
 using Helpers;
 using ShopSystem.Items;
+using UI;
 using UnityEngine;
 
 namespace ShopSystem.Cells.States
 {
+    [RequireComponent(typeof(MeshUILayerSetter))]
     public class OpenState : State
     {
         [SerializeField] private Transform _previewParent;
@@ -14,7 +16,7 @@ namespace ShopSystem.Cells.States
                 return;
             
             var preview = DiContainerRef.Container.InstantiatePrefab(skin, _previewParent);
-            SetUILayer(preview.gameObject);
+            MeshUILayerSetter.SetUILayer(preview.gameObject);
         }
     }
 }

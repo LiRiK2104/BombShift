@@ -13,7 +13,7 @@ namespace PlayerLogic
         [SerializeField] private LifeSwitcher _lifeSwitcher;
         [SerializeField] private SpeedSwitcher _speedSwitcher;
         [SerializeField] private Exploder _exploder;
-        [SerializeField] private SkinSetter _skinSetter;
+        [SerializeField] private PlayerSkinSetter playerSkinSetter;
 
         public event Action Died;
 
@@ -24,7 +24,7 @@ namespace PlayerLogic
         public LifeSwitcher LifeSwitcher => _lifeSwitcher;
         public SpeedSwitcher SpeedSwitcher => _speedSwitcher;
         public Exploder Exploder => _exploder;
-        public SkinSetter SkinSetter => _skinSetter;
+        public PlayerSkinSetter PlayerSkinSetter => playerSkinSetter;
 
     
         public void Die(bool needHide = true)

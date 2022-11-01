@@ -1,17 +1,30 @@
 using ShopSystem.Toggles;
+using UI;
 using UnityEngine;
 
 namespace ShopSystem.Cells.States
 {
     public abstract class State : MonoBehaviour
     {
-        protected const string LayerUIName = "UI";
-        
         [SerializeField] private Toggle _toggle;
         [SerializeField] private GameObject _content;
         [SerializeField] private SelectionFrame selectionSelectionFrame;
 
+        private MeshUILayerSetter _meshUILayerSetter;
+        
         public Toggle Toggle => _toggle;
+
+        protected MeshUILayerSetter MeshUILayerSetter
+        {
+            get
+            {
+                if (_meshUILayerSetter == null)
+                    _meshUILayerSetter = GetComponent<MeshUILayerSetter>();
+
+                return _meshUILayerSetter;
+            }
+        }
+        
         
         private void OnEnable()
         {
@@ -33,17 +46,6 @@ namespace ShopSystem.Cells.States
         public void Deselect()
         {
             selectionSelectionFrame.gameObject.SetActive(false);
-        }
-        
-        protected void SetUILayer(GameObject preview)
-        {
-            int targetLayer = LayerMask.NameToLayer(LayerUIName);
-            
-            preview.gameObject.layer = targetLayer;
-            MeshRenderer[] children = preview.GetComponentsInChildren<MeshRenderer>();
-            
-            foreach (var child in children)
-                child.gameObject.layer = targetLayer;
         }
 
         private void Show()

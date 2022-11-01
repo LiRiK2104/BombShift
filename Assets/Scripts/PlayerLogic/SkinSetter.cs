@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DataBaseSystem;
 using ShopSystem;
 using ShopSystem.Items;
 using UnityEngine;
@@ -10,69 +9,33 @@ namespace PlayerLogic
 {
     public class SkinSetter : MonoBehaviour
     {
-        private const string _savedSkinKey = "SKIN";
-
-        [Inject] private DataBase _dataBase;
-        [Inject] private Inventory _inventory;
-        [Inject] private Shop _shop;
-
-        private Skin _skinPrefab;
+        [SerializeField] private Transform _skinSpawnPoint;
+        
+        [Inject] protected Inventory Inventory;
+        
         private List<Skin> _createdSkins = new List<Skin>();
-
+        
         public event Action<Skin> SkinSetted;
+        
 
-        public Skin SkinPrefab
+        public virtual void SetSkin(Skin skin)
         {
-            get
+            if (SkinIsAvailable(skin))
             {
-                if (_skinPrefab == null)
-                    LoadSkin();
-
-                return _skinPrefab;
-            }
-        }
-
-
-        private void Awake()
-        {
-            if (_inventory.IsLoaded)
-                SetSavedSkin();
-            else
-                _inventory.Loaded += SetSavedSkin;
-        }
-
-        private void OnEnable()
-        {
-            _shop.Selected += SetSkin;
-        }
-
-        private void OnDisable()
-        {
-            _shop.Selected -= SetSkin;
-            _inventory.Loaded -= SetSavedSkin;
-        }
-
-        private void SetSkin(Skin skin)
-        {
-            if (_inventory.HasSkin(skin))
-            {
-                _skinPrefab = skin;
-                SaveSkin();
                 DisableAllCreatedSkins();
 
-                if (TryGetCreatedSkin(_skinPrefab, out Skin foundSkin))
+                if (TryGetCreatedSkin(skin, out Skin foundSkin))
                     foundSkin.gameObject.SetActive(true);
                 else
-                    _createdSkins.Add(CreateSkin(_skinPrefab));
+                    _createdSkins.Add(CreateSkin(skin));
                 
                 SkinSetted?.Invoke(skin);
             }
         }
 
-        private void SetSavedSkin()
+        protected bool SkinIsAvailable(Skin skin)
         {
-            _inventory.Loaded -= SetSavedSkin;
-            SetSkin(SkinPrefab);
+            return Inventory.HasSkin(skin);
         }
 
         private bool TryGetCreatedSkin(Skin needSkin, out Skin foundSkin)
@@ -91,34 +54,15 @@ namespace PlayerLogic
             return false;
         }
 
-        private Skin CreateSkin(Skin skinPrefab)
+        protected virtual Skin CreateSkin(Skin skinPrefab)
         {
-            return Instantiate(skinPrefab, transform);
+            return Instantiate(skinPrefab, _skinSpawnPoint);
         }
         
         private void DisableAllCreatedSkins()
         {
             foreach (var createdSkin in _createdSkins)
                 createdSkin.gameObject.SetActive(false);
-        }
-        
-        private void LoadSkin()
-        {
-            var defaultSkin = _dataBase.Core.DefaultSkin;
-            int id = PlayerPrefs.GetInt(_savedSkinKey, defaultSkin.Id);
-            _skinPrefab = defaultSkin;
-
-            if (_dataBase.Core.TryGetItem(id, out Item item) && 
-                item is Skin skin)
-                _skinPrefab = skin;
-        }
-    
-        private void SaveSkin()
-        {
-            if (_skinPrefab == null)
-                _skinPrefab = _dataBase.Core.DefaultSkin;
-        
-            PlayerPrefs.SetInt(_savedSkinKey, _skinPrefab.Id);   
         }
     }
 }

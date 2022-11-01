@@ -113,14 +113,6 @@ namespace ShopSystem
             return false;
         }
 
-        public void DeleteAll()
-        {
-            _skins.Clear();
-            _currencyContainers.Clear();
-            SaveSkins();
-            SaveCurrency();
-        }
-
         private bool HasCurrency(Currency currency, out CurrencyContainer foundContainer)
         {
             foundContainer = _currencyContainers.FirstOrDefault(container => container.Currency == currency);
@@ -151,7 +143,7 @@ namespace ShopSystem
         private void LoadSkins()
         {
             string json = PlayerPrefs.GetString(SkinsKey, "");
-            var skinsId = JsonConvert.DeserializeObject<int[]>(json);
+            var skinsId = JsonConvert.DeserializeObject<int[]>(json) ?? Array.Empty<int>();
         
             _skins.Clear();
 

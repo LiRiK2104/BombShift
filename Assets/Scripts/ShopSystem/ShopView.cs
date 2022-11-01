@@ -77,7 +77,7 @@ namespace ShopSystem
                 _spawnedPages.Add(spawnedPage);
             }
 
-            var currentSkin = _player.SkinSetter.SkinPrefab;
+            var currentSkin = _player.PlayerSkinSetter.SavedSkin;
             
             foreach (var pageView in _spawnedPages)
             {
@@ -159,7 +159,7 @@ namespace ShopSystem
 
         private void OpenLastSkinPage()
         {
-            _shopScroll.Index = GetPageIndex(_player.SkinSetter.SkinPrefab);
+            _shopScroll.Index = GetPageIndex(_player.PlayerSkinSetter.SavedSkin);
             _shopScroll.ScrollToIndexInstantly();
         }
         

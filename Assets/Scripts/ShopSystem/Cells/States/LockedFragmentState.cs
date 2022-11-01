@@ -1,8 +1,10 @@
 using ShopSystem.Items;
+using UI;
 using UnityEngine;
 
 namespace ShopSystem.Cells.States
 {
+    [RequireComponent(typeof(MeshUILayerSetter))]
     public class LockedFragmentState : LockedState
     {
         [SerializeField] private Transform _fragmentPreviewParent;
@@ -16,7 +18,7 @@ namespace ShopSystem.Cells.States
                 return;
             
             var preview = Instantiate(fragment, _fragmentPreviewParent);
-            SetUILayer(preview.gameObject);
+            MeshUILayerSetter.SetUILayer(preview.gameObject);
         }
     }
 }

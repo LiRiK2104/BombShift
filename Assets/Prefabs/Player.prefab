@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dd02c71636b28448559b7fd80d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skinSpawnPoint: {fileID: 192946347359669404}
 --- !u!1 &5864287021272712691
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
   _lifeSwitcher: {fileID: 4740954643888670705}
   _speedSwitcher: {fileID: 6861570637493452285}
   _exploder: {fileID: 2725125918737780331}
-  _skinSetter: {fileID: 1050228908787755789}
+  playerSkinSetter: {fileID: 1050228908787755789}
 --- !u!114 &6909592089451962239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,14 +690,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2fad542073b7a748ae72a089f9cc6b0, type: 3}
---- !u!1 &192946347359669405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7483783027229486356, guid: c2fad542073b7a748ae72a089f9cc6b0, type: 3}
-  m_PrefabInstance: {fileID: 7311249491632939401}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &192946347899078296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7483783027767813905, guid: c2fad542073b7a748ae72a089f9cc6b0, type: 3}
+  m_PrefabInstance: {fileID: 7311249491632939401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &192946347359669404 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7483783027229486357, guid: c2fad542073b7a748ae72a089f9cc6b0, type: 3}
+  m_PrefabInstance: {fileID: 7311249491632939401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &192946347359669405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7483783027229486356, guid: c2fad542073b7a748ae72a089f9cc6b0, type: 3}
   m_PrefabInstance: {fileID: 7311249491632939401}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8307885621424969863

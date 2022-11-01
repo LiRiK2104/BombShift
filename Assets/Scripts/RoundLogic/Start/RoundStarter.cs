@@ -11,8 +11,7 @@ namespace RoundLogic.Start
         [SerializeField] private StartMenu _startMenu;
         
         [Inject] private PlayerScalerInput _playerScalerInput;
-        //[Inject] private BannersDisplayer _bannersDisplayer;
-        
+
         public event Action RoundStarted;
 
         private bool _isStarted;
@@ -27,11 +26,6 @@ namespace RoundLogic.Start
         {
             _playerScalerInput.BeginningDrag -= TryStartRound;
             RoundStarted -= _startMenu.Hide;
-        }
-
-        private void Start()
-        {
-            //_bannersDisplayer.Display();
         }
 
         private void TryStartRound()
