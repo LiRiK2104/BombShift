@@ -1,4 +1,5 @@
 using System;
+using ItemSetters;
 using PlayerLogic.Life;
 using PlayerLogic.Speed;
 using UnityEngine;

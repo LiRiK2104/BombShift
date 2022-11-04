@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2b4d81ab1f66f458dc9863ddc283e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skinSpawnPoint: {fileID: 2247204102902740921}
+  _itemSpawnPoint: {fileID: 2247204102902740921}
 --- !u!95 &3356614525144391044
 Animator:
   serializedVersion: 3

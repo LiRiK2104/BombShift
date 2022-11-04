@@ -1,8 +1,9 @@
+using PlayerLogic;
 using ShopSystem;
 using ShopSystem.Items;
 using Zenject;
 
-namespace PlayerLogic
+namespace ItemSetters
 {
     public class PlayerSkinSetter : SkinSetter
     {

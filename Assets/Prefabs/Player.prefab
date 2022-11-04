@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dd02c71636b28448559b7fd80d7b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skinSpawnPoint: {fileID: 192946347359669404}
+  _itemSpawnPoint: {fileID: 192946347359669404}
 --- !u!1 &5864287021272712691
 GameObject:
   m_ObjectHideFlags: 0

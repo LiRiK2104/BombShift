@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ItemSetters;
 using ShopSystem.Items;
 using UnityEngine;
 using UnityEngine.UI;

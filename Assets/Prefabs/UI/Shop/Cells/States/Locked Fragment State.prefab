@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 9167330761383474365}
   - component: {fileID: 7207766840706110921}
   - component: {fileID: 2638759598957605117}
+  - component: {fileID: 4954839757116523277}
   m_Layer: 5
   m_Name: Locked Fragment State
   m_TagString: Untagged
@@ -140,6 +141,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065d25df77756b140a38fadf3174d794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4954839757116523277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533839706355750368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2209b787e8f05f4abbb8a24a7db281d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1996142182262719266
@@ -395,7 +408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2407162728876349383}
   m_Layer: 0
-  m_Name: Fragment Preview Parent
+  m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
