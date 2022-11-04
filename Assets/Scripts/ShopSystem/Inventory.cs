@@ -15,7 +15,6 @@ namespace ShopSystem
         private const string CurrencyKey = "CURRENCY";
 
         [SerializeField] private Gem _gemReference;
-        [SerializeField] private List<Skin> _skinsForStart = new List<Skin>();
 
         [Inject] private DataBase _dataBase;
         
@@ -34,9 +33,6 @@ namespace ShopSystem
             Load();
             IsLoaded = true;
             Loaded?.Invoke();
-
-            foreach (var skin in _skinsForStart)
-                Add(skin);
         }
 
         public void Add(Skin skin)

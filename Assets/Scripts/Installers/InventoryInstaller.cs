@@ -1,3 +1,4 @@
+using Helpers;
 using ShopSystem;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,7 @@ namespace Installers
         public override void InstallBindings()
         {
             var instance =
-                Container.InstantiatePrefabForComponent<Inventory>(_inventoryPrefab, transform.position, Quaternion.identity,
+                DiContainerRef.Container.InstantiatePrefabForComponent<Inventory>(_inventoryPrefab, transform.position, Quaternion.identity,
                     null);
 
             Container.Bind<Inventory>().FromInstance(instance).AsSingle();

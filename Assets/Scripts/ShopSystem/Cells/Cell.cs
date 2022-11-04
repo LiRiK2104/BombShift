@@ -47,7 +47,7 @@ namespace ShopSystem.Cells
                 _activeState = value;
             }
         }
-        
+
 
         private void Awake()
         {

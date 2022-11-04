@@ -1,4 +1,5 @@
 using Environment;
+using Helpers;
 using UnityEngine;
 using Zenject;
 
@@ -10,7 +11,7 @@ namespace Installers
         
         public override void InstallBindings()
         {
-            var instance = Container.InstantiatePrefabForComponent<EnvironmentCreator>(_environmentCreatorPrefab,
+            var instance = DiContainerRef.Container.InstantiatePrefabForComponent<EnvironmentCreator>(_environmentCreatorPrefab,
                 transform.position, Quaternion.identity, null);
 
             Container.Bind<EnvironmentCreator>().FromInstance(instance).AsSingle();

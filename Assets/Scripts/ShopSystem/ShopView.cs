@@ -24,7 +24,7 @@ namespace ShopSystem
         [SerializeField] private RouletteStarter _rouletteStarter;
 
         [Inject] private Inventory _inventory;
-        [Inject] private Player _player;
+        [Inject] private SkinStorage _skinStorage;
         
         private List<PageView> _spawnedPages;
         private ToggleGroup _unitsToggleGroup;
@@ -77,7 +77,7 @@ namespace ShopSystem
                 _spawnedPages.Add(spawnedPage);
             }
 
-            var currentSkin = _player.PlayerSkinSetter.SavedSkin;
+            var currentSkin = _skinStorage.SavedSkin;
             
             foreach (var pageView in _spawnedPages)
             {
@@ -159,7 +159,7 @@ namespace ShopSystem
 
         private void OpenLastSkinPage()
         {
-            _shopScroll.Index = GetPageIndex(_player.PlayerSkinSetter.SavedSkin);
+            _shopScroll.Index = GetPageIndex(_skinStorage.SavedSkin);
             _shopScroll.ScrollToIndexInstantly();
         }
         

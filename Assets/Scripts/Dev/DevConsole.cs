@@ -1,7 +1,6 @@
-using System.Diagnostics;
 using Progress;
+using SceneManagement;
 using UnityEngine;
-using Scene = SceneManagement.Scene;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,11 +12,14 @@ namespace Dev
         [SerializeField] private Button _startOverButton;
 
         [Inject] private ProgressController _progressController;
+        [Inject] private SceneLoader _sceneLoader;
+        
         
         public void Initialize()
         {
 #if UNITY_EDITOR
-            _closeButton.onClick.AddListener(Scene.Reload);
+            _closeButton.onClick.RemoveAllListeners();
+            _closeButton.onClick.AddListener(_sceneLoader.CloseGame);
             _startOverButton.onClick.AddListener(StartOver);
 #else
             Close();

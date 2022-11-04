@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using PlayerLogic;
 using ShopSystem.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.BannerSystem
 {
-    [RequireComponent(typeof(UISkinSetter))]
+    [RequireComponent(typeof(UISkinSetter), typeof(Animator))]
     public class SkinBanner : MonoBehaviour
     {
         [SerializeField] private Button _closeButton;
 
         private UISkinSetter _skinSetter;
         private List<Skin> _createdSkins;
+        private Animator _animator;
 
         private bool _needToHide;
         private bool _isDisplaying;
@@ -23,6 +23,8 @@ namespace UI.BannerSystem
         {
             _closeButton.onClick.AddListener(Close);
             _skinSetter = GetComponent<UISkinSetter>();
+            _animator = GetComponent<Animator>();
+            
             Hide();
         }
         
@@ -50,13 +52,20 @@ namespace UI.BannerSystem
         
         private void Show()
         {
-            gameObject.SetActive(true);
+            _animator.SetBool(SkinBannerAnimator.Flags.Showed, true);
         }
 
         private void Hide()
         {
-            gameObject.SetActive(false);
-            _needToHide = false;
+            _animator.SetBool(SkinBannerAnimator.Flags.Showed, false);
+        }
+    }
+
+    public static class SkinBannerAnimator
+    {
+        public static class Flags
+        {
+            public static string Showed = "Showed";
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using RoundLogic;
 using ShopSystem;
 using ShopSystem.Items;
 using UnityEngine;
@@ -8,12 +9,13 @@ using Zenject;
 
 namespace UI.BannerSystem
 {
-    public class SkinBannerDisplayer : MonoBehaviour
+    public class BannerDisplayer : MonoBehaviour
     {
         [SerializeField] private GameObject _blockPanel;
         [SerializeField] private SkinBanner _banner;
 
         [Inject] private Shop _shop;
+        [Inject] private RoundRunner _roundRunner;
         
         private Queue<Skin> _skinsForShow = new Queue<Skin>();
         private bool _isDisplaying;
@@ -37,7 +39,7 @@ namespace UI.BannerSystem
         
         private void Display()
         {
-            if (_isDisplaying)
+            if (_isDisplaying || _roundRunner.Starter.IsStarted)
                 return;
             
             StartCoroutine(ProcessShowBanners());

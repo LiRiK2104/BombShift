@@ -1,6 +1,5 @@
 using System;
 using PlayerLogic;
-using UI.BannerSystem;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +14,9 @@ namespace RoundLogic.Start
         public event Action RoundStarted;
 
         private bool _isStarted;
+
+        public bool IsStarted => _isStarted;
+        
 
         private void OnEnable()
         {

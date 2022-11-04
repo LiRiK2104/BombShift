@@ -1,14 +1,17 @@
+using SceneManagement;
 using UnityEngine;
-using Scene = SceneManagement.Scene;
+using Zenject;
 
 namespace Progress
 {
     public class ProgressController : MonoBehaviour
     {
+        [Inject] private SceneLoader _sceneLoader;
+        
         public void StartOver()
         {
             PlayerPrefs.DeleteAll();
-            Scene.Reload();
+            _sceneLoader.CloseGame();
         }
     }
 }
