@@ -1,6 +1,7 @@
 using System.Collections;
 using Ads;
 using Chests;
+using SceneManagement;
 using ShopSystem;
 using ShopSystem.Items;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace RoundLogic.Finish.Victory
 
         [Inject] private Shop _shop;
         [Inject] private Inventory _inventory;
+        [Inject] private SceneLoader _sceneLoader;
 
         private Animator _animator;
         private bool _chestOpened;
@@ -90,12 +92,12 @@ namespace RoundLogic.Finish.Victory
 
         private IEnumerator ExitProcessing()
         {
-            //TODO: Добавить сохранение данных, затухание экрана и перезагрузку сцены.
-            
             float delay = 2;
             yield return new WaitForSeconds(delay);
             
-            gameObject.SetActive(false);
+            
+            //gameObject.SetActive(false);
+            _sceneLoader.ReloadScene();
         }
     }
 

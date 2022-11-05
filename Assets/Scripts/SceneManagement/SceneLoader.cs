@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SceneManagement
 {
@@ -8,6 +9,11 @@ namespace SceneManagement
         public void CloseGame()
         {
             EditorApplication.isPlaying = false;
+        }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
