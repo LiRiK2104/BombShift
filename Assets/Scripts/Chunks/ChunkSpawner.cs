@@ -22,7 +22,7 @@ namespace Chunks
 
         public GateSpawner GateSpawner => _gateSpawner;
         
-
+        
         public void Initialize()
         {
             Spawn();

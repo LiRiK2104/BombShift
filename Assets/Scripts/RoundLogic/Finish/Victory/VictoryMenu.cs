@@ -96,7 +96,7 @@ namespace RoundLogic.Finish.Victory
             yield return new WaitForSeconds(delay);
             
             
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
             _sceneLoader.ReloadScene();
         }
     }

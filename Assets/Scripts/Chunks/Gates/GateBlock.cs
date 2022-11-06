@@ -9,13 +9,19 @@ namespace Chunks.Gates
     [RequireComponent(typeof(Rigidbody))]
     public class GateBlock : MonoBehaviour
     {
-        [Inject] private CinemachineSwitcher _cinemachineSwitcher;
+        /*[Inject] */private CinemachineSwitcher _cinemachineSwitcher;
         
         private Rigidbody _rigidbody;
         private Gate _gate;
         private int _layerAfterExplosion;
         private bool _collisionIsHappened;
 
+        [Inject]
+        public void Construct(CinemachineSwitcher cinemachineSwitcher)
+        {
+            _cinemachineSwitcher = cinemachineSwitcher;
+        }
+        
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
