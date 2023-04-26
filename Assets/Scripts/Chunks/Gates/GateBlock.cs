@@ -9,18 +9,23 @@ namespace Chunks.Gates
     [RequireComponent(typeof(Rigidbody))]
     public class GateBlock : MonoBehaviour
     {
-        [Inject] private CinemachineSwitcher _cinemachineSwitcher;
+        /*[Inject] */private CinemachineSwitcher _cinemachineSwitcher;
         
         private Rigidbody _rigidbody;
         private Gate _gate;
-        private int _intangibleLayer;
+        private int _layerAfterExplosion;
         private bool _collisionIsHappened;
 
+        [Inject]
+        public void Construct(CinemachineSwitcher cinemachineSwitcher)
+        {
+            _cinemachineSwitcher = cinemachineSwitcher;
+        }
         
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _intangibleLayer = LayerMask.NameToLayer("Gate Block");
+            _layerAfterExplosion = LayerMask.NameToLayer("Gate Block");
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -28,9 +33,9 @@ namespace Chunks.Gates
             if (_collisionIsHappened == false && collision.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
             {
                 _collisionIsHappened = true;
-                _gate.OnHit();
-                
-                MakeIntangible();
+                _gate.SlowDownPlayer();
+
+                gameObject.layer = _layerAfterExplosion;
                 _rigidbody.isKinematic = false;
 
                 ShakeCamera();
@@ -41,11 +46,6 @@ namespace Chunks.Gates
         public void Init(Gate gate)
         {
             _gate = gate;
-        }
-
-        public void MakeIntangible()
-        {
-            gameObject.layer = _intangibleLayer;
         }
 
         private void ShakeCamera()

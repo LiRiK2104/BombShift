@@ -6,11 +6,12 @@ namespace Installers
 {
     public class PlayerScalerInputInstaller : MonoInstaller
     {
-        [SerializeField] private PlayerScalerInput _playerScalerInput;
+        [SerializeField] private PlayerScalerInput _playerScalerInputPrefab;
         
         public override void InstallBindings()
         {
-            Container.Bind<PlayerScalerInput>().FromInstance(_playerScalerInput).AsSingle();
+            var instance = Container.InstantiatePrefabForComponent<PlayerScalerInput>(_playerScalerInputPrefab);
+            Container.Bind<PlayerScalerInput>().FromInstance(instance).AsSingle();
         }
     }
 }
