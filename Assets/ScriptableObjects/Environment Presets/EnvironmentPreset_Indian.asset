@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1460abfb3b44e794abbde959af25eb9d, type: 3}
+  m_Name: EnvironmentPreset_Indian
+  m_EditorClassIdentifier: 
+  _skyboxMaterials:
+  - {fileID: 2100000, guid: 6225fa8890cf025489e57d3aa1d87260, type: 2}
+  - {fileID: 2100000, guid: 52fcefd712182d743a781fde12426775, type: 2}
+  - {fileID: 2100000, guid: 528363c5c1cf6a7458140c6851c77b68, type: 2}
+  _finishPointPresets:
+  - _groundMaterial: {fileID: 2100000, guid: d182872c4d712e546a9b77a6a8a66af5, type: 2}
+    _building: {fileID: 4055372757039694249, guid: 5e67b477a84c8984397f80f12558f424, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: 1d37472b5b4da73478ce815c9bd932eb, type: 2}
+    _building: {fileID: 6899121831574877109, guid: 59b18e525f2ae7d43aa10fc7f6b950c6, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: 8304464cc39c1c445add3e70c85e2b02, type: 2}
+    _building: {fileID: 8066490920801601922, guid: f39ef36e4e43ee1439aa4b43dcb4a4d6, type: 3}

@@ -1,0 +1,74 @@
+using Cinemachine;
+using Helpers;
+using PlayerLogic;
+using UnityEngine;
+using Zenject;
+
+namespace Chunks.Gates
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class GateBlock : MonoBehaviour
+    {
+        [Inject] private CinemachineSwitcher _cinemachineSwitcher;
+        
+        private Rigidbody _rigidbody;
+        private Gate _gate;
+        private int _intangibleLayer;
+        private bool _collisionIsHappened;
+
+        
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _intangibleLayer = LayerMask.NameToLayer("Gate Block");
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (_collisionIsHappened == false && collision.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
+            {
+                _collisionIsHappened = true;
+                _gate.OnHit();
+                
+                MakeIntangible();
+                _rigidbody.isKinematic = false;
+
+                ShakeCamera();
+                Explode(GetDirection());
+            }
+        }
+    
+        public void Init(Gate gate)
+        {
+            _gate = gate;
+        }
+
+        public void MakeIntangible()
+        {
+            gameObject.layer = _intangibleLayer;
+        }
+
+        private void ShakeCamera()
+        {
+            float time = 0.5f;
+            float intensity = 2;
+            _cinemachineSwitcher.Shake(time, intensity);
+        }
+
+        private Vector3 GetDirection()
+        {
+            int minAngle = -45;
+            int maxAngle = 45;
+            float angle = Random.Range(minAngle, maxAngle);
+            Vector3 direction = Vector3.forward.RotateAngle(angle);
+
+            return direction;
+        }
+
+        private void Explode(Vector3 direction)
+        {
+            float force = 10;
+            _rigidbody.AddForce(direction * force, ForceMode.Impulse);
+        }
+    }
+}

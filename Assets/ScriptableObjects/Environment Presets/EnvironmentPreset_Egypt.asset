@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1460abfb3b44e794abbde959af25eb9d, type: 3}
+  m_Name: EnvironmentPreset_Egypt
+  m_EditorClassIdentifier: 
+  _skyboxMaterials:
+  - {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
+  - {fileID: 2100000, guid: 7ed994c1997814049b44c36a823bba6c, type: 2}
+  - {fileID: 2100000, guid: 20f6d22d93779de4ea6f62f8ab305593, type: 2}
+  _finishPointPresets:
+  - _groundMaterial: {fileID: 2100000, guid: 39ea2bcde2e08fd48b16da5e1aa99b4f, type: 2}
+    _building: {fileID: -22553192327518113, guid: 09d565c87fef8a3458163a399bf6ea51, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: d076e2b5e866d3a44826b4ba68cb81de, type: 2}
+    _building: {fileID: 763617194906455773, guid: b2e840a2b39fe914b8f5301c848df212, type: 3}
+  - _groundMaterial: {fileID: 2100000, guid: 1d052427820d19c44baf7813a5056d98, type: 2}
+    _building: {fileID: 7344911569720735736, guid: 61a4e03f9a8da72448fe472f66695187, type: 3}

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b14e1d1f87d4f5489366b47864fbf09, type: 3}
+  m_Name: ItemsDataBase
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 6543705992779813664, guid: ecf60eb6af85efc4b8826b2632bfa62d, type: 3}
+  - {fileID: 808074907051681860, guid: e3a13914c54efaa4bbaaa643968099f9, type: 3}
+  - {fileID: 8956775279645656450, guid: eeae196c7cfc39f4ea839a81c81506f5, type: 3}
+  - {fileID: 4060392755751222911, guid: 22c68e0593e72904486a357d8305742d, type: 3}
+  - {fileID: 687897240724165653, guid: 0aea2c7378b3f9446a127f003b487477, type: 3}
+  - {fileID: 1314462815651180657, guid: 74f28270e02d3144ea8b6bbe1ae05545, type: 3}
+  - {fileID: 8181180152656369316, guid: da79eb55c44d95a428b65a38c2b1a625, type: 3}
+  - {fileID: 2164290539585421283, guid: 6e2e40443f87b2747848179df0eb77e5, type: 3}
+  - {fileID: 5222036574076128898, guid: 6e9639e1e50f69f4284a757ff609a400, type: 3}
+  - {fileID: 9068487995453398851, guid: 3d689bb70f62fd74ca351659fd05914e, type: 3}
+  - {fileID: 555327432020065961, guid: 6a2492e4a5f3e524e8b7b889ac5ee859, type: 3}
+  - {fileID: 1389882918966148616, guid: 7ad21a53f2db3a74ab572abf9854048e, type: 3}
+  - {fileID: 7931436288554487896, guid: a231c7f3e97672f4a9e4f07ca5d16876, type: 3}
+  - {fileID: 8001274720384977730, guid: be65ebb13c17d114f9c0c88d04c5bafe, type: 3}
+  - {fileID: 3864987458957176423, guid: 3822083d2e7b23641994a34b8740c3b0, type: 3}
+  - {fileID: 4884736031376834716, guid: 7b508e5e61ad8b6478403c238b37f2d9, type: 3}
+  - {fileID: 634926823598494325, guid: 53b3119625df9bc46bf7331771c6063b, type: 3}
+  - {fileID: 994417499648893907, guid: 1ad91efda996b23489c39e39b0e84059, type: 3}
+  - {fileID: 6667540902297106584, guid: 184e105cd1221a94395a74d8b9b8c152, type: 3}
+  - {fileID: 4001418790625861275, guid: f53e606f04089f349a9e7021eebcac1a, type: 3}
+  - {fileID: 3408172926297264048, guid: b4a04070aa2955d499e15ae4a7545ed5, type: 3}
+  - {fileID: 383324450638537755, guid: 1fc9927ae8994eb4d84388e692c6d652, type: 3}
+  - {fileID: 4598736036627085326, guid: cc961689c205d484e89429a7aeaa7884, type: 3}
+  - {fileID: 3887423453143608181, guid: 5a096d1fe1288e9478eb9d42b1b4500f, type: 3}
+  - {fileID: 102252323864098902, guid: baa101831e25e2445a938c19f3c06610, type: 3}
+  _rewardedChestsPresets:
+    _dictionary:
+    - _key: 0
+      _value: {fileID: 11400000, guid: d841c5f475d40f84d93a38e175ed5f4c, type: 2}
+    - _key: 1
+      _value: {fileID: 11400000, guid: 2b560bed389a7b14f9f6b7924af025d0, type: 2}
+    - _key: 2
+      _value: {fileID: 11400000, guid: 8c131eb0ab2f4fa4786bf3f4e09c25a2, type: 2}
+  _defaultSkin: {fileID: 808074907051681860, guid: e3a13914c54efaa4bbaaa643968099f9, type: 3}

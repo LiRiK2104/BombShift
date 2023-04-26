@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3202828789768807796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3202828789768807797}
+  - component: {fileID: 3202828789768807802}
+  m_Layer: 0
+  m_Name: Speed Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3202828789768807797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202828789768807796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 77.064644}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3202828789768807802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202828789768807796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eebc842d02b1444b89f78149f793913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedSettings:
+  - {fileID: 11400000, guid: aa93fbbd3f2f44c4d9ebda7f73a9d47e, type: 2}
+  - {fileID: 11400000, guid: 9e9d8a3140ceb4046b592d789bfef31b, type: 2}
+  - {fileID: 11400000, guid: 50925cc81ec139c40936d166a71a4296, type: 2}
+  - {fileID: 11400000, guid: 2e15f9d9acc937947b5334e87a12203b, type: 2}
+  - {fileID: 11400000, guid: 8cd2486f33eb5b2429a7c1bbf5d8ed5e, type: 2}
+  - {fileID: 11400000, guid: bd432219aed42524baf88927aedf5d40, type: 2}
+  _startSettingIndex: 0
