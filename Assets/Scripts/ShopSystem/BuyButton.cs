@@ -36,6 +36,7 @@ namespace ShopSystem
         private void OnDisable()
         {
             _inventory.CurrencyAdded -= UpdateAccess;
+            _button.onClick.RemoveAllListeners();
         }
 
         public void UpdateInfo(int price, Action buyFunction)

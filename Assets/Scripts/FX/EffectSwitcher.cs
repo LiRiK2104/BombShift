@@ -6,12 +6,12 @@ using UnityEngine;
 namespace FX
 {
     [RequireComponent(typeof(Player))]
-    public class FXSwitcher : MonoBehaviour
+    public class EffectSwitcher : MonoBehaviour
     {
         [SerializeField] private Transform _originPoint;
-        [SerializeField] private List<FX> _effectsTemplates = new List<FX>();
+        [SerializeField] private List<Effect> _effectsTemplates = new List<Effect>();
     
-        private List<FX> _createdEffects = new List<FX>();
+        private List<Effect> _createdEffects = new List<Effect>();
         private Player _player;
 
 
@@ -48,9 +48,9 @@ namespace FX
             }
         }
 
-        private FX GetEffect(FX template)
+        private Effect GetEffect(Effect template)
         {
-            FX foundEffect = null;
+            Effect foundEffect = null;
 
             foreach (var effect in _createdEffects)
             {
@@ -64,7 +64,7 @@ namespace FX
             return foundEffect;
         }
     
-        private FX CreateEffect(FX template)
+        private Effect CreateEffect(Effect template)
         {
             var effect = Instantiate(template, _originPoint.position, Quaternion.identity, _originPoint);
             effect.OnCreate(template);

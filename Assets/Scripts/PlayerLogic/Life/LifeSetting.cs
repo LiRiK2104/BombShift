@@ -7,11 +7,11 @@ namespace PlayerLogic.Life
     public class LifeSetting : ScriptableObject
     {
         [SerializeField] [ColorUsage(false, true)] private Color _emissionColor;
-        [SerializeField] private List<FX.FX> _effects = new List<FX.FX>();
+        [SerializeField] private List<FX.Effect> _effects = new List<FX.Effect>();
 
         public Color EmissionColor => _emissionColor;
     
-        public bool HasEffect(FX.FX effect)
+        public bool HasEffect(FX.Effect effect)
         {
             return _effects.Contains(effect);
         }

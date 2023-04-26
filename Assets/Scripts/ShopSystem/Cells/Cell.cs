@@ -19,12 +19,18 @@ namespace ShopSystem.Cells
         [SerializeField] private OpenState _openState;
 
         [Inject] protected Inventory Inventory;
-        [Inject] private Shop _shop;
+        /*[Inject] */private Shop _shop;
 
         private bool _initialized;
         private State _activeState;
         private ToggleGroup _shopToggleGroup;
         private CellView _cellView;
+
+        [Inject]
+        public void Construct(Shop shop)
+        {
+            _shop = shop;
+        }
         
         public bool IsOpened { get; private set; }
         public Toggle Toggle => _toggle;

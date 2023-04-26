@@ -22,6 +22,12 @@ namespace Ads
         {
             SetRewardText();
         }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            WatchAdsButton.onClick.RemoveAllListeners();
+        }
         
         public override void Initialize()
         {

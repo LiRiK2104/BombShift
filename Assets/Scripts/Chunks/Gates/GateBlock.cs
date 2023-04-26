@@ -13,13 +13,14 @@ namespace Chunks.Gates
         
         private Rigidbody _rigidbody;
         private Gate _gate;
-        private int _layerAfterExplosion;
+        private int _intangibleLayer;
         private bool _collisionIsHappened;
 
+        
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _layerAfterExplosion = LayerMask.NameToLayer("Gate Block");
+            _intangibleLayer = LayerMask.NameToLayer("Gate Block");
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -27,9 +28,9 @@ namespace Chunks.Gates
             if (_collisionIsHappened == false && collision.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
             {
                 _collisionIsHappened = true;
-                _gate.SlowDownPlayer();
-
-                gameObject.layer = _layerAfterExplosion;
+                _gate.OnHit();
+                
+                MakeIntangible();
                 _rigidbody.isKinematic = false;
 
                 ShakeCamera();
@@ -40,6 +41,11 @@ namespace Chunks.Gates
         public void Init(Gate gate)
         {
             _gate = gate;
+        }
+
+        public void MakeIntangible()
+        {
+            gameObject.layer = _intangibleLayer;
         }
 
         private void ShakeCamera()

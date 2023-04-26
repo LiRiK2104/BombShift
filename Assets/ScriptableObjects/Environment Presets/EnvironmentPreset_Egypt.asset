@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1460abfb3b44e794abbde959af25eb9d, type: 3}
   m_Name: EnvironmentPreset_Egypt
   m_EditorClassIdentifier: 
-  _skyboxMaterial: {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
+  _skyboxMaterials:
+  - {fileID: 2100000, guid: ddbcbb3899687ea469ed4a5fce1532df, type: 2}
+  - {fileID: 2100000, guid: 7ed994c1997814049b44c36a823bba6c, type: 2}
+  - {fileID: 2100000, guid: 20f6d22d93779de4ea6f62f8ab305593, type: 2}
   _finishPointPresets:
   - _groundMaterial: {fileID: 2100000, guid: 39ea2bcde2e08fd48b16da5e1aa99b4f, type: 2}
     _building: {fileID: -22553192327518113, guid: 09d565c87fef8a3458163a399bf6ea51, type: 3}

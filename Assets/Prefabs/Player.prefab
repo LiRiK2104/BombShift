@@ -201,7 +201,7 @@ MonoBehaviour:
   _lifeSwitcher: {fileID: 4740954643888670705}
   _speedSwitcher: {fileID: 6861570637493452285}
   _exploder: {fileID: 2725125918737780331}
-  playerSkinSetter: {fileID: 1050228908787755789}
+  skinSetter: {fileID: 1050228908787755789}
 --- !u!114 &6909592089451962239
 MonoBehaviour:
   m_ObjectHideFlags: 0

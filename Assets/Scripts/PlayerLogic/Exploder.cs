@@ -29,7 +29,7 @@ namespace PlayerLogic
         [SerializeField] [Range(MinCameraShakeTime, MaxCameraShakeTime)] private float _cameraShakeTime;
         [SerializeField] [Range(MinCameraShakeIntensity, MaxCameraShakeIntensity)] private float _cameraShakeIntensity;
     
-        [SerializeField] private FX.FX _explosionEffect;
+        [SerializeField] private FX.Effect _explosionEffect;
         [SerializeField] private Transform _originPoint;
         
         [Inject] private CinemachineSwitcher _cinemachineSwitcher;

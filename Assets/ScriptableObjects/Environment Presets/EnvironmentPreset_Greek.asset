@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1460abfb3b44e794abbde959af25eb9d, type: 3}
   m_Name: EnvironmentPreset_Greek
   m_EditorClassIdentifier: 
-  _skyboxMaterial: {fileID: 2100000, guid: 56113b3b655ab7349bab4d7d405c258a, type: 2}
+  _skyboxMaterials:
+  - {fileID: 2100000, guid: 56113b3b655ab7349bab4d7d405c258a, type: 2}
+  - {fileID: 2100000, guid: 5464c15ff9c6ca04cb5790c1773e76fa, type: 2}
+  - {fileID: 2100000, guid: ed1387202b1349540a5d6464f0f27488, type: 2}
   _finishPointPresets:
   - _groundMaterial: {fileID: 2100000, guid: 3b0c19337325291449a31fc1a5d54be1, type: 2}
     _building: {fileID: 5528230221113339949, guid: 925d82266f158f04eb0fe91929013bcf, type: 3}

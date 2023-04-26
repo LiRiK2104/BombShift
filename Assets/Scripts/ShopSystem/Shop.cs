@@ -16,7 +16,7 @@ namespace ShopSystem
 
         [SerializeField] private List<Page> _pages;
 
-        [Inject] private Inventory _inventory; 
+        private Inventory _inventory; 
         
         private ShopView _shopView;
         
@@ -33,7 +33,13 @@ namespace ShopSystem
                 return _shopView;
             }
         }
-        
+
+
+        [Inject]
+        public void Construct(Inventory inventory)
+        {
+            _inventory = inventory;
+        }
 
         public void Initialize()
         {

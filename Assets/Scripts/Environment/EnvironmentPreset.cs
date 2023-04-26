@@ -1,17 +1,24 @@
 using System;
+using System.Collections.Generic;
 using Environment.Buildings;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Environment
 {
     [CreateAssetMenu(menuName = "Environment Preset", fileName = "EnvironmentPreset", order = 51)]
     public class EnvironmentPreset : ScriptableObject
     {
-        [SerializeField] private Material _skyboxMaterial;
+        [SerializeField] private List<Material> _skyboxMaterials;
         [SerializeField] private FinishPointPreset[] _finishPointPresets = new FinishPointPreset[3];
+        
 
-        public Material SkyboxMaterial => _skyboxMaterial;
-
+        public Material GetRandomSkybox()
+        {
+            int index = Random.Range(0, _skyboxMaterials.Count);
+            return _skyboxMaterials[index];
+        }
+        
         public FinishPointPreset GetFinishPointPreset(int level)
         {
             int index = level - 1;

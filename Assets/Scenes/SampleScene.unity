@@ -2414,6 +2414,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2938417782763708324, guid: fca7bb8e8dc85b542a4b259a5115bd78, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2938417782763708324, guid: fca7bb8e8dc85b542a4b259a5115bd78, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5504718220285364900, guid: fca7bb8e8dc85b542a4b259a5115bd78, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -80.30957

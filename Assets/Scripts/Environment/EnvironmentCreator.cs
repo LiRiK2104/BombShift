@@ -42,7 +42,7 @@ namespace Environment
         {
             var preset = _environmentPresets[Index];
             Generating?.Invoke(preset);
-            RenderSettings.skybox = preset.SkyboxMaterial;
+            RenderSettings.skybox = preset.GetRandomSkybox();
         }
     }
 }

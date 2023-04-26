@@ -30,7 +30,7 @@ namespace PlayerLogic.Spirit
 
         private void OnEnable()
         {
-            _player.PlayerSkinSetter.SkinSetted += SetColor;
+            _player.SkinSetter.SkinSetted += SetColor;
             Gate.Passed += SetSpirit;
             _roundRunner.Starter.RoundStarted += SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned += SetSpirit;
@@ -39,7 +39,7 @@ namespace PlayerLogic.Spirit
 
         private void OnDisable()
         {
-            _player.PlayerSkinSetter.SkinSetted -= SetColor;
+            _player.SkinSetter.SkinSetted -= SetColor;
             Gate.Passed -= SetSpirit;
             _roundRunner.Starter.RoundStarted -= SetSpirit;
             _chunkSpawner.GateSpawner.GateSpawned -= SetSpirit;

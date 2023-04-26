@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 13
-  _spiritColor: {r: 1, g: 0.868332, b: 0, a: 1}
+  _spiritColor: {r: 0.6981132, g: 0.60503143, b: 0, a: 1}
 --- !u!1 &1605312118156245138
 GameObject:
   m_ObjectHideFlags: 0

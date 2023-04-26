@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using RoundLogic;
 using UnityEngine;
 using Zenject;
@@ -10,7 +12,7 @@ namespace PlayerLogic
     public class PlayerMover : MonoBehaviour
     {
         [Inject] private RoundRunner _roundRunner;
-        
+
         private Player _player;
         private Rigidbody _rigidbody;
         private bool _needPush;
@@ -35,6 +37,7 @@ namespace PlayerLogic
             _roundRunner.Starter.RoundStarted -= StartPushing;
             _player.Died -= StopPushing;
         }
+
 
         private void FixedUpdate()
         {

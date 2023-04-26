@@ -13,13 +13,13 @@ namespace PlayerLogic.Speed
 
         [SerializeField] [Range(MinSpeed, MaxSpeed)] private int _speed;
         [SerializeField] [Range(MinCameraDistance, MaxCameraDistance)] private float _cameraDistance;
-        [SerializeField] private List<FX.FX> _effects = new List<FX.FX>();
+        [SerializeField] private List<FX.Effect> _effects = new List<FX.Effect>();
     
         public int Speed => _speed;
         public float CameraDistance => _cameraDistance;
 
 
-        public bool HasEffect(FX.FX effect)
+        public bool HasEffect(FX.Effect effect)
         {
             return _effects.Contains(effect);
         }

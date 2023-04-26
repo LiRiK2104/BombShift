@@ -24,7 +24,7 @@ namespace Ads
                 Initialized += TryStartOffer;
         }
         
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             Initialized -= TryStartOffer;
             //RewardedAdsEnd -= OnEndAds;

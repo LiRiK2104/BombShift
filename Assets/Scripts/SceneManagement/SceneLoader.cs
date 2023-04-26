@@ -13,7 +13,8 @@ namespace SceneManagement
 
         public void ReloadScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 }
