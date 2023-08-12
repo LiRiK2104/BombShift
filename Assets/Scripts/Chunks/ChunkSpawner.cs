@@ -19,8 +19,16 @@ namespace Chunks
         [SerializeField] private Transform _chunksContainer;
     
         private Roulette _roulette;
+        private DiContainer _container;
 
         public GateSpawner GateSpawner => _gateSpawner;
+        
+        
+        [Inject]
+        private void Construct(DiContainer container)
+        {
+            _container = container;
+        }
         
         
         public void Initialize()
@@ -39,7 +47,7 @@ namespace Chunks
                 if (template == null)
                     continue;
             
-                var chunk = DiContainerRef.Container.InstantiatePrefabForComponent<Chunk>(template, spawnPoint.position, Quaternion.identity, _chunksContainer);
+                var chunk = _container.InstantiatePrefabForComponent<Chunk>(template, spawnPoint.position, Quaternion.identity, _chunksContainer);
                 _gateSpawner.Spawn(chunk.GateSpawnPoint);
             
                 spawnPoint = chunk.EndPoint;

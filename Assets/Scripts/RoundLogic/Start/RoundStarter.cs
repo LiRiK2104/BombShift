@@ -9,14 +9,19 @@ namespace RoundLogic.Start
     {
         [SerializeField] private StartMenu _startMenu;
         
-        [Inject] private PlayerScalerInput _playerScalerInput;
+        private PlayerScalerInput _playerScalerInput;
+        private bool _isStarted;
 
         public event Action RoundStarted;
 
-        private bool _isStarted;
-
         public bool IsStarted => _isStarted;
+
         
+        [Inject]
+        private void Construct(PlayerScalerInput playerScalerInput)
+        {
+            _playerScalerInput = playerScalerInput;
+        }
 
         private void OnEnable()
         {

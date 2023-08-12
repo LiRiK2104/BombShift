@@ -14,7 +14,7 @@ namespace Chunks.Gates
             if (_isTriggered == false && other.gameObject.TryGetComponentInParent(out PlayerMover playerMover))
             {
                 _isTriggered = true;
-                _gate.OnPass();
+                _gate.SpeedUpPlayer();
             }
         }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Helpers;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Chunks.Gates
@@ -13,14 +14,22 @@ namespace Chunks.Gates
         public event Action GateSpawned;
 
         private Gate _lastSpawnedGate;
-    
+        private DiContainer _container;
 
+
+        [Inject]
+        private void Construct(DiContainer container)
+        {
+            _container = container;
+        }
+        
+        
         public void Spawn(Transform spawnPoint)
         {
             if (spawnPoint == null)
                 return;
         
-            DiContainerRef.Container.InstantiatePrefab(GetTemplate(), spawnPoint.position, Quaternion.identity, spawnPoint);
+            _container.InstantiatePrefab(GetTemplate(), spawnPoint.position, Quaternion.identity, spawnPoint);
             GateSpawned?.Invoke();
         }
 

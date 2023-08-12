@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine;
 using PlayerLogic;
 using PlayerLogic.Spirit;
 using UnityEngine;
@@ -20,16 +19,8 @@ namespace Chunks.Gates
         private bool _isUsed;
 
         public static event Action Passed;
-
-        private CinemachineSwitcher _cinemachineSwitcher;
         
 
-        [Inject]
-        public void Construct(CinemachineSwitcher cinemachineSwitcher)
-        {
-            _cinemachineSwitcher = cinemachineSwitcher;
-        }
-        
         private void Awake()
         {
             _blocks = GetComponentsInChildren<GateBlock>().ToList();

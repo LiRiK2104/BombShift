@@ -16,17 +16,22 @@ namespace PlayerLogic.Spirit
         [SerializeField] private Spirit _spiritQuad;
         [SerializeField] private SpiritBox _spiritBox;
 
-        [Inject] private ChunkSpawner _chunkSpawner;
-        [Inject] private RoundRunner _roundRunner;
-
+        private ChunkSpawner _chunkSpawner;
+        private RoundRunner _roundRunner;
         private Player _player;
         
         public event Action<Vector3> SpiritPointFound;
 
-        private void Awake()
+        
+        [Inject]
+        private void Construct(ChunkSpawner chunkSpawner, RoundRunner roundRunner)
         {
+            _chunkSpawner = chunkSpawner;
+            _roundRunner = roundRunner;
+            
             _player = GetComponent<Player>();
         }
+        
 
         private void OnEnable()
         {

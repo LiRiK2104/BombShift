@@ -10,10 +10,15 @@ namespace PlayerLogic
     {
         private static readonly int FreezeTrigger = Animator.StringToHash("Freeze");
 
-        [Inject] private RoundRunner _roundRunner;
-        
+        private RoundRunner _roundRunner;
         private Animator _animator;
-
+        
+        
+        [Inject]
+        private void Construct(RoundRunner roundRunner)
+        {
+            _roundRunner = roundRunner;
+        }
         
         private void Awake()
         {
